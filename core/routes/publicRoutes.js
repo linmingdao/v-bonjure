@@ -9,11 +9,6 @@ const publicRoutes = {
     page404: {
         path: '/404',
         component: components['Page404']
-    },
-    // 500 page
-    page500: {
-        path: '/500',
-        component: components['Page500']
     }
 };
 
@@ -26,9 +21,6 @@ export const producePublicRoutes = (config) => {
     if (config['usePublicRoutes']) {
         if (config['use404Route']) {
             routes.push(publicRoutes['page404']);
-        }
-        if (config['use500Route']) {
-            routes.push(publicRoutes['page500']);
         }
     }
     return routes;

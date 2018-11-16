@@ -28,7 +28,6 @@ App({
     //  */
     // publicRoutesConfig: {
     //     usePublicRoutes: true,
-    //     use404Route: true,
-    //     use500Route: true
+    //     use404Route: true
     // }
 });

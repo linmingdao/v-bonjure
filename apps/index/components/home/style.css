@@ -17,9 +17,9 @@
 
 .el-main {
     background-color: #E9EEF3;
+    background: url('./images/bj.png') repeat;
     color: #333;
     text-align: center;
-    /* line-height: 160px; */
 }
 
 

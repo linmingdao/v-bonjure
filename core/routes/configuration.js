@@ -12,10 +12,5 @@ export default {
      * 是否使用404路由
      * 可选值：true: 启用，false: 禁用
      */
-    use404Route: true,
-    /**
-     * 是否使用500路由
-     * 可选值：true: 启用，false: 禁用
-     */
-    use500Route: true
+    use404Route: true
 };

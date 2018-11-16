@@ -1,6 +1,8 @@
 <template>
     <div id="app">
-        <router-view></router-view>
+        <transition :name="transitionName">
+            <router-view class="child-view"></router-view>
+        </transition>
     </div>
 </template>
 <script src="./script.js"></script>
