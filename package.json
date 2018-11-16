@@ -1,0 +1,51 @@
+{
+    "name": "vfront",
+    "version": "1.0.0",
+    "description": "a generic framework for font-end development by vue",
+    "private": true,
+    "scripts": {
+        "build": "webpack --config ./build/webpack.prod.config.js --progress --display-modules --colors --display-reasons",
+        "dev": "webpack-dev-server --config ./build/webpack.dev.config.js --open --hot --color --progress"
+    },
+    "keywords": [
+        "vue",
+        "js"
+    ],
+    "author": "linmingdao",
+    "license": "ISC",
+    "devDependencies": {
+        "@babel/core": "^7.1.5",
+        "@babel/plugin-proposal-function-bind": "^7.0.0",
+        "@babel/preset-env": "^7.1.5",
+        "@babel/preset-stage-0": "^7.0.0",
+        "autoprefixer": "^9.3.1",
+        "babel-loader": "^8.0.4",
+        "babel-plugin-transform-decorators-legacy": "^1.3.5",
+        "clean-webpack-plugin": "^0.1.19",
+        "cross-env": "^5.2.0",
+        "css-loader": "^1.0.1",
+        "es6-promise": "^4.2.5",
+        "express": "^4.16.4",
+        "file-loader": "^2.0.0",
+        "html-loader": "^0.5.5",
+        "mini-css-extract-plugin": "^0.4.4",
+        "postcss-cssnext": "^3.1.0",
+        "postcss-loader": "^3.0.0",
+        "postcss-pxtorem": "^4.0.1",
+        "style-loader": "^0.23.1",
+        "uglifyjs-webpack-plugin": "^2.0.1",
+        "vue-loader": "^15.4.2",
+        "vue-template-compiler": "^2.5.17",
+        "vuex": "^3.0.1",
+        "web-webpack-plugin": "^4.0.1",
+        "webpack": "^4.25.1",
+        "webpack-cli": "^3.1.2",
+        "webpack-dev-server": "^3.1.10"
+    },
+    "dependencies": {
+        "element-ui": "^2.4.9",
+        "normalize.css": "^8.0.1",
+        "vue": "^2.5.17",
+        "vue-router": "^3.0.1"
+    }
+}
