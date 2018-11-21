@@ -5,9 +5,13 @@
     "private": true,
     "scripts": {
         "build": "webpack --config ./build/webpack.build.config.js --progress --display-modules --colors --display-reasons",
-        "dev": "webpack-dev-server --config ./build/webpack.dev.config.js"
+        "dev": "webpack-dev-server --config ./build/webpack.dev.config.js --hot --open --inline"
     },
-    "keywords": ["v-bonjour", "vue", "js"],
+    "keywords": [
+        "v-bonjour",
+        "vue",
+        "js"
+    ],
     "author": "linmingdao",
     "license": "ISC",
     "devDependencies": {
@@ -31,7 +35,6 @@
         "postcss-cssnext": "^3.1.0",
         "postcss-loader": "^3.0.0",
         "postcss-pxtorem": "^4.0.1",
-        "style-loader": "^0.23.1",
         "uglifyjs-webpack-plugin": "^2.0.1",
         "url-loader": "^1.1.2",
         "vue-loader": "^15.4.2",

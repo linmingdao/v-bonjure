@@ -4,97 +4,74 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const Webpack = require('webpack');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
 
-console.log(path.resolve(__dirname, "../dist/"))
-
 module.exports = {
-    devtool: 'inline-source-map',
-    entry: {
-        index: './src/app/index.js'
-    },
-    output: {
-        filename: '[name].bundle.js',
-        path: path.resolve(__dirname, '../dist/js'),
-        publicPath: '/assets/'
-    },
-    plugins: [
-        new CleanWebpackPlugin(['dist']),
-        new HtmlWebpackPlugin({
-            filename: path.resolve(__dirname, '../dist/index.html'),
-            inject: 'body',
-            template: './src/app/index.html',
-            // minify: { //压缩HTML文件
-            //     removeComments: true, //移除HTML中的注释
-            //     collapseWhitespace: true, //删除空白符与换行符
-            //     // 为了使GAEA能正确识别script, 保留引号
-            //     // removeAttributeQuotes: true,
-            //     minifyJS: true,
-            //     removeScriptTypeAttributes: true,
-            //     removeStyleLinkTypeAttributes: true
-            // }
-        }),
-        new Webpack.NamedModulesPlugin(),
-        new Webpack.HotModuleReplacementPlugin(),
-        new VueLoaderPlugin()
-    ],
-    devServer: {
-        contentBase: path.resolve(__dirname, "../dist"),
-        watchContentBase: true,
-        // compress: true,
-        // hot: true,
-        port: 3002,
-        // stats: {
-        //     colors: true,
-        //     children: false,
-        //     chunks: false,
-        //     assetsSort: 'size'
-        // }
-    },
-    module: {
-        rules: [
-            // 使用Babel处理js文件
-            {
-                test: /\.js$/,
-                use: ['babel-loader'],
-                exclude: /node_modules/
-            },
-            // 使用PostCSS处理css文件
-            {
-                test: /\.css$/,
-                use: [{
-                    loader: 'style-loader',
-                }, {
-                    loader: 'css-loader',
-                    options: {
-                        importLoaders: 1,
-                    }
-                }, {
+    moduleRules: [
+        // 使用Babel处理js文件
+        {
+            test: /\.js$/,
+            use: ['babel-loader'],
+            exclude: /node_modules/
+        },
+        // 使用PostCSS处理css文件
+        {
+            test: /\.css$/,
+            use: [
+                // 提取样式为单独的文件
+                {
+                    loader: MiniCssExtractPlugin.loader
+                },
+                // 以<style>标签的形式将css-loader内部的样式注入到html页面(由于要单独剥离css,所以不需要该loader)
+                // {
+                //     loader: 'style-loader',
+                // },
+                // 以link的形式加载css文件
+                {
+                    loader: 'css-loader'
+                },
+                // 使用postcss处理最原始的样式文件
+                {
                     loader: 'postcss-loader'
-                }],
-                exclude: /node_modules/
-            },
-            // 加载图片
-            {
-                test: /\.(png|svg|jpg|gif)$/,
-                use: ['file-loader'],
-                exclude: /node_modules/
-            },
-            // 加载字体
-            {
-                test: /\.(woff|woff2|eot|ttf|otf)$/,
-                use: ['file-loader'],
-                exclude: /node_modules/
-            },
-            {
-                test: /\.html$/,
-                use: ['html-loader'],
-                exclude: /node_modules/
-            },
-            // 接入Vue框架
-            {
-                test: /\.vue$/,
-                use: ['vue-loader'],
-                exclude: /node_modules/
-            }
-        ]
-    }
+                }
+            ]
+        },
+        // 加载图片
+        {
+            test: /\.(png|svg|jpg|gif)$/,
+            use: [{
+                loader: 'url-loader',
+                options: {
+                    limit: 1,
+                    name: "/assets/images/[name].[hash].[ext]"
+                }
+            }]
+        },
+        // 加载字体
+        {
+            test: /\.(woff|woff2|eot|ttf|otf)$/,
+            use: [{
+                loader: 'url-loader',
+                options: {
+                    limit: 1,
+                    name: "/assets/fonts/[name].[hash].[ext]"
+                }
+            }]
+        },
+        // 处理html模板
+        {
+            test: /\.html$/,
+            use: ['html-loader'],
+            exclude: [
+                /node_modules/,
+                // 特别注意：过滤掉HtmlWebpackPlugin的模板文件(新版本的HtmlWebpackPlugin不需要html-loader了)
+                `${CORE_PATH}/template.html`,
+                `${APP_PATH}/template.html`
+            ]
+        },
+        // 处理.vue文件
+        {
+            test: /\.vue$/,
+            use: ['vue-loader'],
+            exclude: /node_modules/
+        }
+    ]
 };
