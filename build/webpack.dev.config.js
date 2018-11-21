@@ -4,7 +4,6 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
-const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 // TODO: 提取成用户输入的
 const app = 'index';
@@ -16,7 +15,7 @@ const CORE_PATH = path.resolve(__dirname, '../core');
 // 应用的开发目录
 const APP_PATH = path.resolve(__dirname, `../apps/${app}`);
 // 所有应用打包路径
-const DIST_PATH = path.resolve(__dirname, `../dist`);
+const DIST_PATH = path.resolve(__dirname, `../distDev`);
 // 应用的打包目录
 const APP_DIST_PATH = `${DIST_PATH}/${app}`;
 // 打包模板的路径
@@ -47,12 +46,6 @@ module.exports = {
         // overlay: true
     },
     plugins: [
-        // 为了防止devServer读取硬盘之前打包过文件，内存打包前自动清除旧的打包文件
-        new CleanWebpackPlugin([app], {
-            root: DIST_PATH,
-            verbose: true,
-            dry: false
-        }),
         // 自动生成logo的favicon.ico文件
         new FaviconsWebpackPlugin({
             logo: `${APP_PATH}/logo.png`,
