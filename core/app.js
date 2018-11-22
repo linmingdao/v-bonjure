@@ -3,7 +3,7 @@ import 'es6-promise/auto';
 import Vue from 'vue';
 
 // 导入默认的ui库(element-ui)
-import './ui-library';
+// import './ui-library';
 
 // 导入应用的路由配置函数
 import { configApplicationRoutes } from './routes';

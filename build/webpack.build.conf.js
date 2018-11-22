@@ -4,9 +4,11 @@ const VueLoaderPlugin = require('vue-loader/lib/plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const OptimizeCssnanoPlugin = require('@intervolga/optimize-cssnano-plugin');
 
 // TODO: 提取成用户输入的
-const app = 'index';
+const app = 'demo';
 const title = 'v-bonjour';
 const useDefaultTemplate = true;
 
@@ -30,12 +32,37 @@ module.exports = {
     },
     // 应用打包出口
     output: {
-        filename: 'js/index.bundle.[hash].js',
+        filename: 'js/index.bundle.[hash:7].js',
         path: APP_DIST_PATH,
         // 上线该配置需要配置成线上地址
         publicPath: APP_DIST_PATH.replace(/\\/g, '/')
+            // publicPath: '/'
+    },
+    resolve: {
+        alias: {
+            app: path.resolve(__dirname, '../core/app'),
+            logger: path.resolve(__dirname, '../logger/index')
+        }
+    },
+    externals: {
+        'vue': 'Vue',
+        'vue-router': 'VueRouter',
+        'vuex': 'Vuex',
+        // 'axios': 'axios',
+        'element-ui': 'Element'
     },
     plugins: [
+        new UglifyJsPlugin(),
+        new OptimizeCssnanoPlugin({
+            sourceMap: false,
+            cssnanoOptions: {
+                preset: ['default', {
+                    discardComments: {
+                        removeAll: true,
+                    },
+                }],
+            },
+        }),
         // 打包前自动清除旧的打包文件
         new CleanWebpackPlugin([app], {
             root: DIST_PATH,
@@ -64,12 +91,20 @@ module.exports = {
             filename: "index.html",
             template: TEMPLATE_PATH,
             inject: true,
-            minify: true
+            // 压缩配置
+            minify: {
+                collapseWhitespace: true,
+                removeComments: true,
+                removeRedundantAttributes: true,
+                removeScriptTypeAttributes: true,
+                removeStyleLinkTypeAttributes: true,
+                useShortDoctype: true
+            }
         }),
         // 剥离样式文件
         new MiniCssExtractPlugin({
             // 输出文件【注意：这里的根路径是module.exports.output.path】
-            filename: "css/style.bundle.[hash].css"
+            filename: "css/style.bundle.[hash:7].css"
         }),
         // 处理*.vue文件
         new VueLoaderPlugin()
@@ -106,25 +141,62 @@ module.exports = {
             },
             // 加载图片
             {
-                test: /\.(png|svg|jpg|gif)$/,
-                use: [{
-                    loader: 'url-loader',
-                    options: {
-                        limit: 1,
-                        name: "/assets/images/[name].[hash].[ext]"
+                test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
+                use: [
+                    // 图片size小于8K自动转成base64
+                    {
+                        loader: 'url-loader',
+                        options: {
+                            limit: 10000,
+                            name: "/assets/images/[name].[hash:7].[ext]"
+                        }
+                    },
+                    // 压缩图片
+                    {
+                        loader: 'img-loader',
+                        options: {
+                            mozjpeg: {
+                                progressive: true,
+                                quality: 65
+                            },
+                            // optipng.enabled: false will disable optipng
+                            optipng: {
+                                enabled: false,
+                            },
+                            pngquant: {
+                                quality: '65-90',
+                                speed: 4
+                            },
+                            gifsicle: {
+                                interlaced: false,
+                            },
+                            // the webp option will enable WEBP
+                            webp: {
+                                quality: 75
+                            }
+                        }
                     }
-                }]
+                ]
             },
             // 加载字体
             {
-                test: /\.(woff|woff2|eot|ttf|otf)$/,
+                test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
                 use: [{
                     loader: 'url-loader',
                     options: {
-                        limit: 1,
-                        name: "/assets/fonts/[name].[hash].[ext]"
+                        limit: 10000,
+                        name: "/assets/fonts/[name].[hash:7].[ext]"
                     }
                 }]
+            },
+            // 加载媒体资源
+            {
+                test: /\.(mp4|webm|ogg|mp3|wav|flac|aac)(\?.*)?$/,
+                loader: 'url-loader',
+                options: {
+                    limit: 10000,
+                    name: "/assets/media/[name].[hash:7].[ext]"
+                }
             },
             // 处理html模板(暂时不需要，先注释掉)
             // {

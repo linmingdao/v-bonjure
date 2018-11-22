@@ -4,6 +4,8 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const OptimizeCssnanoPlugin = require('@intervolga/optimize-cssnano-plugin');
 
 // TODO: 提取成用户输入的
 const app = 'index';
@@ -41,11 +43,34 @@ module.exports = {
         host: '127.0.0.1',
         port: 3002,
         compress: true,
-        // clientLogLevel: 'warning',
-        // historyApiFallback: true,
-        // overlay: true
+        clientLogLevel: 'warning',
+        overlay: true
+    },
+    resolve: {
+        alias: {
+            app: path.resolve(__dirname, '../core/app'),
+            logger: path.resolve(__dirname, '../logger/index')
+        }
+    },
+    externals: {
+        'vue': 'Vue',
+        'vue-router': 'VueRouter',
+        'vuex': 'Vuex',
+        // 'axios': 'axios',
+        'element-ui': 'Element'
     },
     plugins: [
+        new UglifyJsPlugin(),
+        new OptimizeCssnanoPlugin({
+            sourceMap: false,
+            cssnanoOptions: {
+                preset: ['default', {
+                    discardComments: {
+                        removeAll: true,
+                    },
+                }],
+            },
+        }),
         // 自动生成logo的favicon.ico文件
         new FaviconsWebpackPlugin({
             logo: `${APP_PATH}/logo.png`,
@@ -67,15 +92,21 @@ module.exports = {
             title,
             filename: "index.html",
             template: TEMPLATE_PATH,
-            inject: true
+            inject: true,
+            // 压缩配置
+            minify: {
+                collapseWhitespace: true,
+                removeComments: true,
+                removeRedundantAttributes: true,
+                removeScriptTypeAttributes: true,
+                removeStyleLinkTypeAttributes: true,
+                useShortDoctype: true
+            }
         }),
-        // 模块热替换配置
-        new webpack.NamedModulesPlugin(),
-        new webpack.HotModuleReplacementPlugin(),
         // 剥离样式文件
         new MiniCssExtractPlugin({
             // 输出文件【注意：这里的根路径是module.exports.output.path】
-            filename: "css/style.bundle.css"
+            filename: "css/style.bundle.[hash:7].css"
         }),
         // 处理*.vue文件
         new VueLoaderPlugin()
@@ -88,7 +119,7 @@ module.exports = {
                 use: ['babel-loader'],
                 exclude: /node_modules/
             },
-            // 使用PostCSS处理css文件，可以在css里面使用最新的语法
+            // 使用PostCSS处理css文件
             {
                 test: /\.css$/,
                 use: [
@@ -96,7 +127,7 @@ module.exports = {
                     {
                         loader: MiniCssExtractPlugin.loader
                     },
-                    // 以<style>标签的形式将css-loader内部的样式注入到html页面
+                    // 以<style>标签的形式将css-loader内部的样式注入到html页面(由于要单独剥离css,所以不需要该loader)
                     // {
                     //     loader: 'style-loader',
                     // },
@@ -112,26 +143,62 @@ module.exports = {
             },
             // 加载图片
             {
-                test: /\.(png|svg|jpg|gif)$/,
-                use: [{
-                    loader: 'url-loader',
-                    options: {
-                        // 图片size小于8K自动转成base64
-                        limit: 8192,
-                        name: "/assets/images/[name].[hash].[ext]"
+                test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
+                use: [
+                    // 图片size小于8K自动转成base64
+                    {
+                        loader: 'url-loader',
+                        options: {
+                            limit: 10000,
+                            name: "/assets/images/[name].[hash:7].[ext]"
+                        }
+                    },
+                    // 压缩图片
+                    {
+                        loader: 'img-loader',
+                        options: {
+                            mozjpeg: {
+                                progressive: true,
+                                quality: 65
+                            },
+                            // optipng.enabled: false will disable optipng
+                            optipng: {
+                                enabled: false,
+                            },
+                            pngquant: {
+                                quality: '65-90',
+                                speed: 4
+                            },
+                            gifsicle: {
+                                interlaced: false,
+                            },
+                            // the webp option will enable WEBP
+                            webp: {
+                                quality: 75
+                            }
+                        }
                     }
-                }]
+                ]
             },
             // 加载字体
             {
-                test: /\.(woff|woff2|eot|ttf|otf)$/,
+                test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
                 use: [{
                     loader: 'url-loader',
                     options: {
-                        limit: 8192,
-                        name: "/assets/fonts/[name].[hash].[ext]"
+                        limit: 10000,
+                        name: "/assets/fonts/[name].[hash:7].[ext]"
                     }
                 }]
+            },
+            // 加载媒体资源
+            {
+                test: /\.(mp4|webm|ogg|mp3|wav|flac|aac)(\?.*)?$/,
+                loader: 'url-loader',
+                options: {
+                    limit: 10000,
+                    name: "/assets/media/[name].[hash:7].[ext]"
+                }
             },
             // 处理html模板(暂时不需要，先注释掉)
             // {

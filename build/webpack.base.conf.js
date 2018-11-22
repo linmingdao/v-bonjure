@@ -1,77 +1,68 @@
-const path = require('path');
-const CleanWebpackPlugin = require('clean-webpack-plugin');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const Webpack = require('webpack');
-const VueLoaderPlugin = require('vue-loader/lib/plugin');
+'use strict'
+const path = require('path')
+const utils = require('./utils')
+const config = require('../config')
+const vueLoaderConfig = require('./vue-loader.conf')
+
+function resolve(dir) {
+    return path.join(__dirname, '..', dir)
+}
 
 module.exports = {
-    moduleRules: [
-        // 使用Babel处理js文件
-        {
-            test: /\.js$/,
-            use: ['babel-loader'],
-            exclude: /node_modules/
-        },
-        // 使用PostCSS处理css文件
-        {
-            test: /\.css$/,
-            use: [
-                // 提取样式为单独的文件
-                {
-                    loader: MiniCssExtractPlugin.loader
-                },
-                // 以<style>标签的形式将css-loader内部的样式注入到html页面(由于要单独剥离css,所以不需要该loader)
-                // {
-                //     loader: 'style-loader',
-                // },
-                // 以link的形式加载css文件
-                {
-                    loader: 'css-loader'
-                },
-                // 使用postcss处理最原始的样式文件
-                {
-                    loader: 'postcss-loader'
-                }
-            ]
-        },
-        // 加载图片
-        {
-            test: /\.(png|svg|jpg|gif)$/,
-            use: [{
+    context: path.resolve(__dirname, '../'),
+    entry: {
+        app: './src/main.js'
+    },
+    output: {
+        path: config.build.assetsRoot,
+        filename: '[name].js',
+        publicPath: process.env.NODE_ENV === 'production' ?
+            config.build.assetsPublicPath : config.dev.assetsPublicPath
+    },
+    //   resolve: {
+    //     extensions: ['.js', '.vue', '.json'],
+    //     alias: {
+    //       {{#if_eq build "standalone"}}
+    //       'vue$': 'vue/dist/vue.esm.js',
+    //       {{/if_eq}}
+    //       '@': resolve('src'),
+    //     }
+    //   },
+    module: {
+        rules: [{
+                test: /\.vue$/,
+                loader: 'vue-loader',
+                options: vueLoaderConfig
+            },
+            {
+                test: /\.js$/,
+                loader: 'babel-loader',
+                include: [resolve('src'), resolve('test'), resolve('node_modules/webpack-dev-server/client')]
+            },
+            {
+                test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
                 loader: 'url-loader',
                 options: {
-                    limit: 1,
-                    name: "/assets/images/[name].[hash].[ext]"
+                    limit: 10000,
+                    name: utils.assetsPath('img/[name].[hash:7].[ext]')
                 }
-            }]
-        },
-        // 加载字体
-        {
-            test: /\.(woff|woff2|eot|ttf|otf)$/,
-            use: [{
+            },
+            {
+                test: /\.(mp4|webm|ogg|mp3|wav|flac|aac)(\?.*)?$/,
                 loader: 'url-loader',
                 options: {
-                    limit: 1,
-                    name: "/assets/fonts/[name].[hash].[ext]"
+                    limit: 10000,
+                    name: utils.assetsPath('media/[name].[hash:7].[ext]')
                 }
-            }]
-        },
-        // 处理html模板
-        {
-            test: /\.html$/,
-            use: ['html-loader'],
-            exclude: [
-                /node_modules/,
-                // 特别注意：过滤掉HtmlWebpackPlugin的模板文件(新版本的HtmlWebpackPlugin不需要html-loader了)
-                `${CORE_PATH}/template.html`,
-                `${APP_PATH}/template.html`
-            ]
-        },
-        // 处理.vue文件
-        {
-            test: /\.vue$/,
-            use: ['vue-loader'],
-            exclude: /node_modules/
-        }
-    ]
-};
+            },
+            {
+                test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
+                loader: 'url-loader',
+                options: {
+                    limit: 10000,
+                    name: utils.assetsPath('fonts/[name].[hash:7].[ext]')
+                }
+            }
+        ]
+    }
+}
