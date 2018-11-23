@@ -2,6 +2,17 @@
  * 默认的模块名
  */
 export const DEFAULT_MODULE_NAME = 'global';
+
+/**
+ * 开关常量
+ */
+export const SHERRY_SWITCH = {
+    'COLOR': 'color',
+    'LEVEL': 'level',
+    'MODULE': 'module',
+    'TIME': 'time'
+};
+
 /**
  * 级别全称
  */
@@ -36,11 +47,22 @@ export const LEVELS = {
 };
 
 /**
- * 背景色
+ * 样式
  */
-export const BG_COLOR = {
-    'DEBUG': '#3CABDB',
-    'INFO': '#167FFC',
-    'WARN': '#595BD4',
-    'ERROR': '#FD3259'
+export const STYLE = {
+    BG_COLOR: {
+        'DEBUG': '#3CABDB',
+        'INFO': '#167FFC',
+        'WARN': '#595BD4',
+        'ERROR': '#FD3259',
+        'MODULE': '#bd8e66',
+        'TIME': '#4670a5',
+        'CONTENT': '#e80a0a'
+    },
+    FONT_SIZE: '13px'
 };
+
+/**
+ * 日志日期的输出格式
+ */
+export const DATE_FORMATTER = 'yyyy/mm/dd HH:mm:ss:l';

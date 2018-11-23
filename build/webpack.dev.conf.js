@@ -8,7 +8,7 @@ const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const OptimizeCssnanoPlugin = require('@intervolga/optimize-cssnano-plugin');
 
 // TODO: 提取成用户输入的
-const app = 'index';
+const app = 'demo';
 const title = 'v-bonjour';
 const useDefaultTemplate = true;
 
@@ -25,7 +25,7 @@ const TEMPLATE_PATH = useDefaultTemplate ? `${CORE_PATH}/template.html` : `${APP
 
 module.exports = {
     // 启用source-map
-    devtool: 'inline-source-map',
+    devtool: 'source-map',
     // 应用打包入口
     entry: {
         [app]: `${APP_PATH}/index.js`
@@ -43,13 +43,13 @@ module.exports = {
         host: '127.0.0.1',
         port: 3002,
         compress: true,
-        clientLogLevel: 'warning',
+        clientLogLevel: 'info',
         overlay: true
     },
     resolve: {
         alias: {
             app: path.resolve(__dirname, '../core/app'),
-            logger: path.resolve(__dirname, '../logger/index')
+            logger: path.resolve(__dirname, '../sherry/index')
         }
     },
     externals: {
@@ -60,17 +60,21 @@ module.exports = {
         'element-ui': 'Element'
     },
     plugins: [
-        new UglifyJsPlugin(),
-        new OptimizeCssnanoPlugin({
-            sourceMap: false,
-            cssnanoOptions: {
-                preset: ['default', {
-                    discardComments: {
-                        removeAll: true,
-                    },
-                }],
-            },
-        }),
+        // new UglifyJsPlugin(),
+        // new OptimizeCssnanoPlugin({
+        //     sourceMap: true,
+        //     // compress: {
+        //     //     warnings: false,
+        //     //     drop_console: true
+        //     // },
+        //     cssnanoOptions: {
+        //         preset: ['default', {
+        //             discardComments: {
+        //                 removeAll: true,
+        //             },
+        //         }],
+        //     },
+        // }),
         // 自动生成logo的favicon.ico文件
         new FaviconsWebpackPlugin({
             logo: `${APP_PATH}/logo.png`,

@@ -1,4 +1,4 @@
-import { DEFAULT_MODULE_NAME, LEVELS } from './Constants';
+import { DEFAULT_MODULE_NAME, LEVELS } from '../constants';
 
 /**
  * 日志输出类
