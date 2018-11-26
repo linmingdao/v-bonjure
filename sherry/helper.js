@@ -5,7 +5,7 @@
  */
 import isString from 'lodash/isString';
 import isNumber from 'lodash/isNumber';
-import { LEVELS, LEVEL_STRING, PADDING_LEVEL_STRING, STYLE } from './constants';
+import { LEVELS, LEVEL_STRING, PADDING_LEVEL_STRING, STYLE, CONTEXT_FLAGS } from './constants';
 import conf from './env/config';
 
 /**
@@ -98,19 +98,18 @@ export const colorfulStyles = {
     }
 };
 
-
 /**
  * 判断是否可以打印该级别的日志
  * @param {*} level 
  */
-export const askAllowLevel = level => level >= LEVELS[conf['level']];
+export const isAllowLevel = level => level >= LEVELS[conf['level']];
 
 /**
  * 是否允许该模块打印日志
  * @param {*} moduleName 
  * @returns {Boolean} true: 允许打印, false: 不允许
  */
-export const askAllowModule = moduleName => {
+export const isAllowModule = moduleName => {
     moduleName = moduleName.trim().toLowerCase();
     const filter = conf['filter'];
     const convertedModuleName = moduleName.replace(/\//g, '.');
@@ -123,11 +122,11 @@ export const askAllowModule = moduleName => {
     else {
         const parentModules = moduleName.split('/');
         parentModules.pop();
-        return _askAllowParentModule(parentModules, filter);
+        return _isAllowModule(parentModules, filter);
     }
 };
 
-function _askAllowParentModule(parentModules, filter) {
+function _isAllowModule(parentModules, filter) {
     let result = true;
     if (parentModules.length) {
         let pName = '';
@@ -140,4 +139,32 @@ function _askAllowParentModule(parentModules, filter) {
         }
     }
     return result;
+}
+
+/**
+ * 是否以彩色形式输出日志
+ */
+export function isLogColorfully() {
+    return conf['context-flags'].includes(CONTEXT_FLAGS.COLOR);
+}
+
+/**
+ * 是否输出模块信息
+ */
+export function isLogModule() {
+    return conf['context-flags'].includes(CONTEXT_FLAGS.MODULE);
+}
+
+/**
+ * 是否输出日期信息
+ */
+export function isLogTime() {
+    return conf['context-flags'].includes(CONTEXT_FLAGS.TIME);
+}
+
+/**
+ * 是否输出级别信息
+ */
+export function isLogLevel() {
+    return conf['context-flags'].includes(CONTEXT_FLAGS.LEVEL);
 }

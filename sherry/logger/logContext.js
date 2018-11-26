@@ -1,8 +1,8 @@
 import dateFormat from 'dateformat';
-const uuidv4 = require('uuid/v4');
+// const uuidv4 = require('uuid/v4');
 
 import { LEVEL_STRING, DATE_FORMATTER } from '../constants';
-import { anything2LevelString, paddingLevelString, colorfulStyles, askAllowLevel, askAllowModule } from '../helper';
+import { anything2LevelString, paddingLevelString, colorfulStyles, isAllowLevel, isAllowModule, isLogColorfully, isLogLevel, isLogTime, isLogModule } from '../helper';
 
 /**
  * 日志上下文: 
@@ -21,7 +21,7 @@ export default class LogContext {
      * @param {Function} styles.content 日志内容样式(只对单行日志有效)
      */
     constructor(styles = colorfulStyles) {
-        this.id = uuidv4();
+        // this.id = uuidv4();
         this.cstyles = styles;
     }
 
@@ -31,12 +31,10 @@ export default class LogContext {
      * @static
      * @param {any} levelStr 日志级别
      * @returns {Function} 日志打印函数
-     *
-     * @memberof LogContext
-     * @private
      */
     static getLogByLevel(levelStr, colorfully = true) {
         if (colorfully) {
+            // 为了美观，统一使用log进行输出
             return console.log.bind(console);
         } else {
             switch (levelStr) {
@@ -65,11 +63,11 @@ export default class LogContext {
      */
     log(level, moduleName, params) {
         // 级别 与 模块名的控制
-        const isAllowLevel = askAllowLevel(level);
-        const isAllowModule = askAllowModule(moduleName);
-        if (!isAllowLevel || !isAllowModule) return;
+        const allowLevel = isAllowLevel(level);
+        const allowModule = isAllowModule(moduleName);
+        if (!allowLevel || !allowModule) return;
 
-        if (true) {
+        if (isLogColorfully()) {
             // 彩色打印
             this.logColorfully(level, moduleName, params);
         } else {
@@ -97,16 +95,23 @@ export default class LogContext {
         // 收集日志内容
         const prefix = [];
         const styleParams = [];
-        prefix.push(`%c${paddingLevelStr}`);
-        styleParams.push(this.cstyles.level(levelStr));
-        prefix.push(`%c 🎁${moduleName}`);
-        styleParams.push(this.cstyles.module(moduleName));
-        prefix.push(`%c 📆${now}`);
-        styleParams.push(this.cstyles.time(now));
+        if (isLogLevel()) {
+            prefix.push(`%c${paddingLevelStr}`);
+            styleParams.push(this.cstyles.level(levelStr));
+        }
+        if (isLogModule()) {
+            prefix.push(`%c${isLogLevel()?' ':''}🎁${moduleName} `);
+            styleParams.push(this.cstyles.module(moduleName));
+        }
+        if (isLogTime()) {
+            prefix.push(`%c📆${now} `);
+            styleParams.push(this.cstyles.time(now));
+        }
+        prefix.push(`%c💬`);
         styleParams.push(this.cstyles.content());
 
         // 输出日志内容
-        log(`${prefix.join('')} %c💬`, ...styleParams, ...params);
+        log(`${prefix.join('')}`, ...styleParams, ...params);
     }
 
     /**
@@ -121,10 +126,20 @@ export default class LogContext {
         const paddingLevelStr = paddingLevelString(levelStr);
         const now = dateFormat(new Date(), DATE_FORMATTER);
         const log = LogContext.getLogByLevel(levelStr, false);
+
+        // 收集日志内容
         const prefix = [];
-        prefix.push(`[${paddingLevelStr}]`);
-        prefix.push(`[${moduleName}]`);
-        prefix.push(`${now}`);
-        log(`%c${prefix.join(' ')}`, "color:blue;", ...params);
+        if (isLogLevel()) {
+            prefix.push(`[${paddingLevelStr}]-`);
+        }
+        if (isLogModule()) {
+            prefix.push(`[${moduleName}]-`);
+        }
+        if (isLogTime()) {
+            prefix.push(`[${now}]`);
+        }
+
+        // 输出日志内容
+        log(prefix.join(''), ...params);
     }
 }

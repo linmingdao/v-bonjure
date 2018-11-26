@@ -6,7 +6,7 @@ export const DEFAULT_MODULE_NAME = 'global';
 /**
  * 开关常量
  */
-export const SHERRY_SWITCH = {
+export const CONTEXT_FLAGS = {
     'COLOR': 'color',
     'LEVEL': 'level',
     'MODULE': 'module',

@@ -64,9 +64,13 @@ function log(level, params) {
  * @static
  */
 Logger.injector = {
-    inject(that, moduleName, context) {
+    inject(that, moduleName, context, filter) {
+        // 模块名称
         that.moduleName = moduleName || DEFAULT_MODULE_NAME;
+        // 为了方便日志实例的统一管理，所有的日志实例都共享一个上下文环境
         // that.ctx = context || new this.LogContext();
         that.ctx = context || this.logContext;
+        // 注入过滤器
+        that.filter = filter;
     }
 };

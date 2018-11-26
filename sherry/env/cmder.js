@@ -11,9 +11,15 @@ import { LEVEL_STRING } from '../constants';
  * 打开某个模块的日志
  */
 !g.sherryon && (g.sherryon = moduleName => {
-    moduleName = moduleName.trim().replace(/\//g, '.').toLowerCase();
-    const filter = conf['filter'];
-    filter.hasOwnProperty(moduleName) && delete filter[moduleName];
+    // 打开所有模块日志
+    if (moduleName.trim() === '**') {
+        conf['filter'] = {};
+    } else {
+        // 打开某个模块日志
+        moduleName = moduleName.trim().replace(/\//g, '.').toLowerCase();
+        const filter = conf['filter'];
+        filter.hasOwnProperty(moduleName) && delete filter[moduleName];
+    }
 });
 
 /**
@@ -25,20 +31,21 @@ import { LEVEL_STRING } from '../constants';
     !filter.hasOwnProperty(moduleName) && (filter[moduleName] = 'off');
 });
 
-
 /**
  * 设置日志级别
  */
-!g.sherrylevel && (g.sherrylevel = level => {
+!g.sherrylevel && (g.sherrylevel = (level = LEVEL_STRING.DEBUG) => {
     level = level.trim().toUpperCase();
     LEVEL_STRING.hasOwnProperty(level) && (conf['level'] = LEVEL_STRING[level]);
 });
 
 /**
- * 获取配置信息
+ * 设置日志的开关
  */
-!g.sherry && (g.sherry = switchList => {
-    conf['switch'] = switchList;
+!g.sherry && (g.sherry = flags => {
+    if (flags && Array.isArray(flags)) {
+        conf['context-flags'] = flags;
+    }
 });
 
 /**
