@@ -35,13 +35,15 @@ module.exports = {
         filename: 'js/index.bundle.[hash:7].js',
         path: APP_DIST_PATH,
         // 上线该配置需要配置成线上地址
-        publicPath: APP_DIST_PATH.replace(/\\/g, '/')
-            // publicPath: '/'
+        publicPath: APP_DIST_PATH.replace(/\\/g, '/'),
+        // publicPath: '/'
     },
+    // 设置一些常用路径的别名，方便业务开发者导入
     resolve: {
         alias: {
             app: path.resolve(__dirname, '../core/app'),
-            logger: path.resolve(__dirname, '../sherry/index')
+            logger: path.resolve(__dirname, '../sherry/index'),
+            baseComponents: path.resolve(__dirname, '../base_components')
         }
     },
     externals: {

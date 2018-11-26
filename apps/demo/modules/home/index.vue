@@ -2,7 +2,10 @@
     <el-container style="height:100%;">
         <el-header>Header</el-header>
         <el-container>
-            <el-aside width="200px">Aside</el-aside>
+            <el-aside width="200px">
+                <!-- 使用公共组件 -->
+                <tree></tree>
+            </el-aside>
             <el-main>
                 <!-- start 计数器案例 -->
                 <el-row>

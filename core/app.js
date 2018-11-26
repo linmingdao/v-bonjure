@@ -4,9 +4,9 @@ import Vue from 'vue';
 // 导入默认的ui库(element-ui)
 // import './ui-library';
 // 导入应用的路由配置函数
-import { configApplicationRoutes } from './routes';
+import { configAppRoutes } from './routes';
 // 导入应用的状态配置函数
-import { configApplicationStore } from './store';
+import { configAppStore } from './store';
 // 导入应用的挂载组件(同时也是顶层路由组件)
 import App from './app/index.vue';
 
@@ -18,9 +18,9 @@ export default application => new Vue({
     // Vue实例的挂载点
     el: '#root',
     // 配置应用的状态树信息
-    store: configApplicationStore(application.store),
+    store: configAppStore(application.store),
     // 配置应用的路由信息
-    router: configApplicationRoutes(application),
+    router: configAppRoutes(application),
     // 渲染应用的挂载点
     render: h => h(App)
 });

@@ -26,7 +26,7 @@ const configPublicRoutes = (cfg = {}) => {
  * 导出应用的路由配置函数
  * @param {Object} 应用的 路由信息 和 公共路由配置信息 
  */
-export const configApplicationRoutes = ({ routes = [], publicRoutesConfig = {} }) => {
+export const configAppRoutes = ({ routes = [], publicRoutesConfig = {} }) => {
     return new VueRouter({
         routes: [
             ...routes,

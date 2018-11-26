@@ -1,5 +1,7 @@
 import { createNamespacedHelpers } from 'vuex';
 import { MODULES, MUTATIONS, ACTIONS } from '../../store/types.js';
+// 导入公共组件
+import tree from 'baseComponents/example/tree/index.vue';
 
 // 划分一级模块
 // import { mapState } from 'vuex';
@@ -15,6 +17,10 @@ export default {
         return {
             newTodoText: ''
         };
+    },
+    // 注册组件
+    components: {
+        tree
     },
     // 本地状态的计算属性，Store中的state、getters
     computed: {

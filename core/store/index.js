@@ -11,7 +11,7 @@ Vue.use(Vuex);
  * 3、actions(异步)
  * @param {*} appStore 
  */
-export const configApplicationStore = (appStore) => new Vuex.Store({
+export const configAppStore = (appStore) => new Vuex.Store({
     modules: {
         ...appStore
     }

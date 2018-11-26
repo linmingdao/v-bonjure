@@ -6,6 +6,8 @@ npm-debug.log*
 /node_modules
 /dist
 /apps/*
+# 提交apps下面的demo工程
 !/apps/demo
 /base_components/*
+# 提交base_components下面的示例组件
 !/base_components/example
