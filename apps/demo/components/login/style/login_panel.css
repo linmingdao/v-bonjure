@@ -1,0 +1,60 @@
+/* start 最顶层容器节点 */
+
+.container {
+    height: 100%;
+    width: 100%;
+    background-image: radial-gradient(#021027, #000000);
+}
+
+
+/* start 中间登录表单面板 */
+
+.login_panel {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    margin: auto;
+    background-color: #f7f7f7;
+    border-radius: 3px;
+    transition: .2s;
+    width: 500px;
+    height: 337px;
+    padding: 24px;
+    box-shadow: 0 0 50px #fff;
+}
+
+
+/* start logo区域 */
+
+.logo {
+    position: relative;
+    display: block;
+    height: 75px;
+    line-height: 75px;
+    text-align: center;
+    font-size: 45px;
+    margin-bottom: 24px;
+    border-radius: 10px;
+    color: #03bd82;
+    padding-left: 75px;
+}
+
+.logo .text {
+    background: -webkit-linear-gradient(#0c0c0c, #03bd82);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.logo .favicon {
+    position: absolute;
+    display: inline-block;
+    height: 75px;
+    width: 75px;
+    background-image: url('../images/logo.png');
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: 75%;
+    transform: translateX(-100%);
+}

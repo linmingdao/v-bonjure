@@ -1,5 +1,5 @@
 /**
- * 日志级别相关函数
+ * 工具类
  *
  * @author linmingdao
  */

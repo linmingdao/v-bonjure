@@ -1,5 +1,10 @@
 import { LEVEL_STRING, CONTEXT_FLAGS } from '../constants';
 
+/**
+ * 全局配置文件
+ * 
+ * @author linmingdao
+ */
 export default {
     "level": LEVEL_STRING.DEBUG,
     "filter": {},

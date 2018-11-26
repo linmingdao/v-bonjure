@@ -41,7 +41,7 @@ module.exports = {
     resolve: {
         alias: {
             app: path.resolve(__dirname, '../core/app'),
-            logger: path.resolve(__dirname, '../logger/index')
+            logger: path.resolve(__dirname, '../sherry/index')
         }
     },
     externals: {
