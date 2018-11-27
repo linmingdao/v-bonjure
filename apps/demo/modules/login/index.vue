@@ -15,7 +15,7 @@
                     <el-input v-model="ruleForm.username" placeholder="请输入用户名"></el-input>
                 </el-form-item>
                 <el-form-item label="密码" prop="password">
-                    <el-input v-model="ruleForm.password" placeholder="请输入密码"></el-input>
+                    <el-input type="password" v-model="ruleForm.password" placeholder="请输入密码"></el-input>
                 </el-form-item>
                 <el-form-item prop="remeber">
                     <el-checkbox-group v-model="ruleForm.remeber">
@@ -23,7 +23,7 @@
                     </el-checkbox-group>
                 </el-form-item>
                 <el-form-item>
-                    <el-button type="primary" @click="submitForm('ruleForm')">立即登录</el-button>
+                    <el-button type="primary" :loading="loading" @click="submitForm('ruleForm')">立即登录</el-button>
                     <el-button @click="resetForm('ruleForm')">重置表单</el-button>
                 </el-form-item>
             </el-form>

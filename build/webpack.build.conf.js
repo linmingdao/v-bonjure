@@ -42,10 +42,11 @@ module.exports = {
     resolve: {
         alias: {
             app: path.resolve(__dirname, '../core/app'),
-            logger: path.resolve(__dirname, '../sherry/index'),
+            logger: path.resolve(__dirname, '../core/sherry'),
             baseComponents: path.resolve(__dirname, '../base_components')
         }
     },
+    // 防止打包脚本过大，这些文件不进行打包，需要应用自己导入
     externals: {
         'vue': 'Vue',
         'vue-router': 'VueRouter',

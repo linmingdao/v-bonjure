@@ -50,7 +50,7 @@ module.exports = {
     resolve: {
         alias: {
             app: path.resolve(__dirname, '../core/app'),
-            logger: path.resolve(__dirname, '../sherry/index'),
+            logger: path.resolve(__dirname, '../core/sherry'),
             baseComponents: path.resolve(__dirname, '../base_components')
         }
     },

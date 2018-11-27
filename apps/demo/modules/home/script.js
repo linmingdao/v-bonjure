@@ -1,5 +1,5 @@
 import { createNamespacedHelpers } from 'vuex';
-import { MODULES, MUTATIONS, ACTIONS } from '../../store/types.js';
+import { MODULES, MUTATIONS } from '../../store/types.js';
 // 导入公共组件
 import tree from 'baseComponents/example/tree/index.vue';
 

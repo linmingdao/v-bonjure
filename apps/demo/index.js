@@ -4,8 +4,10 @@ import App from 'app';
 import store from './store';
 // 路由配置
 import routes from './routes';
+import Logger from 'logger';
 // 日志框架测试脚本
-import './test';
+// import './test';
+const logger = new Logger('App');
 
 /**
  * 1、告诉通用框架你的应用相关信息(必选)：
@@ -29,3 +31,5 @@ App({
     //     use404Route: true
     // }
 });
+
+logger.debug('应用启动成功');

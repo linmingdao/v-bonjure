@@ -1,4 +1,7 @@
+// 导入日志库
+import Logger from 'logger';
 import { MODULES, MUTATIONS, ACTIONS } from '../types.js';
+const logger = new Logger('Store/Home');
 
 /**
  * 首页(Home)模块状态
@@ -19,8 +22,14 @@ export default {
                 }
             },
             mutations: {
-                [MUTATIONS.INCREMENT]: (state, n) => state.count += n,
-                [MUTATIONS.DECREMENT]: (state, n) => state.count -= n
+                [MUTATIONS.INCREMENT]: (state, n) => {
+                    state.count += n;
+                    logger.debug(`计数器自增: ${n}`);
+                },
+                [MUTATIONS.DECREMENT]: (state, n) => {
+                    state.count -= n;
+                    logger.debug(`计数器自减: ${n}`);
+                }
             }
         },
         // todo list模块
@@ -58,20 +67,21 @@ export default {
              */
             mutations: {
                 [MUTATIONS.ADD_TODO]: (state, text) => {
-                    text.trim() !== '' && !state.todos.filter(item => item.text === text).length && state.todos.push({ text, done: false });
+                    text.trim() !== '' && !state.todos.filter(item => item.text === text).length && state.todos.push({ text, done: false }) && logger.debug(`添加了todo: ${text}`);;
                 },
                 [MUTATIONS.DELETE_TODO]: (state, text) => {
                     state.todos = state.todos.filter(todo => todo.text !== text);
+                    logger.debug(`删除了todo: ${text}`);
                 },
                 [MUTATIONS.FINISH_TODO]: (state, text) => {
                     state.todos = state.todos.map(item => item.text === text ? {
                         text: item.text,
                         done: true
                     } : item);
+                    logger.debug(`完成了todo: ${text}`);
                 }
             },
-            actions: {
-            }
+            actions: {}
         }
     }
 };
