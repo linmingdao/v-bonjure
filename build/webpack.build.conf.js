@@ -41,6 +41,7 @@ module.exports = {
     // 设置一些常用路径的别名，方便业务开发者导入
     resolve: {
         alias: {
+            globalTypes: path.resolve(__dirname, '../core/store/types.js'),
             app: path.resolve(__dirname, '../core/app'),
             logger: path.resolve(__dirname, '../core/sherry'),
             baseComponents: path.resolve(__dirname, '../base_components')

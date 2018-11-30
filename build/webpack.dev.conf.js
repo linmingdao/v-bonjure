@@ -42,6 +42,13 @@ module.exports = {
         contentBase: APP_DIST_PATH,
         host: '127.0.0.1',
         port: 3002,
+        proxy: {
+            "http://127.0.0.1:3002/*": {
+                target: 'http://localhost:3000',
+                changeOrigin: true,
+                secure: false
+            }
+        },
         compress: true,
         clientLogLevel: 'info',
         overlay: true
@@ -49,6 +56,7 @@ module.exports = {
     // 设置一些常用路径的别名，方便业务开发者导入
     resolve: {
         alias: {
+            globalTypes: path.resolve(__dirname, '../core/store/types.js'),
             app: path.resolve(__dirname, '../core/app'),
             logger: path.resolve(__dirname, '../core/sherry'),
             baseComponents: path.resolve(__dirname, '../base_components')

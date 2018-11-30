@@ -1,3 +1,5 @@
+import * as globalTypes from 'globalTypes';
+
 /**
  * 模块名称
  */
@@ -15,6 +17,7 @@ export const MODULES = {
  */
 export const MUTATIONS = {
     // home模块
+    'INIT_TODOLIST': 'initTodolist',
     'ADD_TODO': 'addTodo',
     'DELETE_TODO': 'deleteTodo',
     'FINISH_TODO': 'finishTodo',
@@ -30,7 +33,14 @@ export const MUTATIONS = {
  */
 export const ACTIONS = {
     // home模块
-    'SUBMIT_TODO_LIST': 'submitTodoList',
+    'GET_TODOLIST': 'getTodolist',
     // 登录模块
     'LOGIN': 'login'
+};
+
+/**
+ * 全局的状态类型
+ */
+export const GLOBAL = {
+    ...globalTypes
 };

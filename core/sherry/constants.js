@@ -1,7 +1,7 @@
 /**
  * 默认的模块名
  */
-export const DEFAULT_MODULE_NAME = 'global';
+export const DEFAULT_MODULE_NAME = 'Global';
 
 /**
  * 开关常量

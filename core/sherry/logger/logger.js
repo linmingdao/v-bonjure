@@ -48,6 +48,14 @@ export default class Logger {
     error(...params) {
         log.call(this, LEVELS.ERROR, params);
     }
+
+    /**
+     * 获取一个日志实例
+     * @param {String} moduleName 
+     */
+    static getLogger(moduleName = DEFAULT_MODULE_NAME) {
+        return new Logger(moduleName);
+    }
 }
 
 /**
@@ -60,7 +68,7 @@ function log(level, params) {
 }
 
 /**
- * @property {Object} 依赖注入器
+ * @property {Object} 依赖注射器
  * @static
  */
 Logger.injector = {

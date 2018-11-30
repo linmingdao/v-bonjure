@@ -23,7 +23,7 @@
                     </el-checkbox-group>
                 </el-form-item>
                 <el-form-item>
-                    <el-button type="primary" :loading="loading" @click="submitForm('ruleForm')">立即登录</el-button>
+                    <el-button type="primary" :loading="pending" @click="submitForm('ruleForm')">立即登录</el-button>
                     <el-button @click="resetForm('ruleForm')">重置表单</el-button>
                 </el-form-item>
             </el-form>

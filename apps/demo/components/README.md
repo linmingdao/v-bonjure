@@ -1,8 +1,6 @@
-### 该目录用于开发你的应用组件
+## 该目录用于开发你的应用组件
 
-1. 注意模块和组件只是业务概念上的划分；
-
-2. modules 和 components 本质都是组件，所以 modules 和 components 的开发模式一模一样；
+1. 注意视图层的模块（modules）只是业务概念上的划分，modules 和 components 本质都是组件，所以 modules 和 components 的开发模式一模一样；
 
 3. modules 是一个业务集合的概念，表现为可以由多个业务组件堆砌而成，从而实现复杂的业务场景；
 

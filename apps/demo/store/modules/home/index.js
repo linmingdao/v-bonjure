@@ -1,7 +1,10 @@
 // 导入日志库
 import Logger from 'logger';
-import { MODULES, MUTATIONS, ACTIONS } from '../types.js';
-const logger = new Logger('Store/Home');
+import { MODULES, MUTATIONS, ACTIONS } from '../../types.js';
+import mutations from './mutations';
+import actions from './actions';
+
+const logger = Logger.getLogger('App/Store/Home');
 
 /**
  * 首页(Home)模块状态
@@ -38,13 +41,7 @@ export default {
             namespaced: true,
             state: {
                 title: 'my plan',
-                todos: [
-                    { text: 'play games', done: true },
-                    { text: 'sing songs', done: false },
-                    { text: 'go shopping', done: true },
-                    { text: 'go to bed', done: false },
-                    { text: 'have midnight snack', done: false }
-                ]
+                todos: []
             },
             // 派生出的状态(计算状态)
             getters: {
@@ -66,22 +63,11 @@ export default {
              * 处理同步的事务，提交mutation：store.commit('increment')
              */
             mutations: {
-                [MUTATIONS.ADD_TODO]: (state, text) => {
-                    text.trim() !== '' && !state.todos.filter(item => item.text === text).length && state.todos.push({ text, done: false }) && logger.debug(`添加了todo: ${text}`);;
-                },
-                [MUTATIONS.DELETE_TODO]: (state, text) => {
-                    state.todos = state.todos.filter(todo => todo.text !== text);
-                    logger.debug(`删除了todo: ${text}`);
-                },
-                [MUTATIONS.FINISH_TODO]: (state, text) => {
-                    state.todos = state.todos.map(item => item.text === text ? {
-                        text: item.text,
-                        done: true
-                    } : item);
-                    logger.debug(`完成了todo: ${text}`);
-                }
+                ...mutations(logger)
             },
-            actions: {}
+            actions: {
+                ...actions(logger)
+            }
         }
     }
 };
