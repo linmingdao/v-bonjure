@@ -46,6 +46,6 @@ export default {
     mounted() {
         // 方案1：请求todolist,todolist是需要缓存在store中的,又是异步流,所以需要走action流程
         // 方案2：当然也可以是：视图层发起网络请求Todolist列表数据，对结果异常处理，无异常调用相应的Mutation初始化Todolist
-        this[ACTIONS.GET_TODOLIST]('2h12-sa02wf2k-8s92-asdjOonp');
+        this[ACTIONS.GET_TODOLIST]();
     }
 };
