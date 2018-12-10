@@ -21,7 +21,7 @@ export default application => new Vue({
     // 配置应用的状态树信息
     store: configAppStore(application.store),
     // 配置应用的路由信息
-    router: configAppRoutes(application),
+    router: configAppRoutes(application.routes),
     // 渲染应用的挂载点
     render: h => h(App)
 });
