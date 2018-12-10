@@ -4,13 +4,11 @@ const interceptor = {
     // 执行相关的权限过滤
     filter(to, from, next) {
         if (!this.exclude.includes(to.path)) {
-            console.log('执行过滤...');
-            // if (true) {
-            //     next();
-            // } else {
-            //     next({ path: '/login' });
-            // }
-            next();
+            if (true) {
+                next();
+            } else {
+                next({ path: '/login' });
+            }
         } else {
             next();
         }

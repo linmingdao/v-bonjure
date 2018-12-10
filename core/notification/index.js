@@ -22,7 +22,7 @@ const $loading = Vue.prototype.$loading;
  * 1、各种消息弹窗的显示与隐藏;
  * 2、loading弹窗的显示与隐藏
  */
-export default class MessageInformer {
+export default class Notification {
 
     constructor(opt = defaultOption) {
         this.config(opt);
@@ -166,6 +166,6 @@ export default class MessageInformer {
     /********************************************** 实例获取静态方法 **********************************************/
 
     static getInformer(option = defaultOption) {
-        return new MessageInformer(option);
+        return new Notification(option);
     }
 };
