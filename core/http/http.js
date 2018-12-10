@@ -1,9 +1,10 @@
 import Logger from 'logger';
-import LoadingBox from 'loadingBox';
 import { isFunction } from '../utils';
+import MessageInformer from 'messageInformer';
+import { defaultReqHeader, defaultOption } from './config';
 
 const logger = Logger.getLogger('Global/Http');
-const loadingBox = LoadingBox.getInstance();
+const messageInformer = MessageInformer.getInformer();
 
 /**
  * Http网络请求对象
@@ -13,18 +14,18 @@ export default class Http {
     /**
      * 请求客户端构造器
      */
-    constructor(opt = {}) {
+    constructor({ showLoading, reqheader, onbefore, oncomplete, onsuccess, onerror }) {
         // 请求开始前是否要显示全屏loading动画，请求结束会自动关闭
-        this.isShowLoading = opt['isShowLoading'] || true;
+        this.showLoading = showLoading || defaultOption['showLoading'];
 
         // 用户设置的请求头信息
-        this.reqheader = opt['reqheader'] || {};
+        this.reqheader = reqheader || defaultOption['reqheader'];
 
         // 以下是请求不同状态的回调事件
-        this.onbefore = opt['onbefore'] || null;
-        this.oncomplete = opt['oncomplete'] || null;
-        this.onsuccess = opt['onsuccess'] || null;
-        this.onerror = opt['onerror'] || null;
+        this.onbefore = onbefore || defaultOption['onbefore'];
+        this.oncomplete = oncomplete || defaultOption['oncomplete'];
+        this.onsuccess = onsuccess || defaultOption['onsuccess'];
+        this.onerror = onerror || defaultOption['onerror'];
     }
 
     /**
@@ -68,11 +69,12 @@ export default class Http {
      * {
      *     'Accept': 'application/json',
      *     'Content-Type': 'application/json',
-     *     'mode': 'cors'
+     *     'mode': 'cors',
+     *     'credentials': 'include'
      * }
      * @param {Object} headers 
      */
-    headers(headers = {}) {
+    headers(headers = defaultReqHeader) {
         this.reqheader = headers;
         return this;
     }
@@ -81,7 +83,7 @@ export default class Http {
      * 启用请求开始前显示全屏loading
      */
     enableLoading() {
-        this.isShowLoading = true;
+        this.showLoading = true;
         return this;
     }
 
@@ -89,21 +91,27 @@ export default class Http {
      * 禁用请求开始的全屏loading
      */
     disableLoading() {
-        this.isShowLoading = false;
+        this.showLoading = false;
         return this;
     }
 
-    get(api) {
-        return _fetch.call(this, 'GET', api, {}, this.reqheader, this.isShowLoading);
+    /**
+     * RESTful-GET
+     * @param {*} api 
+     * @param {*} headers 
+     */
+    get(api, headers = defaultReqHeader) {
+        return _fetch.call(this, 'GET', api, {}, headers);
     }
 
     /**
      * RESTful-POST
      * @param {*} api 
      * @param {*} data 
+     * @param {*} headers 
      */
-    post(api, data) {
-        return _fetch.call(this, 'POST', api, data, this.reqheader, this.isShowLoading);
+    post(api, data, headers = defaultReqHeader) {
+        return _fetch.call(this, 'POST', api, data, headers);
     }
 
     head(api) {
@@ -125,24 +133,11 @@ export default class Http {
     /**
      * 获取一个Http网络请求客户端实例
      */
-    static getClient(opt = {}) {
+    static getClient(opt = defaultOption) {
         return new Http(opt);
     }
+
 };
-
-/**
- * 私有方法_显示全屏loading
- */
-function showLoading() {
-    loadingBox.showLoading();
-}
-
-/**
- * 私有方法_隐藏全屏loading
- */
-function hideLoading() {
-    loadingBox.hideLoading();
-}
 
 /**
  * 私有方法_封装底层fetch api
@@ -150,12 +145,12 @@ function hideLoading() {
  * @param {Object} body 
  * @param {Object} reqheader 
  */
-function _fetch(method, api, data = {}) {
+function _fetch(method, api, data = {}, headers) {
     return new Promise((resolve, reject) => {
         logger.debug(`发送请求, ${method}, ${api}`, data);
 
         // 请求开始,显示全局loading
-        this.isShowLoading && showLoading.call(this);
+        this.showLoading && messageInformer.showLoading();
 
         // 执行请求开始的回调
         isFunction(this.onbefore) && this.onbefore();
@@ -164,10 +159,8 @@ function _fetch(method, api, data = {}) {
         const opt = {
             method,
             headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-                'credentials': 'include',
-                ...this.reqheader
+                ...this.reqheader,
+                ...headers
             }
         };
         method === 'POST' && (opt['body'] = JSON.stringify(data));
@@ -179,7 +172,7 @@ function _fetch(method, api, data = {}) {
             handleException.call(this, exception, method, api);
         }).finally(() => {
             // 隐藏loading
-            this.isShowLoading && hideLoading.call(this);
+            this.showLoading && messageInformer.hideLoading();
             // 执行请求结束的回调
             isFunction(this.oncomplete) && this.oncomplete();
         });

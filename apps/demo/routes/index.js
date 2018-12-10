@@ -2,6 +2,7 @@
 import { authorize } from './authority';
 // 业务模块
 import modules from '../modules';
+import Page404 from 'baseComponents/example/404/index.vue';
 
 /**
  * 路由配置(模块不一定都要加入到路由中)
@@ -23,5 +24,10 @@ export default [
     {
         path: '/login',
         component: modules['Login']
+    },
+    // 404模块
+    {
+        path: '/404',
+        component: Page404
     }
 ];

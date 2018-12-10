@@ -1,25 +1,67 @@
 import Vue from 'vue';
+import {
+    MESSAGE_TYPE,
+    defaultLoadingOption,
+    defaultAlertOption,
+    defaultConfirmOption,
+    defaultPromptOption,
+    defaultMsgBoxOption,
+    defaultOption
+} from './option';
 
+// LoadingBox 是基于 ElementUI 的，获取 ElementUI $loading服务
 const $msgbox = Vue.prototype.$msgbox;
 const $alert = Vue.prototype.$alert;
 const $confirm = Vue.prototype.$confirm;
 const $prompt = Vue.prototype.$prompt;
 const $message = Vue.prototype.$message;
-
-const TYPE = {
-    INFO: 'info',
-    WARNING: 'warning',
-    SUCCESS: 'success',
-    ERROR: 'error',
-};
+const $loading = Vue.prototype.$loading;
 
 /**
- * 消息中心
+ * 消息通知者, 主要负责:
+ * 1、各种消息弹窗的显示与隐藏;
+ * 2、loading弹窗的显示与隐藏
  */
-export default class MessageCenter {
+export default class MessageInformer {
 
-    constructor() {
+    constructor(opt = defaultOption) {
+        this.config(opt);
+        this.loading = null;
+        this.alert = null;
+        this.confirm = null;
+        this.prompt = null;
+        this.msgBox = null;
+    }
 
+    config({ loading, alert, confirm, prompt, msgBox }) {
+        this.configLoading(loading || defaultLoadingOption)
+            .configAltert(alert || defaultAlertOption)
+            .configConfirm(confirm || defaultConfirmOption)
+            .configPrompt(prompt || defaultPromptOption)
+            .configMsgBox(msgBox || defaultMsgBoxOption);
+    }
+
+    /********************************************** loading box **********************************************/
+
+    configLoading(opt = defaultLoadingOption) {
+        this.loadingOpt = opt;
+        return this;
+    }
+
+    showLoading(opt = defaultLoadingOption) {
+        this.loading = $loading(opt || this.loadingOpt);
+        return this;
+    }
+
+    hideLoading() {
+        this.loading && this.loading.close();
+        return this;
+    }
+
+    /********************************************** alert **********************************************/
+
+    configAltert(opt = defaultAlertOption) {
+        return this;
     }
 
     alert() {
@@ -32,6 +74,12 @@ export default class MessageCenter {
                 });
             }
         });
+    }
+
+    /********************************************** confirm **********************************************/
+
+    configConfirm(opt = defaultConfirmOption) {
+        return this;
     }
 
     confirm() {
@@ -52,6 +100,12 @@ export default class MessageCenter {
         });
     }
 
+    /********************************************** prompt **********************************************/
+
+    configPrompt(opt = defaultPromptOption) {
+        return this;
+    }
+
     prompt() {
         $prompt('请输入邮箱', '提示', {
             confirmButtonText: '确定',
@@ -69,6 +123,12 @@ export default class MessageCenter {
                 message: '取消输入'
             });
         });
+    }
+
+    /********************************************** msgbox **********************************************/
+
+    configMsgBox(opt = defaultMsgBoxOption) {
+        return this;
     }
 
     msgbox() {
@@ -103,4 +163,9 @@ export default class MessageCenter {
         });
     }
 
+    /********************************************** 实例获取静态方法 **********************************************/
+
+    static getInformer(option = defaultOption) {
+        return new MessageInformer(option);
+    }
 };
