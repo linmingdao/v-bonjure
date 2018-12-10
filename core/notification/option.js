@@ -15,16 +15,28 @@ export const defaultLoadingOption = {
 };
 
 // 默认的Alert弹窗配置
-export const defaultAlertOption = {};
+export const defaultAlertOption = {
+    title: '提示',
+    // type: MESSAGE_TYPE.INFO,
+    confirmButtonText: '确定',
+    callback: action => {}
+};
 
 // 默认的Confirm弹窗配置
-export const defaultConfirmOption = {};
+export const defaultConfirmOption = {
+    lock: true,
+    title: '提示',
+    type: MESSAGE_TYPE.WARNING,
+    confirmButtonText: '确定',
+    cancelButtonText: '取消',
+    callback: action => {}
+};
 
-// 默认的Prompt弹窗配置
-export const defaultPromptOption = {};
-
-// 默认的MsgBox弹窗配置
-export const defaultMsgBoxOption = {};
+// 默认的Message弹窗配置
+export const defaultMessageOption = {
+    // type: MESSAGE_TYPE.INFO,
+    message: ''
+};
 
 // 默认配置
 export const defaultOption = {
@@ -37,10 +49,7 @@ export const defaultOption = {
     confirm: {
         ...defaultConfirmOption
     },
-    prompt: {
-        ...defaultPromptOption
-    },
-    msgBox: {
-        ...defaultMsgBoxOption
+    message: {
+        ...defaultMessageOption
     }
 };

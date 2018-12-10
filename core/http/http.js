@@ -1,10 +1,9 @@
 import Logger from 'logger';
 import { isFunction } from '../utils';
-import Notification from 'notification';
+import { notificator } from 'notification';
 import { defaultReqHeader, defaultOption } from './config';
 
 const logger = Logger.getLogger('Global/Http');
-const notification = Notification.getInformer();
 
 /**
  * Http网络请求对象
@@ -150,7 +149,7 @@ function _fetch(method, api, data = {}, headers) {
         logger.debug(`发送请求, ${method}, ${api}`, data);
 
         // 请求开始,显示全局loading
-        this.showLoading && notification.showLoading();
+        this.showLoading && notificator.showLoading();
 
         // 执行请求开始的回调
         isFunction(this.onbefore) && this.onbefore();
@@ -172,7 +171,7 @@ function _fetch(method, api, data = {}, headers) {
             handleException.call(this, exception, method, api);
         }).finally(() => {
             // 隐藏loading
-            this.showLoading && notification.hideLoading();
+            this.showLoading && notificator.hideLoading();
             // 执行请求结束的回调
             isFunction(this.oncomplete) && this.oncomplete();
         });

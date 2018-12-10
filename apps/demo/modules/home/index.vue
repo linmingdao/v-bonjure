@@ -1,6 +1,12 @@
 <template>
     <el-container style="height:100%;">
-        <el-header>Header</el-header>
+        <el-header>
+            消息中心(Notification)测试:
+            <el-button type="primary" size="mini" @click="showLoading">显示loading</el-button>
+            <el-button type="primary" size="mini" @click="showAlert">显示alert弹窗</el-button>
+            <el-button type="primary" size="mini" @click="showConfirm">显示confirm弹窗</el-button>
+            <el-button type="primary" size="mini" @click="showMessage">显示message弹窗</el-button>
+        </el-header>
         <el-container>
             <el-aside width="200px">
                 <!-- 使用公共组件 -->
