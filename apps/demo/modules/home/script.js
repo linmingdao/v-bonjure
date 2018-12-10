@@ -1,4 +1,4 @@
-import { mapState, createNamespacedHelpers } from 'vuex';
+import { createNamespacedHelpers } from 'vuex';
 import { MODULES, MUTATIONS, ACTIONS } from '../../store/types.js';
 // 导入公共组件
 import tree from 'baseComponents/example/tree/index.vue';
@@ -27,8 +27,7 @@ export default {
         ...counterMap.mapState(['count']),
         ...counterMap.mapGetters(['countWithRmbPrefix']),
         ...todoMap.mapState(['todos']),
-        ...todoMap.mapGetters(['doneTodosCount', 'undoneTodosCount', 'sortedTodos']),
-        ...mapState(['pending'])
+        ...todoMap.mapGetters(['doneTodosCount', 'undoneTodosCount', 'sortedTodos'])
     },
     // 本地方法、Store中的mutations、actions
     methods: {

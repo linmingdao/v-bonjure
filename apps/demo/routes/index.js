@@ -2,6 +2,7 @@
 import { authorize } from './authority';
 // 业务模块
 import modules from '../modules';
+// 导入公共组件
 import Page404 from 'baseComponents/example/404/index.vue';
 
 /**
