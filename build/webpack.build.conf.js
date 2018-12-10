@@ -44,10 +44,9 @@ module.exports = {
             globalTypes: path.resolve(__dirname, '../core/store/types.js'),
             app: path.resolve(__dirname, '../core/app'),
             logger: path.resolve(__dirname, '../core/sherry'),
-            httpClient: path.resolve(__dirname, '../core/http'),
+            http: path.resolve(__dirname, '../core/http'),
             baseComponents: path.resolve(__dirname, '../base_components'),
-            loadingBox: path.resolve(__dirname, '../core/loading-box'),
-            messageBox: path.resolve(__dirname, '../core/message-box')
+            notification: path.resolve(__dirname, '../core/notification')
         }
     },
     // 防止打包脚本过大，这些文件不进行打包，需要应用自己导入
