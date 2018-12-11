@@ -1,6 +1,7 @@
-import Logger from 'logger';
+import Logger from '@vbonjour/Logger';
+import { goto } from '@vbonjour/router';
+import notificator from '@vbonjour/notificator';
 import { isFunction } from '../utils';
-import { notificator } from 'notification';
 import { defaultReqHeader, defaultOption } from './config';
 
 const logger = Logger.getLogger('Global/Http');

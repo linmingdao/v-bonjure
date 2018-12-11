@@ -1,8 +1,7 @@
 import { createNamespacedHelpers } from 'vuex';
 import { MODULES, MUTATIONS, ACTIONS } from '../../store/types.js';
-
 // 导入公共组件
-import example from 'baseComponents/example/index.vue';
+import example from '@vbonjour/components/example/index.vue';
 
 // 划分一级模块
 // import { mapState } from 'vuex';

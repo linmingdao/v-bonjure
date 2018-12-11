@@ -1,0 +1,42 @@
+{
+    "compilerOptions": {
+        "target": "es2017",
+        "allowSyntheticDefaultImports": false,
+        "baseUrl": "./",
+        "paths": {
+            "@vbonjour/App": [
+                "core/app"
+            ],
+            "@vbonjour/Logger": [
+                "core/sherry/index"
+            ],
+            "@vbonjour/Http": [
+                "core/http/index"
+            ],
+            "@vbonjour/Notification": [
+                "core/notification/notification"
+            ],
+            "@vbonjour/notificator": [
+                "core/notification/notificator"
+            ],
+            "@vbonjour/router": [
+                "core/routes/router"
+            ],
+            "@vbonjour/components/*": [
+                "components/*"
+            ],
+            "@vbonjour/tools/*": [
+                "tools/*"
+            ]
+        }
+    },
+    "exclude": [
+        "node_modules",
+        "dist",
+        "build"
+    ],
+    "include": [
+        "core",
+        "apps/**/*"
+    ]
+}

@@ -1,5 +1,3 @@
-import * as globalTypes from 'globalTypes';
-
 /**
  * 模块名称
  */
@@ -36,11 +34,4 @@ export const ACTIONS = {
     'GET_TODOLIST': 'getTodolist',
     // 登录模块
     'LOGIN': 'login'
-};
-
-/**
- * 全局的状态类型
- */
-export const GLOBAL = {
-    ...globalTypes
 };

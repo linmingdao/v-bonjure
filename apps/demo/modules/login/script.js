@@ -1,5 +1,7 @@
 // 映射全局的仍然用mapState，映射模块的使用createNamespacedHelpers
 import { createNamespacedHelpers } from 'vuex';
+import notificator from '@vbonjour/notificator';
+import { goto } from '@vbonjour/router';
 import { MODULES, MUTATIONS } from '../../store/types.js';
 import { doLogin } from '../../net/login';
 import { handleRemeberMe, askRemeberMe } from '../../handlers/login';
@@ -62,23 +64,17 @@ export default {
                             password: this.ruleForm.password
                         }).then(() => {
                             // 登录成功跳转到首页
-                            this.$router.push('/home');
+                            goto('/home');
                         });
                     } else {
                         // 登录失败提示异常消息
-                        this.$message({
-                            message: response.msg,
-                            type: 'warning'
-                        });
+                        notificator.messageWarning(response.msg);
                     }
 
                     // 隐藏 立即登录 按钮的loading状态
                     this[MUTATIONS.SET_2_NORMAL_STATE]();
                 } else {
-                    this.$message({
-                        message: '用户名密码校验不通过',
-                        type: 'warning'
-                    });
+                    notificator.messageWarning('用户名密码校验不通过');
                     return false;
                 }
             });

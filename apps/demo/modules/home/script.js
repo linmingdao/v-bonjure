@@ -1,8 +1,8 @@
 import { createNamespacedHelpers } from 'vuex';
 import { MODULES, MUTATIONS, ACTIONS } from '../../store/types.js';
 // 导入公共组件
-import tree from 'baseComponents/example/tree/index.vue';
-import { notificator } from 'notification';
+import tree from '@vbonjour/components/example/tree/index.vue';
+import notificator from '@vbonjour/notificator';
 
 // 划分一级模块
 // import { mapState } from 'vuex';

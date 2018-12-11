@@ -1,5 +1,5 @@
 // 导入日志库
-import Logger from 'logger';
+import Logger from '@vbonjour/Logger';
 import { MODULES, MUTATIONS, ACTIONS } from '../../types.js';
 import mutations from './mutations';
 import actions from './actions';

@@ -1,4 +1,4 @@
-import Http from 'http';
+import Http from '@vbonjour/Http';
 import * as API from '../api';
 
 // 获取并配置一个http请求的客户端实例
