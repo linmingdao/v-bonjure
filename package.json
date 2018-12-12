@@ -5,7 +5,9 @@
     "private": true,
     "scripts": {
         "server": "node server",
-        "build": "webpack --progress --display-modules --colors --display-reasons --config build/webpack.build.conf.js",
+        "build:dev": "webpack --progress --display-modules --colors --display-reasons --config build/webpack.build.dev.conf.js",
+        "build:test": "webpack --progress --display-modules --colors --display-reasons --config build/webpack.build.test.conf.js",
+        "build:prod": "webpack --progress --display-modules --colors --display-reasons --config build/webpack.build.prod.conf.js",
         "dev": "webpack-dev-server --inline --hot --open --config build/webpack.dev.conf.js"
     },
     "keywords": [
