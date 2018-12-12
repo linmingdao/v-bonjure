@@ -7,6 +7,8 @@ export const defaultReqHeader = {
 
 export const defaultOption = {
     showLoading: true,
+    useInterceptor: true,
+    locked: false,
     reqheader: {
         ...defaultReqHeader
     },

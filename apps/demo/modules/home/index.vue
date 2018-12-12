@@ -49,6 +49,7 @@
                                 <label for="new-todo">add a todo</label>
                                 <input id="new-todo" style="padding: 2px 10px;" v-model="newTodoText" placeholder="E.g. feed the cat">
                                 <el-button @click="addTodo(newTodoText)" type="primary" size="mini" icon="el-icon-plus" circle></el-button>
+                                <el-button @click="resetTodoList" type="warning" size="mini" round>重置列表</el-button>
                             </form>
                             <ul>
                                 <li v-bind:class="{finished: item.done}" :key="index" v-for="(item, index) in sortedTodos">
@@ -61,6 +62,31 @@
                     </el-col>
                 </el-row>
                 <!-- end todolist案例 -->
+                <el-row>
+                    <el-col :span="24">
+                        <el-card class="box-card">
+                            <div slot="header" class="clearfix"><span>🌐 http模块异常测试</span></div>
+                            框架默认的错误处理
+                            <ul>
+                                <li>
+                                    <el-button @click="testDefaultHttpExceptionHandler(404)" type="warning" size="mini" round>发起一个404请求</el-button>
+                                </li>
+                                <li>
+                                    <el-button @click="testDefaultHttpExceptionHandler(500)" type="danger" size="mini" round>发起一个500请求</el-button>
+                                </li>
+                            </ul>
+                            用户自定义的错误处理
+                            <ul>
+                                <li>
+                                    <el-button @click="testCustomHttpExceptionHandler(404)" type="warning" size="mini" round>发起一个404请求</el-button>
+                                </li>
+                                <li>
+                                    <el-button @click="testCustomHttpExceptionHandler(500)" type="danger" size="mini" round>发起一个500请求</el-button>
+                                </li>
+                            </ul>
+                        </el-card>
+                    </el-col>
+                </el-row>
             </el-main>
         </el-container>
     </el-container>

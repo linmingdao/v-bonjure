@@ -1,8 +1,8 @@
-import { createNamespacedHelpers } from 'vuex';
-import { MODULES, MUTATIONS, ACTIONS } from '../../store/types.js';
-// 导入公共组件
-import tree from '@vbonjour/components/example/tree/index.vue';
+import Http from '@vbonjour/Http';
 import notificator from '@vbonjour/notificator';
+import tree from '@vbonjour/components/example/tree/index.vue';
+import { createNamespacedHelpers } from 'vuex';
+import { MODULES, MUTATIONS, ACTIONS } from '../../constants/storeTypes.js';
 
 // 划分一级模块
 // import { mapState } from 'vuex';
@@ -60,6 +60,28 @@ export default {
             notificator.messageWarning('这是消息内容');
             // notificator.messageSuccess('这是消息内容');
             // notificator.messageError('这是消息内容');
+        },
+        resetTodoList() {
+            this[ACTIONS.GET_TODOLIST]();
+        },
+        testDefaultHttpExceptionHandler(type) {
+            if (type === 404) {
+                Http.getClient().get('/exception_404');
+            } else {
+                Http.getClient().get('/exception_500');
+            }
+        },
+        testCustomHttpExceptionHandler(type) {
+            const customHttpClient = Http.getClient().error(err => {
+                notificator.messageError(`${err.status} ${err.statusText}：${err.url}`);
+                // 返回true, 代表不使用http模块默认的异常处理
+                return true;
+            });
+            if (type === 404) {
+                customHttpClient.get('/exception_404');
+            } else {
+                customHttpClient.get('/exception_500');
+            }
         },
         ...counterMap.mapMutations([
             MUTATIONS.INCREMENT,

@@ -1,8 +1,7 @@
-// 导入日志库
 import Logger from '@vbonjour/Logger';
-import { MODULES, MUTATIONS, ACTIONS } from '../../types.js';
-import mutations from './mutations';
 import actions from './actions';
+import mutations from './mutations';
+import { MODULES, MUTATIONS, ACTIONS } from '../../../constants/storeTypes.js';
 
 const logger = Logger.getLogger('App/Store/Home');
 

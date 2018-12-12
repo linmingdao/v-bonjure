@@ -1,8 +1,6 @@
 import Http from '@vbonjour/Http';
 import * as API from '../api';
-
-// 获取并配置一个http请求的客户端实例
-const httpClient = Http.getClient().disableLoading();
+import * as localStorageHelper from '../../utils/localStorageHelper';
 
 /**
  * 发起登录请求
@@ -10,8 +8,8 @@ const httpClient = Http.getClient().disableLoading();
  */
 export async function doLogin({ username, password }) {
     // Step_1: 发起请求
-    const response = await httpClient.post(API.LOGIN, { username, password });
-    
+    const response = await Http.getClient().headers({ 'token': localStorageHelper.get('token') }).disableLoading().post(API.LOGIN, { username, password });
+
     // Step_2: 返回响应数据
     return response;
 };

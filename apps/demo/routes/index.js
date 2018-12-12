@@ -6,7 +6,7 @@ import modules from '../modules';
 import Page404 from '@vbonjour/components/example/404/index.vue';
 
 /**
- * 路由配置(模块不一定都要加入到路由中)
+ * 路由配置，模块不一定都要加入到路由中，由应用开发者自己觉得那些模块是需要配置路由
  */
 export default [
     // 首页模块
@@ -24,11 +24,13 @@ export default [
     // 登录模块
     {
         path: '/login',
-        component: modules['Login']
+        component: modules['Login'],
+        beforeEnter: (to, from, next) => authorize(to, from, next)
     },
     // 404模块
     {
         path: '/404',
-        component: Page404
+        component: Page404,
+        beforeEnter: (to, from, next) => authorize(to, from, next)
     }
 ];

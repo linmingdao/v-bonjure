@@ -1,9 +1,9 @@
-// 映射全局的仍然用mapState，映射模块的使用createNamespacedHelpers
-import { createNamespacedHelpers } from 'vuex';
 import notificator from '@vbonjour/notificator';
 import { goto } from '@vbonjour/router';
-import { MODULES, MUTATIONS } from '../../store/types.js';
+// 映射全局的仍然用mapState，映射模块的使用createNamespacedHelpers
+import { createNamespacedHelpers } from 'vuex';
 import { doLogin } from '../../net/login';
+import { MODULES, MUTATIONS } from '../../constants/storeTypes.js';
 import { handleRemeberMe, askRemeberMe } from '../../handlers/login';
 
 const map = createNamespacedHelpers(`${MODULES.LOGIN}`);

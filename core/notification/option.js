@@ -26,6 +26,7 @@ export const defaultAlertOption = {
 export const defaultConfirmOption = {
     lock: true,
     title: '提示',
+    closeOnClickModal: false,
     type: MESSAGE_TYPE.WARNING,
     confirmButtonText: '确定',
     cancelButtonText: '取消',

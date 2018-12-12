@@ -1,7 +1,7 @@
 const uuid = require('uuid');
 
 // 默认的token过期时间
-const DURATION = 1000 * 60 * 60; // 默认过期时间：30秒
+const DURATION = 1000 * 60 * 60;
 
 // 缓存token信息
 const tokenMap = {};

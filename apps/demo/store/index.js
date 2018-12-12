@@ -1,4 +1,4 @@
-import { MODULES } from './types.js';
+import { MODULES } from '../constants/storeTypes.js';
 
 // 导入各个模块的状态
 import home from './modules/home';

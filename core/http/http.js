@@ -1,5 +1,4 @@
 import Logger from '@vbonjour/Logger';
-import { goto } from '@vbonjour/router';
 import notificator from '@vbonjour/notificator';
 import { isFunction } from '../utils';
 import { defaultReqHeader, defaultOption } from './config';
@@ -14,9 +13,15 @@ export default class Http {
     /**
      * 请求客户端构造器
      */
-    constructor({ showLoading, reqheader, onbefore, oncomplete, onsuccess, onerror }) {
+    constructor({ showLoading, useInterceptor, locked, reqheader, onbefore, oncomplete, onsuccess, onerror }) {
         // 请求开始前是否要显示全屏loading动画，请求结束会自动关闭
         this.showLoading = showLoading || defaultOption['showLoading'];
+
+        // 默认启用拦截器
+        this.useInterceptor = typeof useInterceptor !== 'undefined' ? useInterceptor : defaultOption['useInterceptor'];
+
+        // 控制是否可以配置客户端
+        this.locked = typeof locked !== 'undefined' ? locked : defaultOption['locked'];
 
         // 用户设置的请求头信息
         this.reqheader = reqheader || defaultOption['reqheader'];
@@ -33,7 +38,7 @@ export default class Http {
      * @param {Function} callback 
      */
     before(callback) {
-        this.onbefore = callback;
+        !this.locked && (this.onbefore = callback);
         return this;
     }
 
@@ -42,7 +47,7 @@ export default class Http {
      * @param {Function} callback 
      */
     complete(callback) {
-        this.oncomplete = callback;
+        !this.locked && (this.oncomplete = callback);
         return this;
     }
 
@@ -51,7 +56,7 @@ export default class Http {
      * @param {Function} callback 
      */
     success(callback) {
-        this.onsuccess = callback;
+        !this.locked && (this.onsuccess = callback);
         return this;
     }
 
@@ -60,7 +65,32 @@ export default class Http {
      * @param {Function} callback 
      */
     error(callback) {
-        this.onerror = callback;
+        !this.locked && (this.onerror = callback);
+        return this;
+    }
+
+    /**
+     * 拦截请求结果
+     * @param {Function} callback 
+     */
+    intercept(callback) {
+        !this.locked && (this.interceptor = callback);
+        return this;
+    }
+
+    /**
+     * 启用拦截器
+     */
+    disableInterceptor() {
+        !this.locked && (this.useInterceptor = false);
+        return this;
+    }
+
+    /**
+     * 禁用拦截器
+     */
+    enableInterceptor() {
+        !this.locked && (this.useInterceptor = true);
         return this;
     }
 
@@ -74,8 +104,8 @@ export default class Http {
      * }
      * @param {Object} headers 
      */
-    headers(headers = defaultReqHeader) {
-        this.reqheader = headers;
+    headers(headers = {}) {
+        !this.locked && (this.reqheader = headers);
         return this;
     }
 
@@ -83,7 +113,7 @@ export default class Http {
      * 启用请求开始前显示全屏loading
      */
     enableLoading() {
-        this.showLoading = true;
+        !this.locked && (this.showLoading = true);
         return this;
     }
 
@@ -91,16 +121,33 @@ export default class Http {
      * 禁用请求开始的全屏loading
      */
     disableLoading() {
-        this.showLoading = false;
+        !this.locked && (this.showLoading = false);
         return this;
     }
+
+    /**
+     * 上锁，该请求客户端对象将不再响应配置的变更
+     */
+    lock() {
+        this.locked = true;
+        // Object.freeze(this);
+        return this;
+    }
+
+    /**
+     * 为了防止客户端对象被篡改，不提供解锁方法
+     */
+    // unlock() {
+    //     this.locked = false;
+    //     return this;
+    // }
 
     /**
      * RESTful-GET
      * @param {*} api 
      * @param {*} headers 
      */
-    get(api, headers = defaultReqHeader) {
+    get(api, headers = {}) {
         return _fetch.call(this, 'GET', api, {}, headers);
     }
 
@@ -110,7 +157,7 @@ export default class Http {
      * @param {*} data 
      * @param {*} headers 
      */
-    post(api, data, headers = defaultReqHeader) {
+    post(api, data, headers = {}) {
         return _fetch.call(this, 'POST', api, data, headers);
     }
 
@@ -145,7 +192,10 @@ export default class Http {
  * @param {Object} body 
  * @param {Object} reqheader 
  */
-function _fetch(method, api, data = {}, headers) {
+function _fetch(method, api, data = {}, headers = {}) {
+    // 若该客户端已上锁，则不响应请求方法设置的请求头信息
+    this.locked && (headers = {});
+
     return new Promise((resolve, reject) => {
         logger.debug(`发送请求, ${method}, ${api}`, data);
 
@@ -153,12 +203,13 @@ function _fetch(method, api, data = {}, headers) {
         this.showLoading && notificator.showLoading();
 
         // 执行请求开始的回调
-        isFunction(this.onbefore) && this.onbefore();
+        isFunction(this.onbefore) && this.onbefore(this);
 
         // 生成fetch请求的配置信息
         const opt = {
             method,
             headers: {
+                ...defaultReqHeader,
                 ...this.reqheader,
                 ...headers
             }
@@ -167,7 +218,12 @@ function _fetch(method, api, data = {}, headers) {
 
         // 发出请求
         fetch(api, opt).then(response => {
-            return handleResponse.call(this, response, resolve, reject, method, api);
+            if (response.ok) {
+                handleResponse.call(this, response, resolve, method, api);
+            } else {
+                // 返回错误的response，用于被外层catch块捕获
+                return Promise.reject(response);
+            }
         }).catch(exception => {
             handleException.call(this, exception, method, api);
         }).finally(() => {
@@ -179,29 +235,30 @@ function _fetch(method, api, data = {}, headers) {
     });
 }
 
-function handleResponse(response, resolve, reject, method, api) {
-    if (response.ok) {
-        return response.json().then(json => {
-            const responseJson = JSON.parse(json);
-            // 执行请求成功的回调
-            isFunction(this.onsuccess) && this.onsuccess(responseJson);
-            // 打印日志
-            logger.debug(`返回请求, ${method}, ${api}`, responseJson);
-            // 返回响应数据
-            resolve(responseJson);
-        });
-    } else {
-        // 返回错误的response，用于被外层catch块捕获
-        return Promise.reject(response);
-    }
+function handleResponse(response, resolve, method, api) {
+    return response.json().then(json => {
+        const responseJson = JSON.parse(json);
+        // 拦截请求结果
+        this.useInterceptor && isFunction(this.interceptor) && this.interceptor(responseJson);
+        // 执行请求成功的回调
+        isFunction(this.onsuccess) && this.onsuccess(responseJson);
+        // 打印日志
+        logger.debug(`返回请求, ${method}, ${api}`, responseJson);
+        // 返回响应数据
+        resolve(responseJson);
+    });
 }
 
 function handleException(exception, method, api) {
-    // 执行请求失败的回调
-    isFunction(this.onerror) && this.onerror(exception);
-
     // 日志输出异常信息
     logger.error(`请求异常, ${method}, ${api}`, exception);
 
-    // TODO: 弹窗提示异常信息
+    // 执行请求失败的回调
+    if (isFunction(this.onerror)) {
+        const ret = this.onerror(exception);
+        if (!!ret) return;
+    }
+
+    // 弹窗提示异常信息
+    notificator.alertError(`${exception.status} ${exception.statusText}：${exception.url}`);
 }

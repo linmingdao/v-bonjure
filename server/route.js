@@ -74,7 +74,7 @@ module.exports = {
             } else {
                 console.log(`token: ${reqToken} 过期`);
                 res.json(JSON.stringify({
-                    code: 1002,
+                    code: 1003,
                     msg: 'token过期,请重新登录',
                     data: {},
                     extra: {}
@@ -82,6 +82,47 @@ module.exports = {
             }
             res.end();
             console.log(`=======================================`);
+        });
+
+        // 查询token时候过期 api
+        app.get('/token_expired', (req, res) => {
+            const reqToken = req.headers.token;
+
+            console.log('query token is expired:');
+
+            // 模拟睡眠
+            // utils.mockSleep();
+
+            if (!tokenUtils.isExpired(reqToken)) {
+                console.log(`token: ${reqToken} 未过期`);
+                res.json(JSON.stringify({
+                    code: 1004,
+                    msg: 'token未过期,返回todolist',
+                    data: {},
+                    extra: {}
+                }));
+            } else {
+                console.log(`token: ${reqToken} 过期`);
+                res.json(JSON.stringify({
+                    code: 1003,
+                    msg: 'token过期,请重新登录',
+                    data: {},
+                    extra: {}
+                }));
+            }
+            res.end();
+            console.log(`=======================================`);
+        });
+
+        // 500错误测试 api
+        app.get('/exception_500', (req, res) => {
+            re.json(JSON.stringify({
+                code: 1003,
+                msg: '500错误测试api',
+                data: {},
+                extra: {}
+            }));
+            res.end();
         });
     }
 };

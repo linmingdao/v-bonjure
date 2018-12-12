@@ -1,3 +1,3 @@
-import { $router } from './index';
+import { appRouter } from './index';
 
-export const goto = path => $router.push(path);
+export const goto = path => appRouter.push(path);

@@ -1,4 +1,4 @@
-import { MUTATIONS } from '../../types.js';
+import { MUTATIONS } from '../../../constants/storeTypes.js';
 
 export default function(logger) {
     return {
