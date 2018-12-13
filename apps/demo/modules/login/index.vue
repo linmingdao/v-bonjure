@@ -12,10 +12,10 @@
             <!-- start 登录表单区域 -->
             <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm">
                 <el-form-item label="用户名" prop="username">
-                    <el-input v-model="ruleForm.username" name="username" placeholder="请输入用户名"></el-input>
+                    <el-input v-model="ruleForm.username" name="username" placeholder="用户名为: admin"></el-input>
                 </el-form-item>
                 <el-form-item label="密码" prop="password">
-                    <el-input type="password" v-model="ruleForm.password" name="password" placeholder="请输入密码"></el-input>
+                    <el-input type="password" v-model="ruleForm.password" name="password" placeholder="密码为: 123456"></el-input>
                 </el-form-item>
                 <el-form-item prop="remeber">
                     <el-checkbox v-model="checked">记住我</el-checkbox>

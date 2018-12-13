@@ -1,0 +1,39 @@
+/* start 卡片样式 */
+
+.box-card {
+    width: 900px;
+    margin: 0 auto;
+    margin-bottom: 18px;
+}
+
+.text {
+    font-size: 14px;
+}
+
+.item {
+    margin-bottom: 18px;
+}
+
+.clearfix:before,
+.clearfix:after {
+    display: table;
+    content: "";
+}
+
+.clearfix:after {
+    clear: both
+}
+
+
+/* end 卡片样式 */
+
+
+/* start 统一设置ul li的样式 */
+
+ul li {
+    list-style-type: none;
+    margin-bottom: 10px;
+}
+
+
+/* end 统一设置ul li的样式 */
