@@ -2,9 +2,9 @@ import notificator from '@vbonjour/notificator';
 import { goto } from '@vbonjour/router';
 // 映射全局的仍然用mapState，映射模块的使用createNamespacedHelpers
 import { createNamespacedHelpers } from 'vuex';
-import { doLogin } from '../../net/login';
+import { handleLogin, handleRemeberUser, askRemeberMe } from '../../handlers/login';
 import { MODULES, MUTATIONS } from '../../constants/storeTypes.js';
-import { handleRemeberMe, askRemeberMe } from '../../handlers/login';
+import { STATUS_CODE } from '../../constants/index.js';
 
 const map = createNamespacedHelpers(`${MODULES.LOGIN}`);
 
@@ -42,22 +42,23 @@ export default {
          * @param {*} formName 
          */
         submitForm(formName) {
+            // 校验用户名和密码
             this.$refs[formName].validate(async(valid) => {
+                // 校验通过
                 if (valid) {
                     // 显示 立即登录 按钮的loading状态
                     this[MUTATIONS.SET_2_LODING_STATE]();
 
-                    // 获取用户输入的用户名、密码
-                    const payload = { username: this.ruleForm.username, password: this.ruleForm.password };
+                    // 视图层调用handler处理业务
+                    const response = await handleLogin({
+                        username: this.ruleForm.username,
+                        password: this.ruleForm.password
+                    });
 
-                    // 视图层直接发起网络请求(没有数据需要缓存于Store，那么就不需要走Action)
-                    // NOTE: 视图层是关心请求的正常情况，异常都在http模块处理掉了
-                    const response = await doLogin(payload);
-
-                    // 响应服务端返回的结果
-                    if (response.code === 1001) {
-                        // 登录成功, 处理用户是否勾选了“记住我”
-                        handleRemeberMe({
+                    // 业务层处理网络层请求返回的结果
+                    if (response.code === STATUS_CODE.REQUEST_OK) {
+                        // 登录成功, 处理记住用户
+                        handleRemeberUser({
                             token: response.data.token,
                             remeber: this.checked,
                             username: this.ruleForm.username,
@@ -74,6 +75,7 @@ export default {
                     // 隐藏 立即登录 按钮的loading状态
                     this[MUTATIONS.SET_2_NORMAL_STATE]();
                 } else {
+                    // 校验不通过
                     notificator.messageWarning('用户名密码校验不通过');
                     return false;
                 }
@@ -88,7 +90,7 @@ export default {
         }
     },
     mounted() {
-        // 咨询是否记住我了
+        // 咨询是否记住用户了
         askRemeberMe().then(response => {
             if (response.remeber) {
                 // 自动填充表单

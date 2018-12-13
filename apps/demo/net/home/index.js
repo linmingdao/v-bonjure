@@ -3,7 +3,6 @@ import httpClient from '../httpClient';
 
 /**
  * 获取todolist列表
- * @param {String} token 
  */
 export async function getTodolist() {
     // Step_1: 发起请求
