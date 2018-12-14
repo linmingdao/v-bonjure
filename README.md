@@ -49,17 +49,17 @@ PS：如下三个命令分别对应不同环境的打包命令，关于如何快
 ## 三、进一步了解 v-bonjour 请阅读如下文章
 
 <p align="left">
-<a href="https://github.com/linmingdao/v-bonjour/raw/master/doc/framework.md" target="_blank" rel="noopener noreferrer">1、框架设计</a>
+<a href="https://github.com/linmingdao/v-bonjour/issues/1" target="_blank" rel="noopener noreferrer">1、框架设计</a>
 </p>
 <p align="left">
-<a href="https://github.com/linmingdao/v-bonjour/raw/master/doc/overview.md" target="_blank" rel="noopener noreferrer">2、框架概览(目录结构截图说明)</a>
+<a href="https://github.com/linmingdao/v-bonjour/issues/2" target="_blank" rel="noopener noreferrer">2、框架概览(目录结构截图说明)</a>
 </p>
 <p align="left">
-<a href="https://github.com/linmingdao/v-bonjour/raw/master/doc/component.md" target="_blank" rel="noopener noreferrer">3、组件层级</a>
+<a href="https://github.com/linmingdao/v-bonjour/issues/3" target="_blank" rel="noopener noreferrer">3、组件层级</a>
 </p>
 <p align="left">
-<a href="https://github.com/linmingdao/v-bonjour/raw/master/doc/demoapp.md" target="_blank" rel="noopener noreferrer">4、demo app介绍以及快速搭建你的应用</a>
+<a href="https://github.com/linmingdao/v-bonjour/issues/4" target="_blank" rel="noopener noreferrer">4、demo app介绍以及快速搭建你的应用</a>
 </p>
 <p align="left">
-<a href="https://github.com/linmingdao/v-bonjour/raw/master/doc/standard.md" target="_blank" rel="noopener noreferrer">5、推荐的开发方式与编码规范</a>
+<a href="https://github.com/linmingdao/v-bonjour/issues/5" target="_blank" rel="noopener noreferrer">5、推荐的开发方式与编码规范</a>
 </p>
