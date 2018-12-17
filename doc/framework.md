@@ -1,7 +1,7 @@
 # 框架设计
 
 ## 框架、应用、后端 关系梳理
-![image](https://github.com/linmingdao/v-bonjour/raw/master/doc/assets/framework.png)
+![image](https://github.com/linmingdao/v-bonjour/raw/doc/doc/assets/framework.png)
 
 ## 一、Http网络模块
 
