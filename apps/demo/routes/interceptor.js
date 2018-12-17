@@ -1,6 +1,6 @@
 import Http from '@core/Http';
 import Logger from '@core/Logger';
-import * as API from '../net/api';
+import * as API from '../api/api';
 import { STATUS_CODE } from '../constants/index.js';
 import * as localStorageHelper from '../utils/localStorageHelper';
 

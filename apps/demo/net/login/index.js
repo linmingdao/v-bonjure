@@ -1,5 +1,5 @@
 import Http from '@core/Http';
-import * as API from '../api';
+import * as API from '../../api/api';
 import * as localStorageHelper from '../../utils/localStorageHelper';
 
 /**
