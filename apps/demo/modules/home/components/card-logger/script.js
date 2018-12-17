@@ -1,4 +1,4 @@
-import Logger from '@vbonjour/Logger';
+import Logger from '@core/Logger';
 
 let contextFlags = {
     'color': 'on',

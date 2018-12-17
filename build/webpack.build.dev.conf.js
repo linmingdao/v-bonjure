@@ -41,14 +41,14 @@ module.exports = {
     // 设置一些常用路径的别名，方便业务开发者导入
     resolve: {
         alias: {
-            '@vbonjour/App': path.resolve(__dirname, '../core/app'),
-            '@vbonjour/Logger': path.resolve(__dirname, '../core/sherry'),
-            '@vbonjour/Http': path.resolve(__dirname, '../core/http'),
-            '@vbonjour/Notification': path.resolve(__dirname, '../core/notification/notification'),
-            '@vbonjour/notificator': path.resolve(__dirname, '../core/notification/notificator'),
-            '@vbonjour/router': path.resolve(__dirname, '../core/routes/router'),
-            '@vbonjour/components': path.resolve(__dirname, '../components'),
-            '@vbonjour/tools': path.resolve(__dirname, '../tools')
+            '@core/App': path.resolve(__dirname, '../core/app'),
+            '@core/Logger': path.resolve(__dirname, '../core/sherry'),
+            '@core/Http': path.resolve(__dirname, '../core/http'),
+            '@core/Notification': path.resolve(__dirname, '../core/notification/notification'),
+            '@core/notificator': path.resolve(__dirname, '../core/notification/notificator'),
+            '@core/router': path.resolve(__dirname, '../core/routes/router'),
+            '@core/components': path.resolve(__dirname, '../components'),
+            '@core/tools': path.resolve(__dirname, '../tools')
         }
     },
     // 防止打包脚本过大，这些文件不进行打包，需要应用自己导入

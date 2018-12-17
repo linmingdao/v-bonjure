@@ -3,7 +3,7 @@
         <el-col :span="24">
             <el-card class="box-card">
                 <div slot="header" class="clearfix">
-                    <span>🌳 公共树组件(@vbonjour/components/example/tree)</span>
+                    <span>🌳 公共树组件(@core/components/example/tree)</span>
                 </div>
                 <tree></tree>
             </el-card>

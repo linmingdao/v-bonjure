@@ -1,6 +1,6 @@
 import actions from './actions';
 import mutations from './mutations';
-import Logger from '@vbonjour/Logger';
+import Logger from '@core/Logger';
 
 const logger = Logger.getLogger('App/Store/Login');
 

@@ -1,5 +1,5 @@
-import notificator from '@vbonjour/notificator';
-import { goto } from '@vbonjour/router';
+import notificator from '@core/notificator';
+import { goto } from '@core/router';
 // 映射全局的仍然用mapState，映射模块的使用createNamespacedHelpers
 import { createNamespacedHelpers } from 'vuex';
 import { handleLogin, handleRemeberUser, askRemeberMe } from '../../handlers/login';

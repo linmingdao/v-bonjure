@@ -1,4 +1,4 @@
-import Logger from '@vbonjour/Logger';
+import Logger from '@core/Logger';
 import actions from './actions';
 import mutations from './mutations';
 import { MODULES, MUTATIONS, ACTIONS } from '../../../constants/storeTypes.js';

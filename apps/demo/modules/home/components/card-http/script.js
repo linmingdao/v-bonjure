@@ -1,5 +1,5 @@
-import Http from '@vbonjour/Http';
-import notificator from '@vbonjour/notificator';
+import Http from '@core/Http';
+import notificator from '@core/notificator';
 
 export default {
     data() {

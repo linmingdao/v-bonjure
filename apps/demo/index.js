@@ -1,5 +1,5 @@
 // 导入框架提供的App启动函数
-import App from '@vbonjour/App';
+import App from '@core/App';
 // 导入应用的状态
 import store from './store';
 // 路由配置

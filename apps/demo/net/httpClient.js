@@ -1,7 +1,7 @@
-import Http from '@vbonjour/Http';
-import Logger from '@vbonjour/Logger';
-import { goto } from '@vbonjour/router';
-import notificator from '@vbonjour/notificator';
+import Http from '@core/Http';
+import Logger from '@core/Logger';
+import { goto } from '@core/router';
+import notificator from '@core/notificator';
 import * as localStorageHelper from '../utils/localStorageHelper';
 import { MESSAGE_TYPE, STATUS_CODE, NOTIFICATION_ACTION } from '../constants/index.js';
 

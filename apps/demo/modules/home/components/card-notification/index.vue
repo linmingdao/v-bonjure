@@ -2,7 +2,7 @@
     <el-row>
         <el-col :span="24">
             <el-card class="box-card">
-                <div slot="header" class="clearfix"><span>📣 消息中心(@vbonjour/Notification)</span></div>
+                <div slot="header" class="clearfix"><span>📣 消息中心(@core/Notification)</span></div>
                 <ul>
                     <li>
                         <el-button size="mini" @click="showLoading" round>显示loading效果</el-button>

@@ -4,28 +4,28 @@
         "allowSyntheticDefaultImports": false,
         "baseUrl": "./",
         "paths": {
-            "@vbonjour/App": [
+            "@core/App": [
                 "core/app"
             ],
-            "@vbonjour/Logger": [
+            "@core/Logger": [
                 "core/sherry/index"
             ],
-            "@vbonjour/Http": [
+            "@core/Http": [
                 "core/http/index"
             ],
-            "@vbonjour/Notification": [
+            "@core/Notification": [
                 "core/notification/notification"
             ],
-            "@vbonjour/notificator": [
+            "@core/notificator": [
                 "core/notification/notificator"
             ],
-            "@vbonjour/router": [
+            "@core/router": [
                 "core/routes/router"
             ],
-            "@vbonjour/components/*": [
+            "@core/components/*": [
                 "components/*"
             ],
-            "@vbonjour/tools/*": [
+            "@core/tools/*": [
                 "tools/*"
             ]
         }

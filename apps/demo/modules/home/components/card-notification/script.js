@@ -1,4 +1,4 @@
-import notificator from '@vbonjour/notificator';
+import notificator from '@core/notificator';
 
 export default {
     data() {

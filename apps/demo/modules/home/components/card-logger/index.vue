@@ -2,7 +2,7 @@
     <el-row>
         <el-col :span="24">
             <el-card class="box-card">
-                <div slot="header" class="clearfix"><span>📝 日志模块(@vbonjour/Logger)</span></div>
+                <div slot="header" class="clearfix"><span>📝 日志模块(@core/Logger)</span></div>
                 <div class="text item">
                     Tips: <span style="color:#e44100;font-size:25px;">Chrome F12 打开控制查看输出的日志信息</span>
                 </div>

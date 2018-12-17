@@ -1,4 +1,4 @@
-import Http from '@vbonjour/Http';
+import Http from '@core/Http';
 import * as API from '../api';
 import * as localStorageHelper from '../../utils/localStorageHelper';
 

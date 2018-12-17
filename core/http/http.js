@@ -1,5 +1,5 @@
-import Logger from '@vbonjour/Logger';
-import notificator from '@vbonjour/notificator';
+import Logger from '@core/Logger';
+import notificator from '@core/notificator';
 import { isFunction } from '../utils';
 import { defaultReqHeader, defaultOption } from './config';
 

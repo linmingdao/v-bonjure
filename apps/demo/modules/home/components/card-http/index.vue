@@ -2,7 +2,7 @@
     <el-row>
         <el-col :span="24">
             <el-card class="box-card">
-                <div slot="header" class="clearfix"><span>🌐 网络模块(@vbonjour/Http)</span></div>
+                <div slot="header" class="clearfix"><span>🌐 网络模块(@core/Http)</span></div>
                 <ul>
                     <li>框架默认的错误处理</li>
                     <li>

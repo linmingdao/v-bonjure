@@ -1,5 +1,5 @@
-import Http from '@vbonjour/Http';
-import Logger from '@vbonjour/Logger';
+import Http from '@core/Http';
+import Logger from '@core/Logger';
 import * as API from '../net/api';
 import { STATUS_CODE } from '../constants/index.js';
 import * as localStorageHelper from '../utils/localStorageHelper';
