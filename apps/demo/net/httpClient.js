@@ -19,13 +19,8 @@ const logger = Logger.getLogger('App/Net');
  */
 const httpClient = Http.getClient()
     // 请求之前会先调用before设置的回调函数，http模块会把http客户端引用塞给before设置的回调函数
-    .before(client => {
-        // 由于可能存在用户频繁登出登录，所以token可能是时时改变的，所以在before的回调里面进行动态headers的设置
-        // 无法调用client.headers()，因为已经被locked了
-        client.reqheader.token = localStorageHelper.get('token');
-    })
-    // 设置请求头, 只会执行一次，可以设置一些静态的表头信息，如果有动态的表头，比如token，那么请在before回调里面进行设置
-    // .headers({ 'token': localStorageHelper.get('token') })
+    // 由于可能存在用户频繁登出登录，所以token可能是时时改变的，所以在before的回调里面进行动态headers的设置
+    .before(client => client.headers({ 'token': localStorageHelper.get('token') }))
     // 配置拦截器
     .intercept(response => {
         switch (response.code) {
@@ -43,7 +38,7 @@ const httpClient = Http.getClient()
                 ;
         }
     })
-    // 配置完之后上锁，该请求客户端不再是可配置的，目的是防止不同开发人员篡改公共的请求客户端配置
-    .lock();
+    // 配置请求结束之后的回调函数
+    .complete(client => client.enableLoading());
 
 export default httpClient;

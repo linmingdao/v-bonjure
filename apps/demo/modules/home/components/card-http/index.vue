@@ -14,7 +14,7 @@
                         <el-button @click="testCustomHttpExceptionHandler(404)" type="warning" size="mini" round>发起一个404请求</el-button>
                         <el-button @click="testCustomHttpExceptionHandler(500)" type="danger" size="mini" round>发起一个500请求</el-button>
                     </li>
-                    <li>RESTful API 支持的方法</li>
+                    <li>RESTful API 频繁使用的方法</li>
                     <li>
                         <el-button @click="testRESTfulApiMethod('GET')" size="mini" round>GET</el-button>
                         <el-button @click="testRESTfulApiMethod('POST')" size="mini" round>POST</el-button>
@@ -22,8 +22,14 @@
                         <el-button @click="testRESTfulApiMethod('PATCH')" size="mini" round>PATCH</el-button>
                         <el-button @click="testRESTfulApiMethod('DELETE')" size="mini" round>DELETE</el-button>
                         <el-button @click="testRESTfulApiMethod('HEAD')" size="mini" round>HEAD</el-button>
-                        <el-button @click="testRESTfulApiMethod('OPTIONS')" size="mini" round>OPTIONS</el-button>
                     </li>
+                    <!-- <li>RESTful API 使用较少的方法</li>
+                    <li>
+                        <el-button @click="testRESTfulApiMethod('HEAD')" size="mini" round>HEAD</el-button>
+                        <el-button @click="testRESTfulApiMethod('OPTIONS')" size="mini" round>OPTIONS</el-button>
+                        <el-button @click="testRESTfulApiMethod('TRACE')" size="mini" round>TRACE</el-button>
+                        <el-button @click="testRESTfulApiMethod('CONNECT')" size="mini" round>CONNECT</el-button>
+                    </li> -->
                 </ul>
             </el-card>
         </el-col>

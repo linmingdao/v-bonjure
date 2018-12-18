@@ -11,14 +11,13 @@
                 <form>
                     <label for="new-todo">add a todo</label>
                     <input id="new-todo" style="padding: 2px 10px;" v-model="newTodoText" placeholder="E.g. feed the cat">
-                    <el-button @click="addTodo(newTodoText)" type="primary" size="mini" icon="el-icon-plus" circle></el-button>
-                    <el-button @click="resetTodoList" size="mini" round>重置列表</el-button>
+                    <el-button @click="localityAddTodo({text: newTodoText})" type="primary" size="mini" icon="el-icon-plus" circle></el-button>
                 </form>
                 <ul>
                     <li v-bind:class="{finished: item.done}" :key="index" v-for="(item, index) in sortedTodos">
                         {{item.done?'✌':'✍'}} {{index+1}}. {{ item.text }}
-                        <el-button @click="deleteTodo(item.text)" type="danger" size="mini" icon="el-icon-minus" circle></el-button>
-                        <el-button @click="finishTodo(item.text)" v-if="!item.done" size="mini" type="success" icon="el-icon-check" circle></el-button>
+                        <el-button @click="deleteTodo({id: item.id, text: item.text})" type="danger" size="mini" icon="el-icon-minus" circle></el-button>
+                        <el-button @click="finishTodo({id: item.id, text: item.text, done: true})" v-if="!item.done" size="mini" type="success" icon="el-icon-check" circle></el-button>
                     </li>
                 </ul>
             </el-card>

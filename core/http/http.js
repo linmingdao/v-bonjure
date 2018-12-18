@@ -9,7 +9,6 @@ const logger = Logger.getLogger('Global/Http');
  * Http网络请求对象
  */
 export default class Http {
-
     /**
      * 请求客户端构造器
      */
@@ -143,7 +142,7 @@ export default class Http {
     // }
 
     /**
-     * RESTful-GET
+     * HTTP1.0 RESTful-GET
      * @param {*} api 
      * @param {*} headers 
      */
@@ -152,7 +151,7 @@ export default class Http {
     }
 
     /**
-     * RESTful-POST
+     * HTTP1.0 RESTful-POST
      * @param {*} api 
      * @param {*} data 
      * @param {*} headers 
@@ -161,21 +160,61 @@ export default class Http {
         return _fetch.call(this, 'POST', api, data, headers);
     }
 
-    head(api) {
-
+    /**
+     * HTTP1.0 RESTful-HEAD
+     * @param {*} api 
+     */
+    head(api, data, headers = {}) {
+        return _fetch.call(this, 'HEAD', api, data, headers);
     }
 
-    put(api) {
+    /**
+     * HTTP1.1 RESTful-OPTIONS
+     * @param {*} api 
+     */
+    // options(api, data, headers = {}) {
+    //     return _fetch.call(this, 'OPTIONS', api, data, headers);
+    // }
 
+    /**
+     * HTTP1.1 RESTful-PUT
+     * @param {*} api 
+     */
+    put(api, data, headers = {}) {
+        return _fetch.call(this, 'PUT', api, data, headers);
     }
 
-    patch(api) {
-
+    /**
+     * HTTP1.1 RESTful-PATCH
+     * @param {*} api 
+     */
+    patch(api, data, headers = {}) {
+        return _fetch.call(this, 'PATCH', api, data, headers);
     }
 
-    delete(api) {
-
+    /**
+     * HTTP1.1 RESTful-DELETE
+     * @param {*} api 
+     */
+    delete(api, data, headers = {}) {
+        return _fetch.call(this, 'DELETE', api, data, headers);
     }
+
+    /**
+     * HTTP1.1 RESTful-TRACE 
+     * @param {*} api 
+     */
+    // trace(api, data, headers = {}) {
+    //     return _fetch.call(this, 'TRACE', api, data, headers);
+    // }
+
+    /**
+     * HTTP1.1 RESTful-CONNECT
+     * @param {*} api 
+     */
+    // connect(api, data, headers = {}) {
+    //     return _fetch.call(this, 'CONNECT', api, data, headers);
+    // }
 
     /**
      * 获取一个Http网络请求客户端实例
@@ -183,7 +222,6 @@ export default class Http {
     static getClient(opt = defaultOption) {
         return new Http(opt);
     }
-
 };
 
 /**
@@ -214,7 +252,7 @@ function _fetch(method, api, data = {}, headers = {}) {
                 ...headers
             }
         };
-        method === 'POST' && (opt['body'] = JSON.stringify(data));
+        method !== 'GET' && (opt['body'] = JSON.stringify(data));
 
         // 发出请求
         fetch(api, opt).then(response => {
@@ -230,7 +268,7 @@ function _fetch(method, api, data = {}, headers = {}) {
             // 隐藏loading
             this.showLoading && notificator.hideLoading();
             // 执行请求结束的回调
-            isFunction(this.oncomplete) && this.oncomplete();
+            isFunction(this.oncomplete) && this.oncomplete(this);
         });
     });
 }
@@ -241,7 +279,7 @@ function handleResponse(response, resolve, method, api) {
         // 拦截请求结果
         this.useInterceptor && isFunction(this.interceptor) && this.interceptor(responseJson);
         // 执行请求成功的回调
-        isFunction(this.onsuccess) && this.onsuccess(responseJson);
+        isFunction(this.onsuccess) && this.onsuccess(responseJson, this);
         // 打印日志
         logger.debug(`返回请求, ${method}, ${api}`, responseJson);
         // 返回响应数据
@@ -255,7 +293,7 @@ function handleException(exception, method, api) {
 
     // 执行请求失败的回调
     if (isFunction(this.onerror)) {
-        const ret = this.onerror(exception);
+        const ret = this.onerror(exception, this);
         if (!!ret) return;
     }
 

@@ -61,6 +61,7 @@ export default {
                         handleRemeberUser({
                             token: response.data.token,
                             remeber: this.checked,
+                            userid: response.data.user.id,
                             username: this.ruleForm.username,
                             password: this.ruleForm.password
                         }).then(() => {

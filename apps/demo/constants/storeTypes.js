@@ -16,9 +16,7 @@ export const MODULES = {
 export const MUTATIONS = {
     // home模块
     'INIT_TODOLIST': 'initTodolist',
-    'ADD_TODO': 'addTodo',
-    'DELETE_TODO': 'deleteTodo',
-    'FINISH_TODO': 'finishTodo',
+    // 计数器模块
     'INCREMENT': 'increment',
     'DECREMENT': 'decrement',
     // 登录模块
@@ -32,6 +30,9 @@ export const MUTATIONS = {
 export const ACTIONS = {
     // home模块
     'GET_TODOLIST': 'getTodolist',
+    'ADD_TODO': 'addTodo',
+    'DELETE_TODO': 'deleteTodo',
+    'FINISH_TODO': 'finishTodo',
     // 登录模块
     'LOGIN': 'login'
 };

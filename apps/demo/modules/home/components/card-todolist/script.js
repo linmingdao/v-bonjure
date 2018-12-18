@@ -1,5 +1,5 @@
 import { createNamespacedHelpers } from 'vuex';
-import { MODULES, MUTATIONS, ACTIONS } from '../../../../constants/storeTypes.js';
+import { MODULES, ACTIONS } from '../../../../constants/storeTypes.js';
 
 // 划分到更细的模块(注意：每个模块都是namespaced)
 const todoMap = createNamespacedHelpers(`${MODULES.HOME}/${MODULES.TODO_LIST}`);
@@ -18,15 +18,16 @@ export default {
     },
     // 本地方法、Store中的mutations、actions
     methods: {
-        resetTodoList() {
-            this[ACTIONS.GET_TODOLIST]();
-        },
-        ...todoMap.mapMutations([
-            MUTATIONS.ADD_TODO,
-            MUTATIONS.DELETE_TODO,
-            MUTATIONS.FINISH_TODO
+        ...todoMap.mapActions([
+            ACTIONS.GET_TODOLIST,
+            ACTIONS.ADD_TODO,
+            ACTIONS.DELETE_TODO,
+            ACTIONS.FINISH_TODO
         ]),
-        ...todoMap.mapActions([ACTIONS.GET_TODOLIST])
+        localityAddTodo(todo) {
+            todo.text.trim() !== '' && this[ACTIONS.ADD_TODO](todo);
+            this.$set(this, 'newTodoText', '');
+        }
     },
     mounted() {
         // 方案1：请求todolist,todolist是需要缓存在store中的,又是异步流,所以需要走action流程

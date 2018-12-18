@@ -4,7 +4,12 @@ const cookieParser = require("cookie-parser");
 // 引入json解析中间件
 var bodyParser = require('body-parser');
 // 引入路由
-var route = require('./route');
+var router = require('./router');
+// 导入模拟的数据库
+const database = require('./database/database');
+
+// 初始化数据库
+database.init();
 
 var app = express();
 
@@ -13,7 +18,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 // 安装路由
-route.use(app);
+router.use(app);
 
 // 使用cookie中间件
 app.use(cookieParser());

@@ -16,7 +16,7 @@ export async function handleLogin(userInfo) {
  * 处理记住用户
  * @param {*} param0 
  */
-export const handleRemeberUser = ({ token, remeber, username, password }) => new Promise((resolve, reject) => {
+export const handleRemeberUser = ({ token, remeber, userid, username, password }) => new Promise((resolve, reject) => {
     if (remeber) {
         localStorageHelper.set('remeber', true);
         localStorageHelper.set('username', username);
@@ -26,6 +26,7 @@ export const handleRemeberUser = ({ token, remeber, username, password }) => new
         localStorageHelper.remove('username');
         localStorageHelper.remove('password');
     }
+    localStorageHelper.set('userid', userid);
     localStorageHelper.set('token', token);
     resolve();
 });
@@ -43,6 +44,8 @@ export const askRemeberMe = () => new Promise((resolve, reject) => {
             password
         });
     } else {
+        localStorageHelper.remove('userid');
+        localStorageHelper.remove('token');
         resolve({
             remeber: false
         });

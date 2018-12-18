@@ -1,6 +1,6 @@
 import Http from '@core/Http';
 import Logger from '@core/Logger';
-import * as API from '../api/api';
+import * as LOGIN_API from '../api/login';
 import { STATUS_CODE } from '../constants/index.js';
 import * as localStorageHelper from '../utils/localStorageHelper';
 
@@ -35,7 +35,7 @@ const interceptor = {
      * @param {Function} next 放行函数
      */
     async doFilter(next) {
-        const response = await Http.getClient().headers({ 'token': localStorageHelper.get('token') }).disableLoading().get(API.TOKEN_EXPIRED);
+        const response = await Http.getClient().headers({ 'token': localStorageHelper.get('token') }).disableLoading().get(LOGIN_API.TOKEN_EXPIRED);
         if (response.code === STATUS_CODE.TOKEN_NOT_EXPIRED) {
             next();
         } else {
