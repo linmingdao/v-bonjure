@@ -60,6 +60,3 @@ PS：如下三个命令分别对应不同环境的打包命令，关于如何快
 <p align="left">
 <a href="https://github.com/linmingdao/v-bonjour/issues/4" target="_blank" rel="noopener noreferrer">4、应用开发</a>
 </p>
-<p align="left">
-<a href="https://github.com/linmingdao/v-bonjour/issues/5" target="_blank" rel="noopener noreferrer">5、推荐的开发方式与编码规范</a>
-</p>
