@@ -1,0 +1,12 @@
+{
+    "name": "demo",
+    "entry": "index.js",
+    "title": "demo",
+    "logo": "logo.png",
+    "useDefaultTemplate": true,
+    "devServer": {
+        "host": "127.0.0.1",
+        "port": 3002,
+        "proxy": "http://localhost:9000"
+    }
+}

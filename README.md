@@ -1,5 +1,5 @@
 <p align="center">
-<a href="https://github.com/linmingdao/v-bonjour" target="_blank" rel="noopener noreferrer"><img width="292" height="65" src="https://github.com/linmingdao/v-bonjour/raw/master/doc/assets/logo.png" alt="v-bonjour logo">
+<a href="https://github.com/linmingdao/v-bonjour" target="_blank" rel="noopener noreferrer"><img width="292" height="65" src="https://github.com/linmingdao/v-bonjour/raw/master/doc/assets/logo.png" alt="v-base-core logo">
 </a>
 </p>
 <h2 align="center">基于Vue的前端通用开发框架</h2>
@@ -30,23 +30,49 @@
 
 在框架根目录新建两个命令行窗口，分别运行如下命令
 
->npm run server
+1、运行 demo app 配套的后端服务
+>cd ./server
 
-    运行 demo app 配套的后端服务，服务启动成功会监听本机9000端口
+>node server
 
->npm run dev
+    服务启动成功会监听本机9000端口
 
-    会打开默认的浏览器运行 demo app，推荐将本机默认浏览设置为 Chrome
+2、运行 demo app
+>cd ./build
 
-PS：如下三个命令分别对应不同环境的打包命令，关于如何快速搭建你的应用请阅读 [《demo app介绍以及快速搭建你的应用》](https://github.com/linmingdao/v-bonjour/raw/master/doc/demoapp.md)
+>node dev app=demo
 
->npm run build:dev，开发环境打包命令
+    node dev 命令表示以开发模式运行指定的app, 通过 app=your_app_name 指定要运行的应用名称
 
->npm run build:test，测试环境打包命令
+    应用会启动在本机3002端口
 
->npm run build:prod，生产环境打包命令
+3、通过浏览器访问 demo app （推荐使用 Chrome 浏览器）
 
-## 三、进一步了解 v-bonjour 请阅读如下文章
+    http://127.0.0.1:3002
+
+![image](https://github.com/linmingdao/v-bonjour/raw/master/doc/assets/app_login.png)
+
+PS：可以通过浏览 demo app 目录下的源码 get “如何快速搭建你的应用” 这项神技哟
+
+## 三、命令
+
+在框架根的build目录下运行命令
+
+1、运行开发环境命令
+>node dev app=demo
+
+2、运行打包命令
+>node build app=yourAppName env=dev，开发环境打包命令
+
+* 通过 app 指定要打包的应用
+* 通过 env 指定打包的环境
+* env 可选值:
+  * dev: 开发环境
+  * test: 测试环境
+  * prod: 生产环境
+* 比如 node build app=demo env=test 表示构建demo应用的测试环境包
+
+## 四、进一步了解 v-bonjour 请阅读如下文章
 
 <p align="left">
 <a href="https://github.com/linmingdao/v-bonjour/issues/1" target="_blank" rel="noopener noreferrer">1、框架设计</a>

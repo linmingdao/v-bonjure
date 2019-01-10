@@ -1,3 +1,4 @@
+const path = require('path');
 const express = require('express');
 // 引入cookie中间件
 const cookieParser = require("cookie-parser");
@@ -16,6 +17,9 @@ var app = express();
 // 添加json解析
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+
+// 使用express的静态文件中间件
+app.use(express.static(path.join(__dirname, 'public')));
 
 // 安装路由
 router.use(app);

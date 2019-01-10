@@ -1,20 +1,14 @@
 {
-    "name": "v-bonjour",
+    "name": "v-base-core",
     "version": "1.0.0",
-    "description": "v-bonjour, a generic framework for font-end development by vue",
+    "description": "v-base-core, a generic framework for font-end development by vue",
     "private": true,
-    "scripts": {
-        "server": "node server",
-        "build:dev": "webpack --progress --display-modules --colors --display-reasons --config build/webpack.build.dev.conf.js",
-        "build:test": "webpack --progress --display-modules --colors --display-reasons --config build/webpack.build.test.conf.js",
-        "build:prod": "webpack --progress --display-modules --colors --display-reasons --config build/webpack.build.prod.conf.js",
-        "dev": "webpack-dev-server --inline --hot --open --config build/webpack.dev.conf.js"
-    },
+    "scripts": {},
     "keywords": [
-        "v-bonjour",
+        "v-base-core",
         "vue"
     ],
-    "author": "linmingdao",
+    "author": "ltjh@linmingdao",
     "license": "ISC",
     "devDependencies": {
         "@babel/core": "^7.1.5",
@@ -27,7 +21,9 @@
         "babel-plugin-transform-decorators-legacy": "^1.3.5",
         "babel-polyfill": "^6.26.0",
         "clean-webpack-plugin": "^0.1.19",
+        "colors": "^1.3.3",
         "cookie-parser": "^1.4.3",
+        "copy-webpack-plugin": "^4.6.0",
         "cross-env": "^5.2.0",
         "css-loader": "^1.0.1",
         "dateformat": "^3.0.3",

@@ -1,6 +1,6 @@
 const uuid = require('uuid');
 
-// 默认的token过期时间
+// 默认的token过期时间，单位为毫秒
 const DURATION = 1000 * 60 * 60;
 
 // 缓存token信息
