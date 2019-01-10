@@ -3,6 +3,11 @@
 </a>
 </p>
 <h2 align="center">基于Vue的前端通用开发框架</h2>
+<p align="center">
+    <img src="https://github.com/linmingdao/v-bonjour/raw/master/doc/assets/platform.png" alt="Platform: macOS, windows, linux" />
+    <a href="https://developer.apple.com/swift" target="_blank"><img src="https://github.com/linmingdao/v-bonjour/raw/master/doc/assets/language.png" alt="Language: JavaScript" /></a>
+    <img src="https://github.com/linmingdao/v-bonjour/raw/master/doc/assets/license.png" alt="License: MIT" />
+</p>
 
 框架选择了当下流行的 [Vue](https://cn.vuejs.org/) + [Vuex](https://vuex.vuejs.org/) + [Vue Router](https://router.vuejs.org/) 的组合方案来快速搭建与迭代应用；为了快速搭建应用的视图层，框架集成了饿了么团队 [Element UI](http://element-cn.eleme.io/#/zh-CN) 框架；选择 [wepack 4.x](https://webpack.js.org/) 为应用的构建工具；提供了多应用并行开发的能力支持，框架为应用开发提供了如下通用能力：
 
