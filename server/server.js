@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 const path = require('path');
 const express = require('express');
 // 引入cookie中间件

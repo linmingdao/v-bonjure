@@ -31,21 +31,22 @@
 3、在框架根目录打开命令行窗口，并执行如下命令安装相关依赖
 >npm i
 
+4、执行如下命令安装将框架的内置命令加入到环境中
+>npm link
+
 ## 二、运行 demo app 以快速浏览框架提供的各种能力支持
 
 在框架根目录新建两个命令行窗口，分别运行如下命令
 
 1、运行 demo app 配套的后端服务
->cd ./server
 
->node server
+>run-demo-server
 
     服务启动成功会监听本机9000端口
 
 2、运行 demo app
->cd ./build
 
->node dev app=demo
+>run-dev app=demo
 
     node dev 命令表示以开发模式运行指定的app, 通过 app=your_app_name 指定要运行的应用名称
 
@@ -64,10 +65,10 @@ PS：可以通过浏览 demo app 目录下的源码 get “如何快速搭建你
 在框架根的build目录下运行命令
 
 1、运行开发环境命令
->node dev app=demo
+>run-dev app=demo
 
 2、运行打包命令
->node build app=yourAppName env=dev，开发环境打包命令
+>run-build app=yourAppName env=dev，开发环境打包命令
 
 * 通过 app 指定要打包的应用
 * 通过 env 指定打包的环境
@@ -75,7 +76,7 @@ PS：可以通过浏览 demo app 目录下的源码 get “如何快速搭建你
   * dev: 开发环境
   * test: 测试环境
   * prod: 生产环境
-* 比如 node build app=demo env=test 表示构建demo应用的测试环境包
+* 比如 run-build app=demo env=test 表示构建demo应用的测试环境包
 
 ## 四、进一步了解 v-bonjour 请阅读如下文章
 
