@@ -7,11 +7,10 @@
         "node": ">= 10.13.0",
         "npm": ">= 6.4.1"
     },
-    "scripts": {},
-    "bin": {
-        "run-dev": "./build/dev.js",
-        "run-build": "./build/build.js",
-        "run-demo-server": "./server/server.js"
+    "scripts": {
+        "dev": "node ./build/dev.js",
+        "build": "node ./build/build.js",
+        "demo-server": "node ./server/server.js"
     },
     "keywords": [
         "vue",
