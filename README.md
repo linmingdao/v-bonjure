@@ -45,7 +45,7 @@
 
 >npm run dev app=demo
 
-    node dev 命令表示以开发模式运行指定的app, 通过 app=your_app_name 指定要运行的应用名称
+    npm run dev 命令表示以开发模式运行指定的app, 通过 app=your_app_name 指定要运行的应用名称
 
     应用会启动在本机3002端口
 
@@ -65,7 +65,7 @@ PS：可以通过浏览 demo app 目录下的源码 get “如何快速搭建你
 >npm run dev app=demo
 
 2、运行打包命令
->npm run build app=yourAppName env=dev，开发环境打包命令
+>npm run build app=your_app_name env=dev，开发环境打包命令
 
 * 通过 app 指定要打包的应用
 * 通过 env 指定打包的环境
