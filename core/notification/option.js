@@ -3,7 +3,7 @@ export const MESSAGE_TYPE = {
     INFO: 'info',
     WARNING: 'warning',
     SUCCESS: 'success',
-    ERROR: 'error',
+    ERROR: 'error'
 };
 
 // 默认的loading配置

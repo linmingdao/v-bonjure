@@ -1,4 +1,4 @@
-import "babel-polyfill";
+import 'babel-polyfill';
 // Vuex和VueRouter依赖Promise
 import 'es6-promise/auto';
 import Vue from 'vue';

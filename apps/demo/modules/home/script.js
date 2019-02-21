@@ -11,7 +11,7 @@ import cardTodolist from './components/card-todolist/index.vue';
 export default {
     // 组件的本地状态
     data() {
-        return {}
+        return {};
     },
     // 注册组件
     components: {

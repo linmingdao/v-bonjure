@@ -5,4 +5,4 @@ import Home from './home/index.vue';
 export default {
     Login,
     Home
-}
+};

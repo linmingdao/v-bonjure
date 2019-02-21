@@ -34,7 +34,7 @@ export default class Http {
 
     /**
      * 设置请求开始前的回调
-     * @param {Function} callback 
+     * @param {Function} callback
      */
     before(callback) {
         !this.locked && (this.onbefore = callback);
@@ -43,7 +43,7 @@ export default class Http {
 
     /**
      * 设置请求结束时的回调，无论成功失败都会执行
-     * @param {Function} callback 
+     * @param {Function} callback
      */
     complete(callback) {
         !this.locked && (this.oncomplete = callback);
@@ -52,7 +52,7 @@ export default class Http {
 
     /**
      * 设置请求成功时的回调
-     * @param {Function} callback 
+     * @param {Function} callback
      */
     success(callback) {
         !this.locked && (this.onsuccess = callback);
@@ -61,7 +61,7 @@ export default class Http {
 
     /**
      * 设置请求错误时的回调
-     * @param {Function} callback 
+     * @param {Function} callback
      */
     error(callback) {
         !this.locked && (this.onerror = callback);
@@ -70,7 +70,7 @@ export default class Http {
 
     /**
      * 拦截请求结果
-     * @param {Function} callback 
+     * @param {Function} callback
      */
     intercept(callback) {
         !this.locked && (this.interceptor = callback);
@@ -294,7 +294,7 @@ function handleException(exception, method, api) {
     // 执行请求失败的回调
     if (isFunction(this.onerror)) {
         const ret = this.onerror(exception, this);
-        if (!!ret) return;
+        if (ret) return;
     }
 
     // 弹窗提示异常信息

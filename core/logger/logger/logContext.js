@@ -100,14 +100,14 @@ export default class LogContext {
             styleParams.push(this.cstyles.level(levelStr));
         }
         if (isLogModule()) {
-            prefix.push(`%c${isLogLevel()?' ':''}🎁${moduleName} `);
+            prefix.push(`%c${isLogLevel() ? ' ' : ''}🎁${moduleName} `);
             styleParams.push(this.cstyles.module(moduleName));
         }
         if (isLogTime()) {
             prefix.push(`%c📆${now} `);
             styleParams.push(this.cstyles.time(now));
         }
-        prefix.push(`%c💬`);
+        prefix.push('%c💬');
         styleParams.push(this.cstyles.content());
 
         // 输出日志内容

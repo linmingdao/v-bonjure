@@ -4,7 +4,7 @@ import notificator from '@core/notificator';
 
 export default {
     data() {
-        return {}
+        return {};
     },
     methods: {
         testDefaultHttpExceptionHandler(type) {

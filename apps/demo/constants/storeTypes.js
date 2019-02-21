@@ -21,7 +21,7 @@ export const MUTATIONS = {
     'DECREMENT': 'decrement',
     // 登录模块
     'SET_2_LODING_STATE': 'set2LodingState',
-    'SET_2_NORMAL_STATE': 'set2NormalState',
+    'SET_2_NORMAL_STATE': 'set2NormalState'
 };
 
 /**

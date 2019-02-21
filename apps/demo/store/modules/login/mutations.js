@@ -10,5 +10,5 @@ export default function(logger) {
             state.pending = false;
             logger.debug('将 “立即登录” 按钮置为normal状态');
         }
-    }
+    };
 };

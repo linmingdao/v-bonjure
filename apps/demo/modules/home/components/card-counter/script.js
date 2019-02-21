@@ -6,7 +6,7 @@ const counterMap = createNamespacedHelpers(`${MODULES.HOME}/${MODULES.COUNTER}`)
 
 export default {
     data() {
-        return {}
+        return {};
     },
     computed: {
         ...counterMap.mapState(['count']),

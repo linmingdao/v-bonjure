@@ -8,7 +8,10 @@
                 "core/app"
             ],
             "@core/Logger": [
-                "core/sherry/index"
+                "core/logger/index"
+            ],
+            "@core/LoggerCmder": [
+                "core/logger/env/cmder"
             ],
             "@core/Http": [
                 "core/http/index"

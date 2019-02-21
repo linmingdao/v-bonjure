@@ -2,7 +2,6 @@ import { DEFAULT_MODULE_NAME, LEVELS } from '../constants';
 
 /**
  * 日志输出类
- * 
  * @author linmigndao
  */
 export default class Logger {
@@ -19,7 +18,7 @@ export default class Logger {
 
     /**
      * 输出调试信息: 指出细粒度信息事件对调试应用程序是非常有帮助的
-     * @param  {...any} params 
+     * @param  {...any} params
      */
     debug(...params) {
         log.call(this, LEVELS.DEBUG, params);
@@ -27,7 +26,7 @@ export default class Logger {
 
     /**
      * 输出提示信息: 消息在粗粒度级别上突出强调应用程序的运行过程
-     * @param  {...any} params 
+     * @param  {...any} params
      */
     info(...params) {
         log.call(this, LEVELS.INFO, params);
@@ -35,7 +34,7 @@ export default class Logger {
 
     /**
      * 输出警告信息: 表明会出现潜在错误的情形
-     * @param  {...any} params 
+     * @param  {...any} params
      */
     warn(...params) {
         log.call(this, LEVELS.WARN, params);
@@ -43,7 +42,7 @@ export default class Logger {
 
     /**
      * 输出错误信息: 指出发生的错误事件，可能会影响系统的继续运行
-     * @param  {...any} params 
+     * @param  {...any} params
      */
     error(...params) {
         log.call(this, LEVELS.ERROR, params);
@@ -51,7 +50,7 @@ export default class Logger {
 
     /**
      * 获取一个日志实例
-     * @param {String} moduleName 
+     * @param {String} moduleName
      */
     static getLogger(moduleName = DEFAULT_MODULE_NAME) {
         return new Logger(moduleName);
@@ -60,11 +59,12 @@ export default class Logger {
 
 /**
  * Logger私有方法
- * @param {*} level 
- * @param {*} params 
+ * @param {*} level
+ * @param {*} params
  */
 function log(level, params) {
-    this.ctx.log.call(this.ctx, level, this.moduleName, params);
+    // this.ctx.log.call(this.ctx, level, this.moduleName, params);
+    this.ctx.log(level, this.moduleName, params);
 }
 
 /**

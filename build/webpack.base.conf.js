@@ -23,7 +23,8 @@ function base(appInfo, pathInfo) {
         resolve: {
             alias: {
                 '@core/App': path.resolve(__dirname, '../core/app'),
-                '@core/Logger': path.resolve(__dirname, '../core/sherry'),
+                '@core/Logger': path.resolve(__dirname, '../core/logger'),
+                '@core/LoggerCmder': path.resolve(__dirname, '../core/logger/env/cmder'),
                 '@core/Http': path.resolve(__dirname, '../core/http'),
                 '@core/Notification': path.resolve(__dirname, '../core/notification/notification'),
                 '@core/notificator': path.resolve(__dirname, '../core/notification/notificator'),
@@ -39,7 +40,7 @@ function base(appInfo, pathInfo) {
             'vuex': 'Vuex',
             'element-ui': 'Element'
         }
-    }
+    };
 }
 
 /**
@@ -68,7 +69,7 @@ function plugins(appInfo, pathInfo) {
         // 生成模板文件
         new HtmlWebpackPlugin({
             title: appInfo.title,
-            filename: "index.html",
+            filename: 'index.html',
             template: pathInfo.template,
             inject: true,
             // hash: true,
@@ -89,7 +90,7 @@ function plugins(appInfo, pathInfo) {
         }),
         // 处理*.vue文件
         new VueLoaderPlugin()
-    ]
+    ];
 }
 
 /**
@@ -99,6 +100,13 @@ function plugins(appInfo, pathInfo) {
  */
 function rules(appInfo, pathInfo) {
     return [
+        // ESLint配置
+        {
+            enforce: 'pre',
+            test: /\.(js|vue)$/,
+            loader: 'eslint-loader',
+            exclude: /node_modules/
+        },
         // 使用Babel处理js文件
         {
             test: /\.js$/,
@@ -123,7 +131,7 @@ function rules(appInfo, pathInfo) {
                 },
                 // 使用postcss处理最原始的样式文件
                 {
-                    loader: 'postcss-loader',
+                    loader: 'postcss-loader'
                     // options: {
                     //     warnForDuplicates: false
                     // }
@@ -152,14 +160,14 @@ function rules(appInfo, pathInfo) {
                         },
                         // optipng.enabled: false will disable optipng
                         optipng: {
-                            enabled: false,
+                            enabled: false
                         },
                         pngquant: {
                             quality: '65-90',
                             speed: 4
                         },
                         gifsicle: {
-                            interlaced: false,
+                            interlaced: false
                         },
                         // the webp option will enable WEBP
                         webp: {

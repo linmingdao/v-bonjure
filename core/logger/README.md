@@ -35,32 +35,32 @@ import Logger from 'logger';
 
 
 // 日志级别控制
-sherrylevel('debug');
-sherrylevel('info');
-sherrylevel('warn');
-sherrylevel('error');
-sherrylevel('mute');
+loggerLevel('debug');
+loggerLevel('info');
+loggerLevel('warn');
+loggerLevel('error');
+loggerLevel('mute');
 
 // 关闭模块的日志输出
-sherryoff('global');
-sherryoff('UIComponents');
-sherryoff('UIComponents/GroupBox');
-sherryoff('UIComponents/GroupBox/A');
-sherryoff('UIComponents/GroupBox/A/B');
+loggerOff('global');
+loggerOff('UIComponents');
+loggerOff('UIComponents/GroupBox');
+loggerOff('UIComponents/GroupBox/A');
+loggerOff('UIComponents/GroupBox/A/B');
 
 // 打开模块的日志输出
-sherryon('global');
-sherryon('UIComponents');
-sherryon('UIComponents/GroupBox');
-sherryon('UIComponents/GroupBox/A');
-sherryon('UIComponents/GroupBox/A/B');
+loggerOn('global');
+loggerOn('UIComponents');
+loggerOn('UIComponents/GroupBox');
+loggerOn('UIComponents/GroupBox/A');
+loggerOn('UIComponents/GroupBox/A/B');
 
 // 配置全局日志开关
-sherry(['color','level','module','time']);// 默认的
-sherry([]);
-sherry(['level','module','time']);
-sherry(['level','time']);
-sherry(['module','time']);
+loggerConfig(['color','level','module','time']);// 默认的
+loggerConfig([]);
+loggerConfig(['level','module','time']);
+loggerConfig(['level','time']);
+loggerConfig(['module','time']);
 
 // 日志框架测试
 const logger_Global = new Logger(); // 不指定模块名称会输出到'global'全局模块

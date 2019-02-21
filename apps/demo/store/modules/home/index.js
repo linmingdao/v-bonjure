@@ -1,7 +1,7 @@
 import Logger from '@core/Logger';
 import actions from './actions';
 import mutations from './mutations';
-import { MODULES, MUTATIONS, ACTIONS } from '../../../constants/storeTypes.js';
+import { MODULES, MUTATIONS } from '../../../constants/storeTypes.js';
 
 const logger = Logger.getLogger('App/Store/Home');
 

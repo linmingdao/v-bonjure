@@ -1,11 +1,11 @@
-var CopyWebpackPlugin = require('copy-webpack-plugin');
+let CopyWebpackPlugin = require('copy-webpack-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const OptimizeCssnanoPlugin = require('@intervolga/optimize-cssnano-plugin');
 const utils = require('./utils');
 
 // 获取当前环境
-const NODE_ENV = process.env.NODE_ENV;
+// const NODE_ENV = process.env.NODE_ENV;
 
 function base(appInfo, pathInfo, commonBase) {
     return {
@@ -47,10 +47,10 @@ function plugins(appInfo, pathInfo, commonPlugins) {
             cssnanoOptions: {
                 preset: ['default', {
                     discardComments: {
-                        removeAll: true,
-                    },
+                        removeAll: true
+                    }
                 }]
-            },
+            }
         }),
         new CopyWebpackPlugin([{
             from: pathInfo.libs,

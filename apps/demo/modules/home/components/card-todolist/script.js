@@ -9,7 +9,7 @@ export default {
     data() {
         return {
             newTodoText: ''
-        }
+        };
     },
     // 本地状态的计算属性，Store中的state、getters
     computed: {

@@ -84,7 +84,7 @@ export function paddingLevelString(levelStr) {
  */
 export const colorfulStyles = {
     level(level) {
-        const bg = STYLE.BG_COLOR[level] || STYLE.BG_COLOR.DEBUG
+        const bg = STYLE.BG_COLOR[level] || STYLE.BG_COLOR.DEBUG;
         return `border-radius:1px;color:#FFF;background:${bg};padding:0 5px;font-size:14px;`;
     },
     module(moduleName) {
@@ -117,9 +117,8 @@ export const isAllowModule = moduleName => {
     // 查询本节点是否被屏蔽了
     if (filter.hasOwnProperty(convertedModuleName)) {
         return false;
-    }
-    // 查询父节点是否被屏蔽了
-    else {
+    } else {
+        // 查询父节点是否被屏蔽了
         const parentModules = moduleName.split('/');
         parentModules.pop();
         return _isAllowModule(parentModules, filter);

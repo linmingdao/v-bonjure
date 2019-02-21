@@ -25,5 +25,5 @@ export default function() {
             const response = await updateTodo(payload);
             commit(`${MUTATIONS.INIT_TODOLIST}`, response.data.todos);
         }
-    }
+    };
 };
