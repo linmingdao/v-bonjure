@@ -10,6 +10,19 @@ import { configAppRoutes } from './routes';
 import { configAppStore } from './store';
 // 导入应用的挂载组件(同时也是顶层路由组件)
 import App from './app/index.vue';
+// 导入设置日志级别的命令行函数
+import { loggerLevel } from '@core/LoggerCmder';
+
+// 根据不同环境设置日志的级别
+console.log(`当前编译环境: ${process.env.NODE_ENV}`);
+const NODE_ENV = process.env.NODE_ENV;
+if (NODE_ENV === 'production') {
+    // 生产环境日志级别设置为: ERROR
+    loggerLevel('error');
+} else {
+    // 其余环境日志级别设置为: DEBUG
+    loggerLevel('debug');
+}
 
 /**
  * 应用的启动入口，需要应用开发者在入口处手动调用
