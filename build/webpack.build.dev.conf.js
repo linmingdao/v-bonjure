@@ -4,17 +4,12 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 const OptimizeCssnanoPlugin = require('@intervolga/optimize-cssnano-plugin');
 const utils = require('./utils');
 
-// 获取当前环境
-// const NODE_ENV = process.env.NODE_ENV;
-
 function base(appInfo, pathInfo, commonBase) {
     return {
         // 公共的配置信息
         ...commonBase,
         // 启用source-map
-        devtool: '#source-map',
-        // 将webpack设置为开发模式
-        mode: 'development'
+        devtool: '#source-map'
     };
 }
 
@@ -67,6 +62,9 @@ function rules(appInfo, pathInfo, commonRules) {
     ];
 }
 
+/**
+ * 开发环境应用打包构建配置文件
+ */
 module.exports = {
     /**
      * 获取对应环境的webpack编译打包配置信息

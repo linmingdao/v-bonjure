@@ -1,6 +1,9 @@
 var CopyWebpackPlugin = require('copy-webpack-plugin');
 const utils = require('./utils');
 
+/**
+ * 本地开发环境构建配置文件
+ */
 module.exports = {
     /**
      * 获取devServer的webpack编译配置信息
@@ -11,14 +14,15 @@ module.exports = {
         const pathInfo = utils.pathInfo(appInfo, 'devServer');
         // 获取webpack公共配置
         const baseConfig = require('./webpack.base.conf').getConfig(appInfo, pathInfo);
+        console.log('baseConfig');
+        console.log(baseConfig);
 
         return {
             // 公共的配置信息
             ...baseConfig.base,
+            mode: 'production',
             // 启用source-map
             devtool: 'source-map',
-            // 将webpack设置为开发模式
-            mode: 'development',
             // 应用打包出口配置
             output: {
                 filename: 'js/index.bundle.js', // .[hash:7]

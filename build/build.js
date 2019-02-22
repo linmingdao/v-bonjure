@@ -1,19 +1,23 @@
 #!/usr/bin/env node
+
 const webpack = require('webpack');
+const CONSTANTS = require('./constants');
 const utils = require('./utils');
 const logger = require("./logger");
 
 // 解析命令行参数信息 => app表示要打包的应用名字; env表示环境(可选值为: dev|test|prod).
 const cmdParams = utils.cmdArgv(process.argv.slice(2));
-logger.blue('cmdParams', cmdParams);
+logger.blue('cmder params', cmdParams);
 
-// 设置环境
-process.env.NODE_ENV = cmdParams.env;
-logger.blue('set NODE_ENV', cmdParams.env);
+// 设置当前webpack构建模式为：应用打包模式
+process.env.CURRENT_BUILD_MODE = CONSTANTS.BUILD_MODE.APP_BUNDLE;
+process.env.CURRENT_BUNDLE_TARGET = cmdParams.env;
+logger.blue('set CURRENT_MODE', CONSTANTS.BUILD_MODE.APP_BUNDLE);
+logger.blue('set CURRENT_BUNDLE_TARGET', cmdParams.env);
 
 // 获取要打包的app配置信息
 const appInfo = utils.appInfo(cmdParams.app);
-logger.blue('appInfo', appInfo);
+logger.blue('app info', appInfo);
 
 // 获取webpack的编译配置
 const compilerConfig = require(`./webpack.build.${cmdParams.env}.conf`).getConfig(appInfo);

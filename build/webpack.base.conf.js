@@ -5,8 +5,16 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
 const CONSTANTS = require('./constants');
 
-// 获取当前环境
-const NODE_ENV = process.env.NODE_ENV;
+// 获取当前webpack的构建模式
+const CURRENT_BUILD_MODE = process.env.CURRENT_BUILD_MODE;
+
+function getMode() {
+    if (CURRENT_BUILD_MODE === CONSTANTS.BUILD_MODE.LOCAL_DEV) {
+        return CONSTANTS.MODE.DEVELOPMENT;
+    } else {
+        return process.env.CURRENT_BUNDLE_TARGET === CONSTANTS.BUNDLE_TARGET.PROD ? CONSTANTS.MODE.PRODUCTION : CONSTANTS.MODE.DEVELOPMENT;
+    }
+}
 
 /**
  * 获取编译的基础配置
@@ -15,6 +23,7 @@ const NODE_ENV = process.env.NODE_ENV;
  */
 function base(appInfo, pathInfo) {
     return {
+        mode: getMode(),
         // 应用打包入口配置
         entry: {
             [appInfo.name]: `${pathInfo.app}/${appInfo.entry}`
@@ -86,7 +95,7 @@ function plugins(appInfo, pathInfo) {
         // 剥离样式文件
         new MiniCssExtractPlugin({
             // 输出文件【注意：这里的根路径是module.exports.output.path】
-            filename: `css/style.bundle${NODE_ENV === CONSTANTS.EVN.DEV_SERVER ? '' : '.[chunkhash]'}.css`
+            filename: `css/style.bundle${CURRENT_BUILD_MODE === CONSTANTS.BUILD_MODE.LOCAL_DEV ? '' : '.[chunkhash]'}.css`
         }),
         // 处理*.vue文件
         new VueLoaderPlugin()
@@ -132,9 +141,9 @@ function rules(appInfo, pathInfo) {
                 // 使用postcss处理最原始的样式文件
                 {
                     loader: 'postcss-loader'
-                    // options: {
-                    //     warnForDuplicates: false
-                    // }
+                        // options: {
+                        //     warnForDuplicates: false
+                        // }
                 }
             ]
         },
@@ -147,7 +156,7 @@ function rules(appInfo, pathInfo) {
                     loader: 'url-loader',
                     options: {
                         limit: 10000, // 10000
-                        name: `assets/images/[name]${NODE_ENV === CONSTANTS.EVN.DEV_SERVER ? '' : '.[chunkhash]'}.[ext]`
+                        name: `assets/images/[name]${CURRENT_BUILD_MODE === CONSTANTS.BUILD_MODE.LOCAL_DEV ? '' : '.[chunkhash]'}.[ext]`
                     }
                 },
                 // 压缩图片
@@ -184,7 +193,7 @@ function rules(appInfo, pathInfo) {
                 loader: 'url-loader',
                 options: {
                     limit: 10000, // 10000
-                    name: `assets/fonts/[name]${NODE_ENV === CONSTANTS.EVN.DEV_SERVER ? '' : '.[chunkhash]'}.[ext]`
+                    name: `assets/fonts/[name]${CURRENT_BUILD_MODE === CONSTANTS.BUILD_MODE.LOCAL_DEV ? '' : '.[chunkhash]'}.[ext]`
                 }
             }]
         },
@@ -194,7 +203,7 @@ function rules(appInfo, pathInfo) {
             loader: 'url-loader',
             options: {
                 limit: 10000, // 10000
-                name: `assets/media/[name]${NODE_ENV === CONSTANTS.EVN.DEV_SERVER ? '' : '.[chunkhash]'}.[ext]`
+                name: `assets/media/[name]${CURRENT_BUILD_MODE === CONSTANTS.BUILD_MODE.LOCAL_DEV ? '' : '.[chunkhash]'}.[ext]`
             }
         },
         // 处理.vue文件
