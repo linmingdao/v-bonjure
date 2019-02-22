@@ -14,13 +14,10 @@ module.exports = {
         const pathInfo = utils.pathInfo(appInfo, 'devServer');
         // 获取webpack公共配置
         const baseConfig = require('./webpack.base.conf').getConfig(appInfo, pathInfo);
-        console.log('baseConfig');
-        console.log(baseConfig);
 
         return {
             // 公共的配置信息
             ...baseConfig.base,
-            mode: 'production',
             // 启用source-map
             devtool: 'source-map',
             // 应用打包出口配置
