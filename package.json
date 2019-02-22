@@ -10,7 +10,7 @@
     "scripts": {
         "dev": "node ./build/dev.js",
         "build": "node ./build/build.js",
-        "demo-server": "node ./server/server.js"
+        "demo-server": "node ./demoServer/server.js"
     },
     "keywords": [
         "vue",
