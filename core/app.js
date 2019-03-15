@@ -14,7 +14,7 @@ import App from './app/index.vue';
 import { loggerLevel } from '@core/LoggerCmder';
 
 // 根据不同环境设置日志的级别
-console.log(`当前编译环境: ${process.env.NODE_ENV}`);
+console.log(`当前运行环境: ${process.env.NODE_ENV}`);
 const NODE_ENV = process.env.NODE_ENV;
 if (NODE_ENV === 'production') {
     // 生产环境日志级别设置为: ERROR

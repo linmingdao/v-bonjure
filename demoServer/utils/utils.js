@@ -8,6 +8,6 @@ function fib(n) {
 module.exports = {
     // 模拟睡眠
     mockSleep() {
-        fib(42);
+        // fib(42);
     }
 };

@@ -1,7 +1,7 @@
 {
-    "name": "v-bonjour",
+    "name": "v-base-core",
     "version": "1.0.0",
-    "description": "v-bonjour, a generic framework for font-end development by vue",
+    "description": "v-base-core, a generic framework for font-end development by vue",
     "private": true,
     "engines": {
         "node": ">= 10.13.0",
@@ -15,7 +15,7 @@
     "keywords": [
         "vue",
         "webpack",
-        "v-bonjour",
+        "v-base-core",
         "JavaScript"
     ],
     "author": "onemt@linmingdao",
@@ -58,13 +58,16 @@
         "lodash": "^4.17.11",
         "mini-css-extract-plugin": "^0.4.4",
         "postcss-cssnext": "^3.1.0",
+        "postcss-import": "^12.0.1",
         "postcss-loader": "^3.0.0",
         "postcss-pxtorem": "^4.0.1",
+        "postcss-url": "^8.0.0",
         "uglifyjs-webpack-plugin": "^2.0.1",
         "url-loader": "^1.1.2",
         "uuid": "^3.3.2",
         "vue-loader": "^15.4.2",
         "vue-template-compiler": "^2.5.17",
+        "vuedraggable": "^2.18.1",
         "web-webpack-plugin": "^4.0.1",
         "webpack": "^4.25.1",
         "webpack-cli": "^3.1.2",

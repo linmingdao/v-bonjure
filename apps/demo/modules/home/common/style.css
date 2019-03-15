@@ -1,7 +1,7 @@
 /* start 卡片样式 */
 
 .box-card {
-    width: 900px;
+    width: 100%;
     margin: 0 auto;
     margin-bottom: 18px;
 }

@@ -6,7 +6,7 @@
       <!-- start logo区域 -->
       <label class="logo">
         <a class="favicon"></a>
-        <span class="text">v-bonjour</span>
+        <span class="text">v-base-core</span>
       </label>
       <!-- end logo区域 -->
       <!-- start 登录表单区域 -->

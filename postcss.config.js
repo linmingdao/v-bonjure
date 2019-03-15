@@ -1,11 +1,27 @@
 module.exports = {
     plugins: {
+        'postcss-import': {}, // 样式文件的导入处理
+        'postcss-url': {},
         // 自动补全厂商前缀
         'autoprefixer': {
             browsers: '> 5%'
         },
         // 使用下一个版本的css语法
-        'postcss-cssnext': {},
+        'postcss-cssnext': {
+            browsers: [ // 兼容,不指定默认则是该插件默认范围,最近两个版本
+                '>1%',
+                'last 4 versions',
+                'Firefox ESR',
+                'not ie < 9',
+            ],
+            flexbox: 'no-2009'
+        },
+        // 压缩
+        // cssnano: {
+        //     preset: 'advanced',
+        //     autoprefixer: false,
+        //     'postcss-zindex': false
+        // },
         // 把px转换成rem
         'postcss-pxtorem': {
             rootValue: 16, //在html节点设的font-size大小

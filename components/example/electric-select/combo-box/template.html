@@ -1,0 +1,25 @@
+<div @click="handleClickMask" :style="{visibility: visible ? 'visible' : 'hidden'}" class="electric-select-combo-box__wrapper">
+    <div @click.stop="handleClickOptionList" ref="comboBox" class="electric-select-combo-box" :style="styleObj">
+        <div class="options-filter">
+            <div class="search_bar">
+              <input @input="handleFilterInput" type="text" :placeholder="preferences.placeholder">
+            </div>
+        </div>
+        <div class="options-list">
+            <ul class="item-list">
+                <li v-if="preferences.multiple" class="select-all">全选</li>
+                <li 
+                  v-for="(item, index) in options"
+                  :key="item.id"
+                  class="list-item"
+                  :class="{active: item.active, 'radio': !preferences.multiple}"
+                  v-bind:index="index"
+                  v-bind:value="preferences.value(item.data)"
+                  v-bind:title="preferences.text(item.data)"
+                >
+                  {{ preferences.text(item.data) }}
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,77 @@
+.bg_color {
+    background-color: #fff;
+}
+
+
+/* 统一表格头部风格 */
+
+.electric-table>>>thead {
+    color: #fff;
+}
+
+.electric-table>>>thead th,
+.electric-table>>>.el-table__fixed-right-patch {
+    background-color: #2CBFBE;
+}
+
+
+/* 只能使用上面方式覆盖ElementUI table表头背景色，找时间研究一下why */
+
+
+/* .electric-table>>>.el-table .el-table__header-wrapper table tr {
+    background-color: #2CBFBE;
+} */
+
+
+/* 表格头部字段的排序控件 */
+
+.electric-table>>>.caret-wrapper .sort-caret.ascending {
+    border-bottom-color: #737373;
+}
+
+.electric-table>>>.el-table .ascending .sort-caret.ascending {
+    border-bottom-color: #fff;
+}
+
+.electric-table>>>.caret-wrapper .sort-caret.descending {
+    border-top-color: #737373;
+}
+
+.electric-table>>>.el-table .descending .sort-caret.descending {
+    border-top-color: #fff;
+}
+
+
+/* 表格底部的分页插件 */
+
+.electric-table>>>.el-pagination {
+    padding-top: 12px;
+    text-align: right;
+}
+
+.electric-table>>>.el-pagination.is-background .el-pager li:not(.disabled).active {
+    background-color: #2CBFBE;
+}
+
+
+/* 表格的行颜色 */
+
+.electric-table>>>.el-table .primary {
+    background: #cfe4fd;
+}
+
+.electric-table>>>.el-table .warning {
+    background: #faefdb;
+}
+
+.electric-table>>>.el-table .success {
+    background: #ebfae4;
+}
+
+.electric-table>>>.el-table .info {
+    background: #f1f1f1;
+}
+
+.electric-table>>>.el-table .error {
+    background: #ffdede;
+}

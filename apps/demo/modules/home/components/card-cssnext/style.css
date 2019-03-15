@@ -1,0 +1,44 @@
+/* cssnext定义全局变量 */
+
+:root {
+    /* cssnext自定义属性集 */
+    --red: #f00;
+    --green: #43cc87;
+    --grey: #ccc;
+    /* cssnext自定义属性集 */
+    --fontCommon: {
+        font-size: 35px;
+        font-family: 微软雅黑;
+    }
+}
+
+a {
+    color: var(--red);
+    background-color: var(--grey);
+    @apply --fontCommon;
+}
+
+
+/* cssnext嵌套写法 */
+
+.outer {
+    border: 1px solid var(--red);
+    padding: 10px;
+    & .inner {
+        border: 1px dashed var(--green);
+    }
+}
+
+
+/* a {
+    color: #333;
+    & .test {
+        color: #f00;
+    }
+    &:hover {
+        color: #ccc;
+    }
+    &+div {
+        float: left;
+    }
+} */

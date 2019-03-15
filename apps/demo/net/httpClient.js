@@ -20,7 +20,10 @@ const logger = Logger.getLogger('App/Net');
 const httpClient = Http.getClient()
     // 请求之前会先调用before设置的回调函数，http模块会把http客户端引用塞给before设置的回调函数
     // 由于可能存在用户频繁登出登录，所以token可能是时时改变的，所以在before的回调里面进行动态headers的设置
-    .before(client => client.headers({ 'token': localStorageHelper.get('token') }))
+    .before(client => {
+        client.headers({ 'token': localStorageHelper.get('token') });
+        // client.disableLoading();
+    })
     // 配置拦截器
     .intercept(response => {
         switch (response.code) {

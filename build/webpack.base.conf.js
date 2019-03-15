@@ -22,6 +22,7 @@ function getMode() {
  * @param {Object} pathInfo 
  */
 function base(appInfo, pathInfo) {
+    console.log(pathInfo);
     return {
         mode: getMode(),
         // 应用打包入口配置
@@ -205,6 +206,21 @@ function rules(appInfo, pathInfo) {
                 limit: 10000, // 10000
                 name: `assets/media/[name]${CURRENT_BUILD_MODE === CONSTANTS.BUILD_MODE.LOCAL_DEV ? '' : '.[chunkhash]'}.[ext]`
             }
+        },
+        // 加载html模板
+        {
+            test: /\.html$/,
+            loader: "html-loader",
+            options: {
+                minimize: true,
+                removeComments: false,
+                collapseWhitespace: false
+            },
+            exclude: [
+                /node_modules/,
+                path.resolve(pathInfo.app, 'template.html'),
+                path.resolve(pathInfo.core, 'template.html')
+            ]
         },
         // 处理.vue文件
         {

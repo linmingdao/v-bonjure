@@ -1,0 +1,5 @@
+<el-popover trigger="click" placement="top">
+    <p>姓名: {{ row.name }}</p>
+    <p>住址: {{ row.province }}{{ row.city }}{{ row.address }}</p>
+    <div slot="reference" class="name-wrapper">{{ row.address }}</div>
+</el-popover>
