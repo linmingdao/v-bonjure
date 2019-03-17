@@ -7,10 +7,12 @@ export default {
             loading: false,
             $comboBox: null,
             $previewPanel: null,
+            previewText: '',
             data: []
         };
     },
     props: {
+        value: String,
         remote: {
             type: Object,
             required: true
@@ -28,11 +30,11 @@ export default {
             type: Boolean,
             default: true
         },
-        value: {
+        valueExtractor: {
             type: Function,
             required: true
         },
-        text: {
+        textExtractor: {
             type: Function,
             required: true
         }
@@ -54,10 +56,17 @@ export default {
             this.$previewPanel = new PreviewPanel().injectContext(this).$mount();
             document.body.appendChild(this.$previewPanel.$el);
         },
+        setPreviweBar(data) {
+            const valueStr = data.map(item => {
+                return this.valueExtractor(item.data);
+            }).join(',');
+            this.$set(this, 'previewText', valueStr);
+            this.$emit('input', valueStr);
+        },
         preferences() {
             return {
-                text: this.text,
-                value: this.value,
+                text: this.textExtractor,
+                value: this.valueExtractor,
                 remote: this.remote,
                 multiple: this.multiple,
                 placeholder: this.placeholder,

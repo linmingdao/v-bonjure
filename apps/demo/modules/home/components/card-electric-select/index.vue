@@ -7,15 +7,8 @@
           class="clearfix"
         >
           <span>🕵‍♂ jQuery版本的ElectricMultiselect组件Vue实现</span>
+          <p>{{ selectValue1 }}</p>
         </div>
-        <electric-select
-          :remote="remote"
-          :filterParams="filterParams"
-          :dataSourceFormatter="dataSourceFormatter"
-          :value="value"
-          :text="text"
-          style="width: 300px;"
-        ></electric-select>
         <form-group
           desc="多选下拉框组件"
           :formWidth="200"
@@ -24,8 +17,9 @@
             :remote="remote"
             :filterParams="filterParams"
             :dataSourceFormatter="dataSourceFormatter"
-            :value="value"
-            :text="text"
+            :valueExtractor="valueExtractor"
+            :textExtractor="textExtractor"
+            v-model="selectValue1"
             placeholder="请输入"
           ></electric-select>
         </form-group>
@@ -34,9 +28,9 @@
           :formWidth="200"
         >
           <electric-select
-            :text="text"
+            :textExtractor="textExtractor"
             :multiple="false"
-            :value="value"
+            :valueExtractor="valueExtractor"
             :remote="remote"
             :filterParams="filterParams"
             :dataSourceFormatter="dataSourceFormatter"

@@ -10,6 +10,7 @@
       ref="previewBar"
       class="preview-bar"
       placeholder="请选择"
+      :value="previewText"
       @click="handleClickSelect"
     />
     <a

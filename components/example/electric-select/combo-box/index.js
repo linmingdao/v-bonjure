@@ -92,6 +92,7 @@ export default Vue.extend({
                 };
             });
             this.$set(this, 'buffer', buffer);
+            this.$context.setPreviweBar(buffer);
         },
         handleClickOptionList(event) {
             const target = event.target;

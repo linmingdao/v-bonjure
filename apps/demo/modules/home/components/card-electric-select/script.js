@@ -5,6 +5,7 @@ import formGroup from '@core/components/example/form-group/index.vue';
 export default {
     data() {
         return {
+            selectValue1: '',
             remote: {
                 url() {
                     return '/users';
@@ -29,11 +30,11 @@ export default {
             dataSourceFormatter(response) {
                 return response.data.userList;
             },
-            text(data) {
+            textExtractor(data) {
                 return data['name'];
             },
-            value(data) {
-                return data['id'];
+            valueExtractor(data) {
+                return data['name'];
             }
         };
     },
