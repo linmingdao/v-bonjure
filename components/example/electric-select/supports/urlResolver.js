@@ -6,4 +6,4 @@ export function resolveUrl(url, queryParams) {
     let queryString = '';
     queryArr.length && (queryString = queryArr.join('&'));
     return url.indexOf('?') > -1 ? `${url}&${queryString}` : `${url}?${queryString}`;
-};
+}

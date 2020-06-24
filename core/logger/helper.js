@@ -54,13 +54,10 @@ export function anything2Level(value) {
  */
 export function anything2LevelString(level) {
     const nLevel = anything2Level(level);
-    return [
-        LEVEL_STRING.DEBUG,
-        LEVEL_STRING.INFO,
-        LEVEL_STRING.WARN,
-        LEVEL_STRING.ERROR,
-        LEVEL_STRING.MUTE
-    ][nLevel] || `LEVEL(${level})`;
+    return (
+        [LEVEL_STRING.DEBUG, LEVEL_STRING.INFO, LEVEL_STRING.WARN, LEVEL_STRING.ERROR, LEVEL_STRING.MUTE][nLevel] ||
+        `LEVEL(${level})`
+    );
 }
 
 /**
@@ -100,13 +97,13 @@ export const colorfulStyles = {
 
 /**
  * 判断是否可以打印该级别的日志
- * @param {*} level 
+ * @param {*} level
  */
 export const isAllowLevel = level => level >= LEVELS[conf['level']];
 
 /**
  * 是否允许该模块打印日志
- * @param {*} moduleName 
+ * @param {*} moduleName
  * @returns {Boolean} true: 允许打印, false: 不允许
  */
 export const isAllowModule = moduleName => {
@@ -130,7 +127,7 @@ function _isAllowModule(parentModules, filter) {
     if (parentModules.length) {
         let pName = '';
         for (let i = 0; i < parentModules.length; i++) {
-            pName += (i === 0 ? parentModules[i] : `.${parentModules[i]}`);
+            pName += i === 0 ? parentModules[i] : `.${parentModules[i]}`;
             if (filter.hasOwnProperty(pName)) {
                 result = false;
                 break;

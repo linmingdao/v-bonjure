@@ -77,16 +77,16 @@ export default {
     methods: {
         /**
          * 对外暴露的接口，用于父组件调用
-         * @param {*} taskName 
-         * @param {*} payload 
+         * @param {*} taskName
+         * @param {*} payload
          */
         executeTask(taskName, payload) {
             this[taskName](payload);
         },
         /**
          * 弹窗
-         * @param {*} formTemplate 
-         * @param {*} title 
+         * @param {*} formTemplate
+         * @param {*} title
          */
         showDialog(formTemplate, title = '\r\n') {
             const h = this.$createElement;
@@ -100,8 +100,8 @@ export default {
         },
         /**
          * 隐藏弹窗
-         * @param {*} formTemplate 
-         * @param {*} title 
+         * @param {*} formTemplate
+         * @param {*} title
          */
         hideDialog() {
             this.$msgbox.close();
@@ -114,10 +114,12 @@ export default {
             let queryParams = taskCreate['queryParams'];
             let url = queryParams ? resolveUrl(taskCreate.url, queryParams) : taskCreate.url;
             const data = taskCreate.data(payload);
-            await httpClient.headers({
-                ...this.headers,
-                ...taskCreate.headers
-            }).post(url, data);
+            await httpClient
+                .headers({
+                    ...this.headers,
+                    ...taskCreate.headers
+                })
+                .post(url, data);
             this.hideDialog();
             this.doRetrieve();
         },
@@ -127,10 +129,12 @@ export default {
         async doRetrieve() {
             let taskRetrieve = this.taskRetrieve;
             // 通过url后端检索表格数据
-            let response = await httpClient.headers({
-                ...this.headers,
-                ...taskRetrieve.headers
-            }).get(this.retrieveUrl);
+            let response = await httpClient
+                .headers({
+                    ...this.headers,
+                    ...taskRetrieve.headers
+                })
+                .get(this.retrieveUrl);
 
             // 解析结果
             if (response.code === 1001) {
@@ -149,10 +153,12 @@ export default {
             let queryParams = taskUpdate['queryParams'];
             let url = queryParams ? resolveUrl(taskUpdate.url(payload), queryParams) : taskUpdate.url(payload);
             const data = taskUpdate.data(payload);
-            httpClient.headers({
-                ...this.headers,
-                ...taskUpdate.headers
-            }).patch(url, data);
+            httpClient
+                .headers({
+                    ...this.headers,
+                    ...taskUpdate.headers
+                })
+                .patch(url, data);
             this.hideDialog();
             this.doRetrieve();
         },
@@ -166,20 +172,24 @@ export default {
                 confirmButtonText: '确定',
                 cancelButtonText: '取消',
                 distinguishCancelAndClose: true
-            }).then(async() => {
-                let taskDelete = this.taskDelete;
-                let queryParams = taskDelete['queryParams'];
-                let url = queryParams ? resolveUrl(taskDelete.url(payload), queryParams) : taskDelete.url(payload);
-                await httpClient.headers({
-                    ...this.headers,
-                    ...taskDelete.headers
-                }).delete(url);
-                this.doRetrieve();
-                this.$message({
-                    type: 'info',
-                    message: '删除成功'
-                });
-            }).catch(action => {});
+            })
+                .then(async () => {
+                    let taskDelete = this.taskDelete;
+                    let queryParams = taskDelete['queryParams'];
+                    let url = queryParams ? resolveUrl(taskDelete.url(payload), queryParams) : taskDelete.url(payload);
+                    await httpClient
+                        .headers({
+                            ...this.headers,
+                            ...taskDelete.headers
+                        })
+                        .delete(url);
+                    this.doRetrieve();
+                    this.$message({
+                        type: 'info',
+                        message: '删除成功'
+                    });
+                })
+                .catch(action => {});
         },
         /**
          * CRUD-D操作(批量删除记录)
@@ -192,20 +202,24 @@ export default {
                     confirmButtonText: '确定',
                     cancelButtonText: '取消',
                     distinguishCancelAndClose: true
-                }).then(async() => {
-                    let taskDeleteInBulk = this.taskDeleteInBulk;
-                    const url = this.deleteInBulkUrl;
-                    const data = taskDeleteInBulk.data(this.selectionBuffer);
-                    await httpClient.headers({
-                        ...this.headers,
-                        ...taskDeleteInBulk.headers
-                    }).delete(url, data);
-                    this.doRetrieve();
-                    this.$message({
-                        type: 'info',
-                        message: '删除成功'
-                    });
-                }).catch(action => {});
+                })
+                    .then(async () => {
+                        let taskDeleteInBulk = this.taskDeleteInBulk;
+                        const url = this.deleteInBulkUrl;
+                        const data = taskDeleteInBulk.data(this.selectionBuffer);
+                        await httpClient
+                            .headers({
+                                ...this.headers,
+                                ...taskDeleteInBulk.headers
+                            })
+                            .delete(url, data);
+                        this.doRetrieve();
+                        this.$message({
+                            type: 'info',
+                            message: '删除成功'
+                        });
+                    })
+                    .catch(action => {});
             } else {
                 this.$message({
                     type: 'info',
@@ -215,7 +229,7 @@ export default {
         },
         /**
          * 检测用户选择了表格的某一行以缓存选中的数据行
-         * @param {*} selection 
+         * @param {*} selection
          */
         selectionChange(selection) {
             this.selectionBuffer = selection;
@@ -228,14 +242,14 @@ export default {
         },
         /**
          * 处理行号的显示
-         * @param {*} index 
+         * @param {*} index
          */
         tableRowIndex(index) {
             return index + 1;
         },
         /**
          * 处理分页组件每页显示的数量改变
-         * @param {*} val 
+         * @param {*} val
          */
         handleSizeChange(val) {
             this.$set(this, 'pageSize', val);
@@ -243,7 +257,7 @@ export default {
         },
         /**
          * 处理分页组件当前页码改变
-         * @param {*} val 
+         * @param {*} val
          */
         handleCurrentChange(val) {
             this.$set(this, 'currentPage', val);

@@ -1,4 +1,4 @@
-var colors = require("colors");
+var colors = require('colors');
 
 function message2String(message) {
     if (typeof message === 'object') {
@@ -10,20 +10,58 @@ function message2String(message) {
     }
 }
 
+function isNotEmptyString(str) {
+    return typeof str === 'string' && str.trim() !== '';
+}
+
+class ColorfulLogger {
+    constructor(title = '') {
+        this.title = title;
+    }
+
+    decorateMessage(message) {
+        const title = isNotEmptyString(this.title) ? `${this.title}: ` : '';
+        return `${title}${message2String(message)}`;
+    }
+
+    log(message) {
+        console.log(this.decorateMessage(message));
+    }
+
+    info(message) {
+        console.log(this.decorateMessage(message).blue);
+    }
+
+    success(message) {
+        console.log(this.decorateMessage(message).green);
+    }
+
+    warning(message) {
+        console.log(this.decorateMessage(message).yellow);
+    }
+
+    error(message) {
+        console.log(this.decorateMessage(message).red);
+    }
+}
+
 module.exports = {
-    log(title = '', message) {
-        console.log(`${title}: ${message2String(message)}`);
+    title(title) {
+        return new ColorfulLogger(title);
     },
-    green(title = '', message) {
-        console.log(`${title}: ${message2String(message)}`.green);
+    log(message) {
+        new ColorfulLogger().log(message);
     },
-    red(title = '', message) {
-        console.log(`${title}: ${message2String(message)}`.red);
+    info(message) {
+        new ColorfulLogger('INFO').info(message);
     },
-    yellow(title = '', message) {
-        console.log(`${title}: ${message2String(message)}`.yellow);
+    success(message) {
+        new ColorfulLogger('SUCCESS').success(message);
     },
-    blue(title = '', message) {
-        console.log(`${title}: ${message2String(message)}`.blue);
+    warning(message) {
+        new ColorfulLogger('WARNING').warning(message);
+    },
+    error(message) {
+        new ColorfulLogger('ERROR').error(message);
     }
 };

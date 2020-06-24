@@ -1,0 +1,11 @@
+{
+    "format": {
+        "include": [
+            "utils",
+            "services",
+            "core",
+            "components",
+            "template"
+        ]
+    }
+}

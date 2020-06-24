@@ -17,9 +17,11 @@ export const defaultLoadingOption = {
 // 默认的Alert弹窗配置
 export const defaultAlertOption = {
     title: '提示',
+    dangerouslyUseHTMLString: true,
+    closeOnClickModal: false,
     // type: MESSAGE_TYPE.INFO,
     confirmButtonText: '确定',
-    callback: action => {}
+    callback: function(action) {}
 };
 
 // 默认的Confirm弹窗配置
@@ -27,10 +29,12 @@ export const defaultConfirmOption = {
     lock: true,
     title: '提示',
     closeOnClickModal: false,
+    dangerouslyUseHTMLString: true,
     type: MESSAGE_TYPE.WARNING,
+    showCancelButton: true,
     confirmButtonText: '确定',
     cancelButtonText: '取消',
-    callback: action => {}
+    callback: function(action) {}
 };
 
 // 默认的Message弹窗配置

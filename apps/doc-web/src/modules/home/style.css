@@ -1,0 +1,23 @@
+.card-container {
+    padding: 50px;
+    display:flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    & .surface {
+        position: relative;
+        width: 128px;
+        height: 128px;
+        display: inline-block;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+    }
+    & .title {
+        font-size: 18px;
+        font-weight: bold;
+    }
+    & .description {
+        margin-top: 8px;
+        font-size: 14px;
+    }
+}

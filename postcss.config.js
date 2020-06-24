@@ -1,18 +1,42 @@
+/**
+ * 替换@import中的别名信息
+ * @param {*} id
+ * @returns
+ */
+function convertAlias(id) {
+    let aliasName;
+    const ALIAS_CONFIG = JSON.parse(process.env.ALIAS);
+    const ALIAS_NAME = Object.keys(ALIAS_CONFIG);
+    for (let i = 0, size = ALIAS_NAME.length; i < size; i++) {
+        if (id.indexOf(ALIAS_NAME[i]) !== -1) {
+            aliasName = ALIAS_NAME[i];
+            break;
+        }
+    }
+    return aliasName ? id.replace(aliasName, ALIAS_CONFIG[aliasName]) : id;
+}
+
 module.exports = {
     plugins: {
-        'postcss-import': {}, // 样式文件的导入处理
-        'postcss-url': {},
-        // 自动补全厂商前缀
-        'autoprefixer': {
-            browsers: '> 5%'
+        // 样式文件的导入处理
+        'postcss-import': {
+            resolve: function(id, basedir, importOptions) {
+                return convertAlias(id);
+            }
         },
+        'postcss-url': {},
+        // 自动补全厂商前缀——postcss-cssnext已经包含该插件了，无需重复添加
+        // 'autoprefixer': {
+        //     browsers: '> 5%'
+        // },
         // 使用下一个版本的css语法
         'postcss-cssnext': {
-            browsers: [ // 兼容,不指定默认则是该插件默认范围,最近两个版本
+            browsers: [
+                // 兼容,不指定默认则是该插件默认范围,最近两个版本
                 '>1%',
                 'last 4 versions',
                 'Firefox ESR',
-                'not ie < 9',
+                'not ie < 9'
             ],
             flexbox: 'no-2009'
         },

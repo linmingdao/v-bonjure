@@ -1,0 +1,22 @@
+@import '@vBaseComponent/them/theme-green/variables.css';
+
+.infinity-multi-level-table >>> thead {
+    color: var(--white);
+}
+
+.infinity-multi-level-table >>> thead th,
+.infinity-multi-level-table >>> .el-table__fixed-right-patch {
+    background-color: var(--primary);
+}
+
+/* 表格选择器颜色 */
+
+.infinity-multi-level-table >>> .el-checkbox__input.is-checked .el-checkbox__inner,
+.infinity-multi-level-table >>> .el-checkbox__input.is-indeterminate .el-checkbox__inner {
+    border-color: #4d9ff0;
+    background: #4d9ff0;
+}
+
+.infinity-multi-level-table >>> .hover-row > td {
+    background-color: #fff;
+}

@@ -16,7 +16,10 @@ export const loggerOn = moduleName => {
         conf['filter'] = {};
     } else {
         // 打开某个模块日志
-        moduleName = moduleName.trim().replace(/\//g, '.').toLowerCase();
+        moduleName = moduleName
+            .trim()
+            .replace(/\//g, '.')
+            .toLowerCase();
         const filter = conf['filter'];
         filter.hasOwnProperty(moduleName) && delete filter[moduleName];
     }
@@ -27,7 +30,10 @@ export const loggerOn = moduleName => {
  * @param {String} moduleName 模块名
  */
 export const loggerOff = moduleName => {
-    moduleName = moduleName.trim().replace(/\//g, '.').toLowerCase();
+    moduleName = moduleName
+        .trim()
+        .replace(/\//g, '.')
+        .toLowerCase();
     const filter = conf['filter'];
     !filter.hasOwnProperty(moduleName) && (filter[moduleName] = 'off');
 };

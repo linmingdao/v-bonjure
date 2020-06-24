@@ -1,6 +1,5 @@
-import Vuex from 'vuex';
 import Vue from 'vue';
-import globalStore from './globalStore';
+import Vuex from 'vuex';
 
 // 使用Vuex统一管理应用状态
 Vue.use(Vuex);
@@ -11,13 +10,18 @@ Vue.use(Vuex);
  * 2、getters(衍生出的state)
  * 3、mutations(处理同步流状态数据)
  * 4、actions(处理异步流状态数据)
- * @param {*} appStore 
+ * @param {*} appStore
  */
-export const configAppStore = appStore => new Vuex.Store({
-    // 全局状态
-    ...globalStore,
-    // 应用各个模块的状态
-    modules: {
-        ...appStore
-    }
-});
+export const configAppStore = appStore => {
+    // 检出全局状态
+    const global = appStore.global ? appStore.global : { state: {}, getters: {}, mutations: {}, actions: {} };
+    appStore.global && delete appStore.global;
+
+    // 生成store对象
+    return new Vuex.Store({
+        // 全局状态
+        ...global,
+        // 业务模块的状态
+        modules: { ...appStore }
+    });
+};

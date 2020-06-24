@@ -1,5 +1,7 @@
-import Http from '@core/Http';
+import Http from '@core/http';
 
 export default function buildHttpClient({ headers = {} }) {
-    return Http.getClient().headers(headers).disableLoading();
-};
+    return Http.getClient()
+        .headers(headers)
+        .disableLoading();
+}

@@ -7,7 +7,7 @@ export default {
     mounted() {
         const size = `${this.$refs.formbox.clientHeight}px`;
         this.$set(this, 'descStyle', {
-            'height': size,
+            height: size,
             'line-height': size
         });
     },

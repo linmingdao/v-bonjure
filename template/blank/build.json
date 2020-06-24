@@ -1,0 +1,28 @@
+{
+    "name": "index",
+    "entry": "index.js",
+    "title": "index",
+    "logo": "logo.png",
+    "devServer": {
+        "dev": {
+            "host": "127.0.0.1",
+            "port": 3006,
+            "proxy": "http://10.0.0.20:9000"
+        },
+        "test": {
+            "host": "127.0.0.1",
+            "port": 3006,
+            "proxy": "http://10.0.0.20:9000"
+        },
+        "prep": {
+            "host": "127.0.0.1",
+            "port": 3006,
+            "proxy": "http://10.0.0.20:9000"
+        },
+        "prod": {
+            "host": "127.0.0.1",
+            "port": 3006,
+            "proxy": "http://10.0.0.20:9000"
+        }
+    }
+}

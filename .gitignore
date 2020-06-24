@@ -2,12 +2,12 @@
 logs
 *.log
 npm-debug.log*
-
 /node_modules
 /dist
 /apps/*
+/proxy/public/*
 # 提交apps下面的demo工程
-!/apps/demo
+!/apps/doc-web
 /components/*
 # 提交base_components下面的示例组件
 !/components/example

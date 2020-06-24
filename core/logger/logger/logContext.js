@@ -2,12 +2,22 @@ import dateFormat from 'dateformat';
 // const uuidv4 = require('uuid/v4');
 
 import { LEVEL_STRING, DATE_FORMATTER } from '../constants';
-import { anything2LevelString, paddingLevelString, colorfulStyles, isAllowLevel, isAllowModule, isLogColorfully, isLogLevel, isLogTime, isLogModule } from '../helper';
+import {
+    anything2LevelString,
+    paddingLevelString,
+    colorfulStyles,
+    isAllowLevel,
+    isAllowModule,
+    isLogColorfully,
+    isLogLevel,
+    isLogTime,
+    isLogModule
+} from '../helper';
 
 /**
- * 日志上下文: 
+ * 日志上下文:
  * 统一管理日志输出类并提供每个具体日志输出对象的运行上下文环境
- * 
+ *
  * @author linmigndao
  */
 export default class LogContext {
@@ -84,7 +94,7 @@ export default class LogContext {
      */
     logColorfully(level, moduleName, params) {
         // 根据日志级别数字获取日志级别全称字符串
-        const levelStr = anything2LevelString(level) || ('' + level);
+        const levelStr = anything2LevelString(level) || '' + level;
         // 获取日志级别的简称字符串
         const paddingLevelStr = paddingLevelString(levelStr);
         // 获取当前时间
@@ -122,7 +132,7 @@ export default class LogContext {
      * @param {Array} params 其他参数
      */
     logMonochromatically(level, moduleName, params) {
-        const levelStr = anything2LevelString(level) || ('' + level);
+        const levelStr = anything2LevelString(level) || '' + level;
         const paddingLevelStr = paddingLevelString(levelStr);
         const now = dateFormat(new Date(), DATE_FORMATTER);
         const log = LogContext.getLogByLevel(levelStr, false);

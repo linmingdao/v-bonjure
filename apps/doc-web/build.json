@@ -1,0 +1,33 @@
+{
+    "name": "doc-web",
+    "entry": "index.js",
+    "title": "开发文档",
+    "logo": "logo.png",
+    "static": {
+        "replace": false,
+        "scripts": [],
+        "styles": []
+    },
+    "devServer": {
+        "dev": {
+            "host": "127.0.0.1",
+            "port": 9999,
+            "proxy": "http://127.0.0.1:9000"
+        },
+        "test": {
+            "host": "127.0.0.1",
+            "port": 9999,
+            "proxy": "http://127.0.0.1:9000"
+        },
+        "prep": {
+            "host": "127.0.0.1",
+            "port": 9999,
+            "proxy": "http://127.0.0.1:9000"
+        },
+        "prod": {
+            "host": "127.0.0.1",
+            "port": 9999,
+            "proxy": "http://127.0.0.1:9000"
+        }
+    }
+}

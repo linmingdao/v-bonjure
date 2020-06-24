@@ -37,8 +37,8 @@ export const deBounce = function(func, wait, immediate) {
 
 /**
  * 数组去重合并
- * @param {*} list1 
- * @param {*} list2 
+ * @param {*} list1
+ * @param {*} list2
  * @param {*} uniqueField
  */
 export const uniqueMerge = function(list1, list2, uniqueField) {

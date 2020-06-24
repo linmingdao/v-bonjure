@@ -4,32 +4,38 @@
         "allowSyntheticDefaultImports": false,
         "baseUrl": "./",
         "paths": {
-            "@core/App": [
+            "@utils": [
+                "utils/"
+            ],
+            "@services": [
+                "services/"
+            ],
+            "@core/app": [
                 "core/app"
             ],
-            "@core/Logger": [
-                "core/logger/index"
-            ],
-            "@core/LoggerCmder": [
-                "core/logger/env/cmder"
-            ],
-            "@core/Http": [
+            "@core/http": [
                 "core/http/index"
             ],
-            "@core/Notification": [
-                "core/notification/notification"
+            "@core/utils": [
+                "core/utils/index"
             ],
-            "@core/notificator": [
-                "core/notification/notificator"
+            "@core/logger": [
+                "core/logger/index"
             ],
             "@core/router": [
                 "core/routes/router"
             ],
-            "@core/components/*": [
-                "components/*"
+            "@core/loggerCmder": [
+                "core/logger/env/cmder"
             ],
-            "@core/tools/*": [
-                "tools/*"
+            "@core/notificator": [
+                "core/notification/notificator"
+            ],
+            "@core/notification": [
+                "core/notification/notification"
+            ],
+            "@vBaseComponent": [
+                "components/v-base-component/src/*"
             ]
         }
     },

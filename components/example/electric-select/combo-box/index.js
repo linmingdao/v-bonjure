@@ -44,14 +44,18 @@ export default Vue.extend({
         handleClickMask() {
             this.visible = false;
         },
-        handleFilterInput: deBounce(function(event) {
-            const filterParams = this.preferences.filterParams;
-            const filterText = event.target.value;
-            this.fetchData(filterParams({ filterText }));
-        }, 600, false),
+        handleFilterInput: deBounce(
+            function(event) {
+                const filterParams = this.preferences.filterParams;
+                const filterText = event.target.value;
+                this.fetchData(filterParams({ filterText }));
+            },
+            600,
+            false
+        ),
         /**
          * 将后端返回的数据转化成组件识别的格式
-         * @param {*} dataSource 
+         * @param {*} dataSource
          */
         convertDataSource(dataSource) {
             return dataSource.map(item => {
@@ -73,15 +77,21 @@ export default Vue.extend({
             const queryParams = (typeof remote['queryParams'] === 'function' && remote['queryParams']()) || {};
 
             // 发起请求
-            const res = await this.httpClient.headers(headers).get(resolveUrl(url, {
-                ...queryParams,
-                ...filterParams
-            }));
+            const res = await this.httpClient.headers(headers).get(
+                resolveUrl(url, {
+                    ...queryParams,
+                    ...filterParams
+                })
+            );
 
             // 设置数据源(会根据用户设置的value进行去重操作)
-            this.$set(this, 'options', uniqueMerge(this.buffer, this.convertDataSource(dataSourceFormatter(res)), function(item) {
-                return value(item['data']);
-            }));
+            this.$set(
+                this,
+                'options',
+                uniqueMerge(this.buffer, this.convertDataSource(dataSourceFormatter(res)), function(item) {
+                    return value(item['data']);
+                })
+            );
         },
         refreshBuffer(list) {
             const idxList = list.map(item => item.getAttribute('index'));

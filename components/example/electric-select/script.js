@@ -57,9 +57,11 @@ export default {
             document.body.appendChild(this.$previewPanel.$el);
         },
         setPreviweBar(data) {
-            const valueStr = data.map(item => {
-                return this.valueExtractor(item.data);
-            }).join(',');
+            const valueStr = data
+                .map(item => {
+                    return this.valueExtractor(item.data);
+                })
+                .join(',');
             this.$set(this, 'previewText', valueStr);
             this.$emit('input', valueStr);
         },
