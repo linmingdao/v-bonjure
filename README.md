@@ -26,8 +26,6 @@
 
 ### 1、安装 [Node](https://nodejs.org/en/)
 
-> 下载并安装 [Node ( >= v10.14.2 LTS 版本 )](https://nodejs.org/dist/v10.14.2/node-v10.14.2-x64.msi)
-
 小贴士：
 
 > 为了今后本地机器可以方便地切换并运行不同版本的 Node，你也可以选择安装 [nvm](https://github.com/nvm-sh/nvm) 类型的工具来统一管理多版本 Node
