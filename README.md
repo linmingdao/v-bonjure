@@ -1,5 +1,5 @@
 <p align="center">
-<a href="http://23.91.98.88/linq/v-base-core" target="_blank" rel="noopener noreferrer"><img width="292" height="65" src="http://23.91.98.88/linq/v-base-core/raw/master/doc/assets/logo.png" alt="v-base-core logo">
+<a href="http://23.91.98.88/linq/v-base-core" target="_blank" rel="noopener noreferrer"><img width="292" height="65" src="https://github.com/linmingdao/v-bonjure/blob/doc/assets/logo.png" alt="v-base-core logo">
 </a>
 </p>
 <h2 align="center">基于Vue的前端通用开发框架</h2>
