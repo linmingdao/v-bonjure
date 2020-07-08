@@ -1,0 +1,71 @@
+[
+    {
+        "label": "饿了么团队ui框架",
+        "component": "ele-ui"
+    },
+    {
+        "label": "定制主题",
+        "children": [
+            {
+                "label": "绿色风格主题",
+                "component": "theme-green",
+                "url": "/documents/widget/theme-green.md"
+            }
+        ]
+    },
+    {
+        "label": "infinity组件库",
+        "children": [
+            {
+                "label": "表格组件",
+                "component": "infinity-table",
+                "url": "/documents/widget/infinity-table.md"
+            },
+            {
+                "label": "表单控件包裹器",
+                "component": "form-group",
+                "url": "/documents/widget/form-group.md"
+            },
+            {
+                "label": "自适应的input输入框",
+                "component": "infinity-adaptive-input",
+                "url": "/documents/widget/infinity-adaptive-input.md"
+            },
+            {
+                "label": "弹窗组件",
+                "component": "infinity-dialog",
+                "url": "/documents/widget/infinity-dialog.md"
+            },
+            {
+                "label": "简单弹窗组件",
+                "component": "infinity-plain-dialog",
+                "url": "/documents/widget/infinity-plain-dialog.md"
+            },
+            {
+                "label": "下拉框组件",
+                "component": "infinity-select",
+                "url": "/documents/widget/infinity-select.md"
+            },
+            {
+                "label": "通知组件",
+                "component": "infinity-notification",
+                "url": "/documents/widget/infinity-notification.md"
+            },
+            {
+                "label": "使用fontawesome图标库",
+                "component": "fortawesome",
+                "url": "/documents/widget/fontawesome.md"
+            }
+        ]
+    },
+    {
+        "label": "simply组件库",
+        "children": [
+            {
+                "label": "简单表格",
+                "component": "simply-table",
+                "url": "/documents/widget/simply-table.md"
+            }
+        ]
+    }
+]

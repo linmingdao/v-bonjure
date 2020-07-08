@@ -42,62 +42,89 @@
 
 ## 脚手架提供的内置命令行
 
-在框架根目录下打开命令行窗口运行命令
+在框架根目录下打开命令行窗口运行命令，每个命令都支持直接输入完整的带参数信息的命令，也支持通过输入不带参数的命令，进而交互式地选择命令参数
 
-1、初始化项目命令
+1、参数解释
 
-> npm run init app=demo title=首页
-
-<img src="https://github.com/linmingdao/v-bonjure/blob/doc/gifs/cmd_init.gif" alt="run init" />
-
-2、运行开发环境命令
-
-> npm run serve app=yourAppName env=dev
-
-<img src="https://github.com/linmingdao/v-bonjure/blob/doc/gifs/cmd_serve.gif" alt="run serve" />
-
-3、运行构建命令
-
-> npm run build app=yourAppName env=dev analyzer=disable
-
-<img src="https://github.com/linmingdao/v-bonjure/blob/doc/gifs/cmd_build.gif" alt="run build" />
-
--   通过 app 指定要打包的应用
--   通过 env 指定打包的环境
--   env 可选值:
+-   通过 app 指定要执行操作的应用
+-   通过 env 指定执行该命令的环境
+-   默认的 env 可选值，当然你可以通过编辑每个应用目录下面的 build.json 配置文件以 新增 or 修改 配置信息:
     -   dev: 开发环境
     -   test: 测试环境
+    -   prep: 预生产环境
     -   prod: 生产环境
 -   比如 npm run build app=demo env=test 表示构建 demo 应用的测试环境包
 
-4、运行部署命令
+2、初始化项目命令
 
-> npm run deploy app=yourAppName env=dev
+带参数的完整命令：
+
+> npm run init app=[项目名] title=[首页的title信息]
+
+交互式选择参数：
+
+<img src="https://github.com/linmingdao/v-bonjure/blob/doc/gifs/cmd_init.gif" alt="run init" />
+
+3、运行开发环境命令
+
+带参数的完整命令：
+
+> npm run serve app=[项目名] env=[环境信息]
+
+交互式选择参数：
+
+<img src="https://github.com/linmingdao/v-bonjure/blob/doc/gifs/cmd_serve.gif" alt="run serve" />
+
+该命令会在 apps 目录下创建一个新的应用
+
+4、运行构建命令
+
+带参数的完整命令：
+
+> npm run build app=[项目名] env=[环境信息] analyzer=[disable|enable]
+
+交互式选择参数：
+
+<img src="https://github.com/linmingdao/v-bonjure/blob/doc/gifs/cmd_build.gif" alt="run build" />
+
+该命令会在该应用的 dist 目录下生成对应环境的构建包
+
+5、运行部署命令
+
+带参数的完整命令：
+
+> npm run deploy app=[项目名] env=[环境信息]
+
+交互式选择参数：
 
 <img src="https://github.com/linmingdao/v-bonjure/blob/doc/gifs/cmd_deploy.gif" alt="run deploy" />
 
-## 运行 demo app 以快速浏览框架提供的各种能力支持
+该命令会在该应用的 deploy 目录下生成对应环境的可直接运行的部署包，在构建好的部署包目录下直接通过 node 运行 app.js 即可查看运行效果
 
-在框架根目录新建两个命令行窗口，分别运行如下命令
+6、运行格式化代码的相关命令
 
-1、运行 demo app 配套的后端服务
+格式化框架代码：
 
-> npm run demo-server
+> npm run format
 
-    服务启动成功会监听本机9000端口
+格式化框架代码：
 
-2、运行 demo app
+> npm run format:global
 
-> npm run dev app=demo
+格式化 apps 目录下单个项目代码：
 
-    npm run dev 命令表示以开发模式运行指定的app, 通过 app=your_app_name 指定要运行的应用名称
+> npm run format:app app=[项目名]
 
-    应用会启动在本机3002端口
+格式化指定的目录或者文件：
 
-3、通过浏览器访问 demo app （推荐使用 Chrome 浏览器）
+> npm run format:dir dir=[目录或者文件]
 
-    http://127.0.0.1:3002
+7、运行本地文档命令
 
-![image](http://23.91.98.88/linq/v-base-core/raw/master/doc/assets/app_login.png)
+运行本地文档：
 
-PS：可以通过浏览 demo app 目录下的源码 get “如何快速搭建你的应用” 这项神技哟
+> npm run doc
+
+该命令会在该本机的9000端口运行脚手架自带的文档系统
+
+<img src="https://github.com/linmingdao/v-bonjure/blob/doc/gifs/cmd_doc.gif" alt="run doc" />

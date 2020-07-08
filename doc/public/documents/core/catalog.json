@@ -1,0 +1,71 @@
+[
+    {
+        "label": "待实现的特性",
+        "url": "/documents/core/01_00_todolist.md"
+    },
+    {
+        "label": "环境搭建与常用命令",
+        "url": "/documents/core/02_00_cmder.md"
+    },
+    {
+        "label": "代码风格",
+        "url": "/documents/core/09_00_style.md"
+    },
+    {
+        "label": "框架内核",
+        "children": [
+            {
+                "label": "总体设计",
+                "url": "/documents/core/03_00_design.md"
+            },
+            {
+                "label": "Http网络模块",
+                "url": "/documents/core/03_01_http.md"
+            },
+            {
+                "label": "Logger日志模块",
+                "url": "/documents/core/03_02_logger.md"
+            },
+            {
+                "label": "消息中心",
+                "url": "/documents/core/03_03_notification.md"
+            },
+            {
+                "label": "应用启动器",
+                "url": "/documents/core/03_04_booter.md"
+            },
+            {
+                "label": "组件间通信",
+                "url": "/documents/core/03_05_communication.md"
+            },
+            {
+                "label": "代理服务(反向)",
+                "url": "/documents/core/03_06_proxy.md"
+            },
+            {
+                "label": "平台相关服务",
+                "url": "/documents/core/03_07_services.md"
+            }
+        ]
+    },
+    {
+        "label": "框架的概览(层级说明)",
+        "url": "/documents/core/04_00_summary.md"
+    },
+    {
+        "label": "组件层级",
+        "url": "/documents/core/05_00_hierarchy.md"
+    },
+    {
+        "label": "应用开发",
+        "url": "/documents/core/06_00_buildApp.md"
+    },
+    {
+        "label": "前后端交互协议",
+        "url": "/documents/core/07_00_protocol.md"
+    },
+    {
+        "label": "服务别名",
+        "url": "/documents/core/08_00_alias.md"
+    }
+]
