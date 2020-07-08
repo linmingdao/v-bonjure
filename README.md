@@ -59,7 +59,7 @@
 
 带参数的完整命令：
 
-> npm run init app=[项目名] title=[首页的title信息]
+> npm run init app=[项目名] title=[首页的 title 信息]
 
 交互式选择参数：
 
@@ -125,6 +125,6 @@
 
 > npm run doc
 
-该命令会在该本机的9000端口运行脚手架自带的文档系统
+该命令会在本机的 9000 端口运行脚手架自带的文档系统
 
 <img src="https://github.com/linmingdao/v-bonjure/blob/doc/gifs/cmd_doc.gif" alt="run doc" />
