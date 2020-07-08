@@ -225,8 +225,9 @@ function base({ appInfo, pathInfo }) {
  * 获取编译的插件配置
  * @param {Object} appInfo
  * @param {Object} pathInfo
+ * @param {String} analyzer
  */
-function plugins({ appInfo, pathInfo }) {
+function plugins({ appInfo, pathInfo, analyzer }) {
     const plugins = [
         // 需要用webpack.DefinePlugin插件定义node环境变量，否则前端js文件获取不到设置的环境变量信息
         new webpack.DefinePlugin({
@@ -267,7 +268,7 @@ function plugins({ appInfo, pathInfo }) {
         // 构建CopyWebpackPlugin插件：作用是拷贝一些外部库文件
         buildCopyWebpackPlugin(appInfo, pathInfo)
     ];
-    BUILD_MODE === APP_BUNDLE &&
+    analyzer === 'enable' &&
         plugins.push(
             new BundleAnalyzerPlugin({
                 analyzerMode: 'server',
@@ -454,12 +455,13 @@ module.exports = {
      * 获取公共的webpack编译配置信息
      * @param {Object} appInfo
      * @param {Object} pathInfo
+     * @param {String} analyzer
      */
-    getConfig({ appInfo, pathInfo }) {
+    getConfig({ appInfo, pathInfo, analyzer = 'disable' }) {
         return {
             base: base({ appInfo, pathInfo }),
             rules: rules({ appInfo, pathInfo }),
-            plugins: plugins({ appInfo, pathInfo })
+            plugins: plugins({ appInfo, pathInfo, analyzer })
         };
     }
 };

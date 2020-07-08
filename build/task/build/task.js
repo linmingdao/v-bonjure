@@ -7,7 +7,7 @@ class Task extends Environment {
     /**
      * 校验环境信息
      */
-    validate({ envParams, existentAppNameList, availableEnvValueList,realAvailableEnv }) {
+    validate({ envParams, existentAppNameList, availableEnvValueList, realAvailableEnv }) {
         const { env, app } = envParams;
 
         if (typeof app === 'undefined') {
@@ -15,7 +15,9 @@ class Task extends Environment {
         }
 
         if (typeof env === 'undefined') {
-            return `请通过 env=[${availableEnvValueList.join('|')},${availableEnvValueList.map(item=>item+'_xxx').join(',')}] 的形式指定环境信息`;
+            return `请通过 env=[${availableEnvValueList.join('|')},${availableEnvValueList
+                .map(item => item + '_xxx')
+                .join(',')}] 的形式指定环境信息`;
         }
 
         // 校验应用名称
@@ -25,7 +27,9 @@ class Task extends Environment {
 
         // 校验环境参数是否存在 build.json 配置中
         if (!realAvailableEnv.includes(env) || !availableEnvValueList.includes(env.split('_')[0])) {
-            return `环境参数${env}不符合要求, 目前支持的环境参数为: ${availableEnvValueList.join(',')},${availableEnvValueList.map(item=>item+'_xxx').join(',')}`;
+            return `环境参数${env}不符合要求, 目前支持的环境参数为: ${availableEnvValueList.join(
+                ','
+            )},${availableEnvValueList.map(item => item + '_xxx').join(',')}`;
         }
 
         return true;
@@ -34,32 +38,24 @@ class Task extends Environment {
     /**
      * 准备问题列表
      */
-    getQuestions({ existentAppNameList, availableEnvValueList }) {
+    getQuestions({ existentAppNameList }) {
+        const __this = this;
         return [
             {
                 type: 'list',
                 name: 'app',
                 message: 'choose app:',
-                choices: existentAppNameList,
-                default: existentAppNameList[0]
+                choices: existentAppNameList
             },
             {
                 type: 'list',
                 name: 'env',
                 message: 'choose env:',
-                choices: (answers)=>{
-                    availableEnvValueList = this.resolveAvailableEnvValueList(answers.app);
+                choices: answers => {
+                    const availableEnvValueList = __this.resolveAvailableEnvValueList(answers.app);
                     return availableEnvValueList;
-                },
-                default: availableEnvValueList[0]
+                }
             }
-            // {
-            //     type: 'list',
-            //     name: 'env',
-            //     message: 'choose env:',
-            //     choices: availableEnvValueList,
-            //     default: availableEnvValueList[0]
-            // }
         ];
     }
 }

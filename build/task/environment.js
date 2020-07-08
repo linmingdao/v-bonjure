@@ -77,11 +77,11 @@ class Environment {
     /**
      * 解析应用的配置信息(本质是解析build.json配置文件)
      */
-    resolveAvailableEnvValueList(app){
+    resolveAvailableEnvValueList(app) {
         const appInfo = JSON.parse(fs.readFileSync(path.resolve(process.cwd(), 'apps', app, 'build.json')));
         // 只读取指定环境的devServer配置
         const devServerInfo = appInfo['devServer'] || {};
-        return Object.keys(devServerInfo); 
+        return Object.keys(devServerInfo);
     }
 
     /**
@@ -181,8 +181,8 @@ class Environment {
             if (envParams.app && envParams.env) {
                 let envType = envParams.env;
                 const envArr = envType.split('_');
-                if(envArr.length>1){
-                    envType=envArr[0];
+                if (envArr.length > 1) {
+                    envType = envArr[0];
                 }
 
                 const cwd = process.cwd();
@@ -251,7 +251,9 @@ class Environment {
      */
     validateEnvParams(envParams, resolve, reject) {
         const existentAppNameList = this.resolveExistentAppNameList();
-        const realAvailableEnv = existentAppNameList.includes(envParams.app) ? this.resolveAvailableEnvValueList(envParams.app) : availableEnvValueList;
+        const realAvailableEnv = existentAppNameList.includes(envParams.app)
+            ? this.resolveAvailableEnvValueList(envParams.app)
+            : availableEnvValueList;
         const existentComponentsNameList = this.resolveExistentComponentsNameList();
 
         const result = this.validate({
@@ -259,7 +261,7 @@ class Environment {
             realAvailableEnv,
             existentAppNameList,
             existentComponentsNameList,
-            availableEnvValueList,
+            availableEnvValueList
         });
         if (typeof result === 'boolean' && result) {
             this.setEnvParams(envParams);

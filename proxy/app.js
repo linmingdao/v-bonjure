@@ -22,13 +22,15 @@ app.use((req, res, next) => {
 // 静态资源路径
 app.use(express.static(path.join(__dirname, './public')));
 
-// 解析需要被代理的接口信息
-const hosts = Object.keys(includes);
-hosts.length &&
-    hosts.forEach(host => {
-        const apiList = includes[host];
-        apiList.length && app.use(proxy(apiList, { target: host, changeOrigin: true }));
-    });
+if (includes) {
+    // 解析需要被代理的接口信息
+    const hosts = Object.keys(includes);
+    hosts.length &&
+        hosts.forEach(host => {
+            const apiList = includes[host];
+            apiList.length && app.use(proxy(apiList, { target: host, changeOrigin: true }));
+        });
+}
 
 // 启动代理服务器 并 监听端口
 app.listen(app.get('port'), () => {

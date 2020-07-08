@@ -65,10 +65,11 @@ module.exports = {
      * @param {Object} env
      * @param {Object} appInfo
      * @param {Object} pathInfo
+     * @param {String} analyzer
      */
-    getConfig({ env, appInfo, pathInfo }) {
+    getConfig({ env, appInfo, pathInfo, analyzer }) {
         // 获取webpack公共配置
-        const baseConfig = require('./webpack.base.conf').getConfig({ appInfo, pathInfo });
+        const baseConfig = require('./webpack.base.conf').getConfig({ appInfo, pathInfo, analyzer });
         return {
             // 基础配置
             ...base(baseConfig.base),

@@ -40,8 +40,7 @@ class FormatTask extends Environment {
     /**
      * 准备问题列表
      */
-    getQuestions() {
-        const existentAppNameList = this.resolveExistentAppNameList();
+    getQuestions({ existentAppNameList }) {
         return [
             {
                 type: 'list',

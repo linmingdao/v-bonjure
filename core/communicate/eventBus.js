@@ -134,7 +134,7 @@ export function enableEventBus() {
      * 组件销毁后从事件总线移除该组件
      */
     Vue.mixin({
-        destroyed: function() {
+        beforeDestroy: function() {
             removeSubscriber(this);
         }
     });

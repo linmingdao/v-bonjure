@@ -61,9 +61,9 @@ function getDevServerConf(appInfo) {
 class ServeTask extends Task {
     /**
      * 个性化的配置延迟交由子类来实现：执行构建
-     * @param {*} app
      * @param {*} env
      * @param {*} appInfo
+     * @param {*} pathInfo
      */
     execute({ env, appInfo, pathInfo }) {
         process.env.BUILD_ENV = env;

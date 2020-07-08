@@ -56,6 +56,7 @@ class DeployTask extends Task {
         }
         delopyConfig.port = appInfo.devServer.port;
         fs.writeFileSync(delopyConfigPath, `module.exports = ${JSON.stringify(delopyConfig)}`);
+
         // copy 前端代码
         const distPath = path.join(process.cwd(), 'apps', app, 'dist', env);
         const publicPath = path.join(process.cwd(), 'apps', app, 'deploy', env, 'public');
@@ -65,6 +66,7 @@ class DeployTask extends Task {
             mode: true,
             cover: true
         });
+
         // 自动安装相关依赖
         this.logger.info('installing dependencies...');
         this.execCommandSync(`cd ${deployPath}&&npm --registry https://registry.npm.taobao.org i`);
