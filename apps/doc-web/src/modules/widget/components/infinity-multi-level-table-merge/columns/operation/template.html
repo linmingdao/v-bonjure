@@ -1,7 +1,0 @@
-<span>
-    <infinity-plain-dialog width="450" v-model="isShowForm" v-show="isShowForm">
-        <user-form ref="userForm" :cancel="cancel" :confirm="confirm"></user-form>
-    </infinity-plain-dialog>
-    <el-button icon="el-icon-edit" size="mini" @click="handleEdit(row, context)">编辑</el-button>
-    <el-button icon="el-icon-delete" size="mini" type="danger" @click="handleDelete(row,context)">删除</el-button>
-</span>

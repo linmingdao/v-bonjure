@@ -1,8 +1,0 @@
-build/
-template/
-proxy/
-node_modules/
-libs/
-doc/
-apps/**/libs/
-*.vue
