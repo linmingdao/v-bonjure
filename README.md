@@ -57,7 +57,7 @@
 
 带参数的完整命令：
 
-> npm run init app=[项目名] title=[首页的 title 信息]
+> npm run init app=[项目名] title=[首页的title信息]
 
 交互式选择参数：
 
