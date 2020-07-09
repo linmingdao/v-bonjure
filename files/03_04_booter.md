@@ -1,9 +1,8 @@
-# 应用启动器
 框架向应用层提供了App函数，应用通过该函数告知框架应用的一些基本情况，框架则会通过该函数进一步配置应用并启动应用，这个App函数就是应用启动器
 
 ## 1、应用启动器
 启动器是框架提供给应用的唯一接入点，如下方式使用启动器：
-```
+```js
 // 导入框架提供的App启动函数
 import App from '@core/App';
 // 导入应用的状态
@@ -31,14 +30,14 @@ App({
 答案是：框架的设计是一个应用有且只会有一个vue实例，并且框架层提供了一个app根路由组件，应用所有的模块都将被挂载到该组件下面。
 
 如下图所示，
-```
+```html
 <div id="app">
     <!-- 你的应用 -->
 </div>
 ```
 节点就是应用挂载的根节点，你的应用所有内容都会被塞到该节点里面
 
-![image](https://github.com/linmingdao/v-bonjour/raw/master/doc/assets/app_mount.png)
+![image](/documents/assets/app_mount.png)
 
 ## 3、why: 一个应用有且只会有一个vue实例 ?
 
@@ -46,6 +45,6 @@ App({
 
 * 应用会有自己的状态（框架是使用 Vuex 实现应用的状态树），应用的每个组件都会一一对应一块自己的状态，这样应用的状态也会形成一棵状态树。
 
-   ![image](https://github.com/linmingdao/v-bonjour/raw/master/doc/assets/app_tree.png)
+   ![image](/documents/assets/app_tree.png)
 
 基于以上两点，为了方便管理应用组件树和状态树的一一对应，框架的设计选择了单vue实例，应用的组件和状态都注册到该唯一的vue实例上。

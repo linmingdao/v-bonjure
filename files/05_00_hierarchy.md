@@ -1,7 +1,5 @@
-# 组件层级
-
 ## 一、组件级别
-![image](https://github.com/linmingdao/v-bonjour/raw/master/doc/assets/component.png)
+![image](/documents/assets/component.png)
 
 ## 二、组件级别说明
 框架提供的是完全的组件化开发模式，只要你愿意，任何视图都可以被抽象成组件，而应用就是由一个个组件堆砌而成的 “大组件”，所以组件的概念在应用开发中很重要，这里对组件的层级做一个说明，一个组件的层级可能会随着开发过程动态调整：
