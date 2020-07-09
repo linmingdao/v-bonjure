@@ -20,7 +20,7 @@
 
 ## 进一步了解脚手架的设计细节请移步
 
-[v-bonjure 详细文档](https://linmingdao.github.io/v-bonjure/)
+[v-bonjure 详细文档](https://github.com/linmingdao/v-bonjure/blob/doc/files/0000_目录大纲.md)
 
 ## 环境搭建
 
