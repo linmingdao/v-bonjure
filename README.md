@@ -129,4 +129,4 @@
 
 ## License
 
-v-bonjure is available under the MIT license. See the LICENSE file for more info.
+v-bonjure is available under the MIT license. See the [LICENSE](https://github.com/linmingdao/v-bonjure/blob/master/LICENSE) file for more info.
