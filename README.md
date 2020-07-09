@@ -6,7 +6,7 @@
 <p align="center">
     <img src="https://github.com/linmingdao/v-bonjure/blob/doc/assets/platform.png" alt="Platform: macOS, windows, linux" />
     <a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript" target="_blank"><img src="https://github.com/linmingdao/v-bonjure/blob/doc/assets/language.png" alt="Language: JavaScript" /></a>
-    <img src="https://github.com/linmingdao/v-bonjure/blob/doc/assets/license.png" alt="License: MIT" />
+    <a href="https://en.wikipedia.org/wiki/MIT_License" target="_blank"><img src="https://github.com/linmingdao/v-bonjure/blob/doc/assets/license.png" alt="License: MIT" /></a>
 </p>
 
 框架选择了当下流行的 [Vue](https://cn.vuejs.org/) + [Vuex](https://vuex.vuejs.org/) + [Vue Router](https://router.vuejs.org/) 的组合方案来快速搭建与迭代应用；为了快速搭建应用的视图层，框架集成了饿了么团队 [Element UI](http://element-cn.eleme.io/#/zh-CN) 框架；选择 [wepack 4.x](https://webpack.js.org/) 为应用的构建工具；提供了多应用并行开发的能力支持，框架为应用开发提供了如下通用能力：
@@ -126,3 +126,7 @@
 该命令会在本机的 9000 端口运行脚手架自带的文档系统
 
 <img src="https://github.com/linmingdao/v-bonjure/blob/doc/gifs/cmd_doc.gif" alt="run doc" />
+
+## License
+
+v-bonjure is available under the MIT license. See the LICENSE file for more info.
