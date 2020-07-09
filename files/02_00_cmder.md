@@ -1,70 +1,104 @@
-## 一、环境搭建
+## 环境搭建
 
-1、安装 [Node](https://nodejs.org/en/)
+### 1、安装 [Node](https://nodejs.org/en/)
 
-> 下载并安装 [Node ( > v10.14.2 LTS 版本 )](https://nodejs.org/zh-cn/)，注意请使用长期支持版本
+小贴士：
 
-    小贴士：为了今后本地机器可以运行不同版本的Node，你也可以选择安装nvm类型的工具来统一管理多版本Node
+> 为了今后本地机器可以方便地切换并运行不同版本的 Node，你也可以选择安装 [nvm](https://github.com/nvm-sh/nvm) 类型的工具来统一管理多版本 Node
 
-2、拉取框架至本地目录
+### 2、拉取框架至本地目录
 
--   由于公司禁用了 ssh 协议的 443 端口，所以 git 仓库的拉取不再使用 ssh 协议： ~~git clone ssh://git@23.91.98.88:49226/linq/v-base-core.git~~
+> git clone git@github.com:linmingdao/v-bonjure.git
 
--   请使用 http 协议进行拉取，为了方便后面提交代码不用每次输入用户名密码，可以在拉取的同时直接指定用户名和密码： git clone http://username:password@23.91.98.88/linq/v-base-core.git
-
-3、在框架根目录打开命令行窗口，并执行如下命令安装相关依赖
+### 3、在框架根目录打开命令行窗口，并执行如下命令安装相关依赖
 
 > npm i
 
-## 二、运行本地文档系统以快速浏览框架提供的各种能力支持
+## 脚手架提供的内置命令行
 
-在框架根目录新建命令行窗口，运行如下命令
+在框架根目录下打开命令行窗口运行命令，每个命令都支持直接输入完整的带参数信息的命令，也支持通过输入不带参数的命令，进而交互式地选择命令参数
 
-1、npm run doc 运行本地文档系统
+### 1、参数解释
 
-> 服务启动成功会监听本机 9000 端口，运行前请先确认端口没有被其他应用占用
+- 通过 app 指定要执行操作的应用
+- 通过 env 指定执行该命令的环境
+- 默认的 env 可选值，当然你可以通过编辑每个应用目录下面的 build.json 配置文件以 新增 or 修改 配置信息:
+  - dev: 开发环境
+  - test: 测试环境
+  - prep: 预生产环境
+  - prod: 生产环境
+- 比如 npm run build app=demo env=test 表示构建 demo 应用的测试环境包
 
-2、通过浏览器访问本地文档系统（推荐使用 Chrome 浏览器）
+### 2、初始化项目命令
 
-> http://127.0.0.1:9000
+带参数的完整命令：
 
-<img border="1" src="/documents/assets/doc_logo.png">
+> npm run init app=[项目名] title=[首页的 title 信息]
 
-3、当然你也可以直接访问 [在线文档系统](http://10.0.0.20:9000)
+交互式选择参数：
 
-## 三、命令
+<img src="https://github.com/linmingdao/v-bonjure/blob/doc/gifs/cmd_init.gif" alt="run init" />
 
-在框架根目录下打开命令行窗口运行命令
+### 3、运行开发环境命令
 
-#### 1、介绍命令之前的一些参数说明
+带参数的完整命令：
 
--   通过 app 指定要 运行|打包|部署 的应用名称
--   通过 env 指定要 运行|打包|部署 的环境，其可选值如下：
-    -   dev: 开发环境
-    -   test: 测试环境
-    -   prep: 提审环境(预生产)
-    -   prod: 生产环境
+> npm run serve app=[项目名] env=[环境信息]
 
-#### 2、创建项目命令
+交互式选择参数：
 
-> npm run init app=[appName] port=[port] title=[title]
+<img src="https://github.com/linmingdao/v-bonjure/blob/doc/gifs/cmd_serve.gif" alt="run serve" />
 
-<img border="1" src="/documents/assets/init.gif" width="800">
+该命令会在 apps 目录下创建一个新的应用
 
-#### 3、运行本地开发环境命令
+### 4、运行构建命令
 
-> npm run serve app=[appName] env=[dev|test|prep|prod]
+带参数的完整命令：
 
-<img border="1" src="/documents/assets/serve.gif" width="800">
+> npm run build app=[项目名] env=[环境信息] analyzer=[disable|enable]
 
-#### 4、运行打包命令
+交互式选择参数：
 
-> npm run build app=[appName] env=[dev|test|prep|prod]
+<img src="https://github.com/linmingdao/v-bonjure/blob/doc/gifs/cmd_build.gif" alt="run build" />
 
-<img border="1" src="/documents/assets/build.gif" width="800">
+该命令会在该应用的 dist 目录下生成对应环境的构建包
 
-#### 5、运行如下命令生成一个可以直接部署运行的包
+### 5、运行部署命令
 
-> npm run deploy app=[appName] env=[dev|test|prep|prod]
+带参数的完整命令：
 
-<img border="1" src="/documents/assets/deploy.gif" width="800">
+> npm run deploy app=[项目名] env=[环境信息]
+
+交互式选择参数：
+
+<img src="https://github.com/linmingdao/v-bonjure/blob/doc/gifs/cmd_deploy.gif" alt="run deploy" />
+
+该命令会在该应用的 deploy 目录下生成对应环境的可直接运行的部署包，在构建好的部署包目录下直接通过 node 运行 app.js 即可查看运行效果
+
+### 6、运行格式化代码的相关命令
+
+格式化框架代码：
+
+> npm run format
+
+格式化框架代码：
+
+> npm run format:global
+
+格式化 apps 目录下单个项目代码：
+
+> npm run format:app app=[项目名]
+
+格式化指定的目录或者文件：
+
+> npm run format:dir dir=[目录或者文件]
+
+### 7、运行本地文档命令
+
+运行本地文档：
+
+> npm run doc
+
+该命令会在本机的 9000 端口运行脚手架自带的文档系统
+
+<img src="https://github.com/linmingdao/v-bonjure/blob/doc/gifs/cmd_doc.gif" alt="run doc" />

@@ -1,5 +1,5 @@
 <h2 align="center">待实现的特性列表</h2>
-<p align="center"><img width="496" height="288" src="/documents/assets/todolist.jpg" alt="基于 fetch api 的网络通信模块"></p>
+<p align="center"><img width="496" height="288" src="https://github.com/linmingdao/v-bonjure/blob/doc/assets/todolist.jpg" alt="基于 fetch api 的网络通信模块"></p>
 
 <font color=#a9a9a9>1. ~~webpack 设置 mode 为 production 后 vue 并没有以生产模式运行~~</font>
 

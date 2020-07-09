@@ -1,2 +1,3 @@
 ## 框架目录结构说明
-![image](/documents/assets/framework_overview.png)
+
+![image](https://github.com/linmingdao/v-bonjure/blob/doc/assets/framework_overview.png)
