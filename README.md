@@ -20,7 +20,7 @@
 
 ## 进一步了解脚手架的设计细节请移步
 
-[v-bonjure 详细文档](https://cn.vuejs.org/)
+[v-bonjure 详细文档](https://github.com/linmingdao/v-bonjure/blob/doc/files/index.html)
 
 ## 环境搭建
 
@@ -57,7 +57,7 @@
 
 带参数的完整命令：
 
-> npm run init app=[项目名] title=[首页的title信息]
+> npm run init app=[项目名] title=[首页的 title 信息]
 
 交互式选择参数：
 
