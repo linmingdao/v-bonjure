@@ -1,5 +1,58 @@
-@import '@vBaseComponent/them/theme-green/theme-green.css';
-@import '@vBaseComponent/them/theme-green/variables.css';
+/* @import '@vBaseComponent/them/theme-green/theme-green.css';
+@import '@vBaseComponent/them/theme-green/variables.css'; */
+:root {
+    --borderRadius: 4px;
+    --maskBgColor: rgba(0, 0, 0, 0.2);
+    --borderColor: #e5e6e7;
+    --boxShadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+    /* --------------------------- 可用的字体 --------------------------- */
+    --fontFamily: 'Microsoft YaHei', 微软雅黑, 'MicrosoftJhengHei', 华文细黑, STHeiti, MingLiu;
+    /* --------------------------- 主色调 --------------------------- */
+    --primary: #2cbfbe;
+    /* --------------------------- 按钮色号 --------------------------- */
+    --buttonBlue: #4d9ff0;
+    --buttonDustyBlue: #5796d4;
+    --buttonGreen: #2cbfbe;
+    --buttonDustyGreen: #28acab;
+    --buttonGray: #e7eaed;
+    --buttonDustyGray: #d0d3d6;
+    --buttonRed: #f56c6c;
+    --buttonDustyRed: #dc6161;
+    --buttonYellow: #ff9d02;
+    --buttonDustyYellow: #e68e02;
+    /* --------------------------- 标签色号 --------------------------- */
+    --labelBlue: #88b7e2;
+    --labelPink: #ea9cbd;
+    --labelGreen: #79d3e0;
+    --labelPurple: #8e94f9;
+    --labelYellow: #ffba57;
+    /* --------------------------- 图表可用色号 --------------------------- */
+    --diagramPink_1: #fe6bbe;
+    --diagramPink_2: #fe67bd;
+    --diagramBlue_1: #66c4ee;
+    --diagramBlue_2: #6a9ce8;
+    --diagramGreen_1: #0cede0;
+    --diagramGreen_2: #1eeee4;
+    --diagramGreen_3: #00f6f5;
+    --diagramYellow_1: #fcdd8f;
+    --diagramYellow_2: #fbd03f;
+    --diagramPurple_1: #ca85fe;
+    --diagramPurple_2: #ca87fe;
+    /* --------------------------- 滚动条色号 --------------------------- */
+    --scrollbarLightGray: #f5f5f5;
+    --thumbLightGray: #999999;
+    --trackLightGray: #f5f5f5;
+    /* --------------------------- 其他可用色号 --------------------------- */
+    --white: #ffffff;
+    --black: #000000;
+    --dustyBlack: #3a3a3a;
+    --lightGray: #e6e6e6;
+    --dustyGray: #dee1e4;
+    --borderGray: #eaeaea;
+    --white2: #fafafa;
+    --borderGray2: #e0e0e0;
+}
+
 .electric-dialog-mask {
     top: 0;
     left: 0;
