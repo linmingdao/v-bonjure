@@ -7,10 +7,6 @@ import Logger from '@core/logger';
 import { platform } from '@utils/platform';
 import notificator from '@core/notificator';
 import Notification from '@core/notification';
-// 导入应用的路由配置函数
-import { configAppRoutes } from './routes';
-// 导入应用的状态配置函数
-import { configAppStore } from './store';
 // 导入应用的挂载组件(同时也是顶层路由组件)
 import App from './app/index.vue';
 // 导入设置日志级别的命令行函数
@@ -81,18 +77,22 @@ enableFindComponents();
  * 注意模板中的root节点会被Vue替换掉，不会出现在文档中，应用都挂载在app节点下
  */
 export default application => {
-    let routes = Array.isArray(application.routes) ? application.routes : application.routes.routes;
-    let mode = Array.isArray(application.routes) ? 'hash' : application.routes.mode;
+    const { store, router } = application;
+
+    let opts = {};
+
+    // 配置应用的状态树信息
+    if (store) opts = { ...opts, store };
+
+    // 配置应用的路由信息
+    if (router) opts = { ...opts, router };
 
     return new Vue({
         // Vue实例的挂载点
         el: '#root',
-        // 配置应用的状态树信息
-        store: configAppStore(application.store),
-        // 配置应用的路由信息
-        router: configAppRoutes(routes, mode),
         // 渲染应用的挂载点
-        render: h => h(App)
+        render: h => h(App),
+        ...opts
     });
 };
 
