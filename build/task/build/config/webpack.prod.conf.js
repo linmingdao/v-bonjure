@@ -5,9 +5,9 @@ const OptimizeCssnanoPlugin = require('@intervolga/optimize-cssnano-plugin');
 function base(commonBase) {
     return {
         // 公共的配置信息
-        ...commonBase,
+        ...commonBase
         // 启用source-map
-        devtool: 'cheap-module-source-map'
+        // devtool: 'cheap-module-source-map'
     };
 }
 
