@@ -10,7 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "highlight.js": "^9.15.8",
-    "markdown-it": "^9.0.1",
+    "markdown-it": "^12.3.2",
     "numeral": "^2.0.6"
   }
 }
